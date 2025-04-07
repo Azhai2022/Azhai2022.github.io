@@ -149,7 +149,7 @@
         <script>
           function checkPassword() {
             const input = document.getElementById('password-input').value;
-            const correct = "813";
+            const correct = "813".trim();
             if (input === correct) {
               document.getElementById('password-protect').style.display = 'none';
               document.getElementById('post-real-content').style.display = 'block';
