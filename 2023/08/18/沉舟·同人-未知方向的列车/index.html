@@ -53,11 +53,55 @@
             
             </div>
         </section>
-        <article class="post-content">
-        
-            <blockquote>这篇文章上次修改于 598 天前，可能其部分内容已经发生变化，如有疑问可询问作者。</blockquote>
-        
-            <p>　　1.</p>
+<article class="post-content">
+
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　1.</p>
 <p>　　登上希望号列车的第十天，顾沉舟难得地拥有了一场五小时以上的睡眠，依靠的是一场性爱。</p>
 <p>　　直到一觉睡醒，天光熹微，他才想起自己连对方的名字都不知道。他从床上坐起来，靠着车厢隔板看了一会儿对面另一张床上还在熟睡的人。对方背对着顾沉舟，被子只盖了一半，露出屁股和腿。顾沉舟的目光聚焦在男人的身体上，屁股的触感以及双腿缠绕他腰肢时的微颤，仍旧温存在顾沉舟的脑海里。他很喜欢。</p>
 <p>　　早上八点，车厢里迎来了由远及近的苏醒。顾沉舟的房间在公共浴室的隔壁，人们吵嚷着往这头挤来。隔着紧锁的门和薄薄一层木板，顾沉舟觉得自己像被掩藏在一口老旧的鼓中，被外界的力量不轻不重地敲击，伴随着朦胧的声音和跳动的震颤。</p>
@@ -153,7 +197,23 @@
 <p>　　原来心上，真的可以住人。</p>
 <p>　　列车启动的最后一秒，顾沉舟攀上窗户，跳下列车，回到了贺海楼身边。</p>
 
-        </article>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
+
+</article>
+
         <section class="post-near">
             <ul>
                 

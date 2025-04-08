@@ -53,11 +53,55 @@
             
             </div>
         </section>
-        <article class="post-content">
-        
-            <blockquote>这篇文章上次修改于 713 天前，可能其部分内容已经发生变化，如有疑问可询问作者。</blockquote>
-        
-            <p>　　顾沉舟是早上到的A市，中午开的会，晚宴上遇见的贺海楼。</p>
+<article class="post-content">
+
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　顾沉舟是早上到的A市，中午开的会，晚宴上遇见的贺海楼。</p>
 <p>　　“顾市长，我来介绍，这位是新科的贺总。”顾沉舟回头的时候贺海楼正和市里一位领导一并站着，左手拿着酒杯，右手向顾沉舟伸出。</p>
 <p>　　“许久不见了，顾市长。”贺海楼带着他在外人面前一贯自信有魅力的笑容，和顾沉舟握手的时间久到身边陪笑的人脸都有些僵了。</p>
 <p>　　是许久不见了，贺海楼回京一趟，足足一周。早上通话的时候贺海楼还说工作繁忙让顾沉舟给他些甜头，晚上却又出现在福徽和顾沉舟赴同一场宴。</p>
@@ -101,7 +145,23 @@
 <p>　　“我也这样觉得。”贺海楼又一次跨坐上顾沉舟的腰，“忘了告诉你，我明天一早还要回京。所以，”他咬着顾沉舟的脖子喃喃，“再来一次。”</p>
 <p>　　</p>
 
-        </article>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
+
+</article>
+
         <section class="post-near">
             <ul>
                 

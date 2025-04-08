@@ -53,11 +53,55 @@
             
             </div>
         </section>
-        <article class="post-content">
-        
-            <blockquote>这篇文章上次修改于 843 天前，可能其部分内容已经发生变化，如有疑问可询问作者。</blockquote>
-        
-            <p>　　贺海楼坐在顾沉舟腿上，第一次以不是一厢情愿的姿态贴进顾沉舟的怀里，他想做很多事，却又突然间觉得做什么都是多余。如果语言有形状的话，贺海楼很想把顾沉舟刚刚说过的话一字一句收集起来，装在最漂亮珍贵的盒子里，在每一个夜晚拿出来反复欣赏品味。</p>
+<article class="post-content">
+
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　贺海楼坐在顾沉舟腿上，第一次以不是一厢情愿的姿态贴进顾沉舟的怀里，他想做很多事，却又突然间觉得做什么都是多余。如果语言有形状的话，贺海楼很想把顾沉舟刚刚说过的话一字一句收集起来，装在最漂亮珍贵的盒子里，在每一个夜晚拿出来反复欣赏品味。</p>
 <p>　　“那我可以吻你吗？”贺海楼问，他已经无限贴近顾沉舟的嘴了，但还是像个绅士一样征求顾沉舟的意见。</p>
 <p>　　顾沉舟听见贺海楼这样说话其实很不好受，他向来知道这不是贺海楼的本性，贺海楼一开始向他求爱时也并非这样文质彬彬、有礼有节。贺海楼十岁起开始待在他身边，两个人分开的时间从未超过24小时，顾沉舟对贺海楼的一切都了如指掌，这个孩子动动手指他就知道对方想要什么，贺海楼脸上任何一个细微的表情他都知道代表着什么。他知道贺海楼在他面前的乖巧分寸向来是一种表演，但他每每都还是有意无意地等待着贺海楼将躁动急切的一面藏起来，表现出冷静沉着的样子时才对他开放一点胡作非为的权限。顾沉舟承认自己这样的做法有一点掌控的念头在里面，但更多的是因为他希望贺海楼每一次的求爱都是经过哪怕不多的一点考虑的，他可以允许贺海楼是幼稚的，但不可以放任贺海楼盲目地追逐这样一种会被太阳灼伤的感情。</p>
 <p>　　“贺海楼。”顾沉舟边叫贺海楼边轻轻碰了碰他的唇，有点热也有点干。</p>
@@ -153,7 +197,23 @@
 <p>　　“顾沉舟，没有就算。”高潮时顾沉舟说的话贺海楼并未忘记。躺在床上，两个人盖着一床被子，贺海楼搂着顾沉舟的腰在睡意袭来时说，“我到一百岁都爱你，你到一百岁都只操我一个。”</p>
 <p>　　顾沉舟没有再回应贺海楼的话，笑着亲了一下贺海楼，抱着人沉入梦里。这个夜晚顾沉舟什么都不想再考虑，只想和贺海楼相爱。</p>
 
-        </article>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
+
+</article>
+
         <section class="post-near">
             <ul>
                 

@@ -53,11 +53,55 @@
             
             </div>
         </section>
-        <article class="post-content">
-        
-            <blockquote>这篇文章上次修改于 458 天前，可能其部分内容已经发生变化，如有疑问可询问作者。</blockquote>
-        
-            <p>　　没人说得清楚自己和自己做爱是什么感觉。</p>
+<article class="post-content">
+
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　没人说得清楚自己和自己做爱是什么感觉。</p>
 <p>　　顾沉舟事后迷茫地倚在床上，感受着贺海楼正在抽的那支烟。</p>
 <p>　　共感刚刚产生的时候他们还不太熟练，联结时断时续，对方的感受传递给自己时像无数只蚂蚁侵占身体，啃噬肉体的同时又填满肉体，彼此在对方身体里经历又一次的孕育和诞生。</p>
 <p>　　顾沉舟从贺海楼身体里接收到的第一份感觉便是高潮。</p>
@@ -84,7 +128,23 @@
 <p>　　“是你。”他们说。</p>
 <p>　　</p>
 
-        </article>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
+
+</article>
+
         <section class="post-near">
             <ul>
                 
