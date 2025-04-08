@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Azhai-同人站">
     <meta property="og:title" content="沉舟·同人-合欢"/>
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
   <body>
     <header>
@@ -55,7 +55,53 @@
         </section>
 <article class="post-content">
 
-    <p>　　1.</p>
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　1.</p>
 <p>　　“以后，你想去哪里结婚？”</p>
 <p>　　“我们以后举办环球婚礼吧。”</p>
 <p>　　贺海楼站在盛华大酒店的顶楼露台上，回忆起十分钟前看到的一幕——布置浪漫的宴会厅里设计师正拿着麦克风指挥流程。舞台上端庄美丽的女人挽着身侧男人的胳膊，缓缓走向T台另一头。</p>
@@ -198,6 +244,20 @@
 <p>　　“我愿意。”台上的新人亲吻了彼此，贺海楼也亲吻了顾沉舟，有咸热的晶莹泪水交织在那一个吻里，他听见顾沉舟笑着对他说：“耽误了我两年时间，用以后的一生来赔给我吧。”</p>
 <p>　　</p>
 
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
 
 </article>
 

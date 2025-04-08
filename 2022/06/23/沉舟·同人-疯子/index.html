@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Azhai-同人站">
     <meta property="og:title" content="沉舟·同人-疯子"/>
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
   <body>
     <header>
@@ -55,7 +55,53 @@
         </section>
 <article class="post-content">
 
-    <p>　　  “好啊，我等着你。”贺海楼开完一月一度的例会，瘫坐在总裁椅上和电话那头的顾沉舟聊骚，等着顾沉舟来接他回家。</p>
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　  “好啊，我等着你。”贺海楼开完一月一度的例会，瘫坐在总裁椅上和电话那头的顾沉舟聊骚，等着顾沉舟来接他回家。</p>
 <p>　　  “吴少，吴少您不能进去，贺总不在里面。”</p>
 <p>　　  外面的一阵嘈杂把贺海楼的好心情扰乱了几分，他骂了句娘，把电话往桌面上一扔，让门外的人进来，“哪来的野狗，咬我的美女助理？”</p>
 <p>　　  沉重的木门被推开，外面的人理了理头发靠在门框上给离开的助理抛了个飞吻，又把目光落在贺海楼身上扫视一圈，戏谑地开口，“是我这条小狼狗。”</p>
@@ -120,6 +166,20 @@
 <p>　　  暧昧不清的一席话尚留在吴佳木耳边，车子已经渐渐驶远，车里的两个人开始讨论晚饭去哪儿吃。</p>
 <p>　　  </p>
 
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
 
 </article>
 

@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Azhai-同人站">
     <meta property="og:title" content="沉舟·同人-杀生"/>
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
   <body>
     <header>
@@ -55,7 +55,53 @@
         </section>
 <article class="post-content">
 
-    <p>　　🎈一夜情系列之二🎈</p>
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　🎈一夜情系列之二🎈</p>
 <p>　　顾沉舟叼着一根烟，拉开酒店沉重的木门，半小时前宴会上与他剑拔弩张的人食指勾着西装外套，懒洋洋地靠在门框上，带着醉意的双目直勾勾地和他对视。</p>
 <p>　　  “贺少有什么事吗？”烟头烧了一长截，顾沉舟嘴巴一动就散落下还带着火星的烟灰，在贺海楼的皮鞋上点缀下灰白的印花。</p>
 <p>　　  被问话的人拇指抹了抹嘴角，笑起来有些过分浮夸和暧昧，“顾沉舟，你上来开房，不就是等着我来敲门吗？”</p>
@@ -159,6 +205,20 @@
 <p>　　  他没能闻到这个房间还有另一个人的味道，没有人跟他说要带他私奔，没有顾沉舟说出那个爱字。</p>
 <p>　　  “我喜欢海边。”贺海楼看着窗外，对着空气说。</p>
 
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
 
 </article>
 

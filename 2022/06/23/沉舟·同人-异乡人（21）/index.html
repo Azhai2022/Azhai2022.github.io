@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Azhai-同人站">
     <meta property="og:title" content="沉舟·同人-异乡人（21）"/>
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
   <body>
     <header>
@@ -55,7 +55,53 @@
         </section>
 <article class="post-content">
 
-    <p>　　约瑟夫收到消息从睡梦里赶回山庄的时候所有事情都已经平息，黑楼里只有睡不着的夜猫子在厨房里自己做三明治吃，放在暖气上的干酪忘了及时拿走，散发出一阵奶臭味。</p>
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　约瑟夫收到消息从睡梦里赶回山庄的时候所有事情都已经平息，黑楼里只有睡不着的夜猫子在厨房里自己做三明治吃，放在暖气上的干酪忘了及时拿走，散发出一阵奶臭味。</p>
 <p>　　“顾呢？”约瑟夫走过去把奶酪扔进垃圾桶，打开窗户，呼啸的寒风吹得他一个激灵，“我们死了多少人？”</p>
 <p>　　“顾回南苑去了。”一个大胡子男人一口塞进一大半三明治，喝了一口冰啤酒，口齿不清地对约瑟夫说，“我们一个人也没死，大概贺的人死了几个，最多五个？对方来的根本不是帮派里的，连枪都不怎么会用，拿着小左轮跟玩玩具一样。”顾家的打手很早之前就统一使用了自动手枪，在顾沉舟全面招募新成员的时候很多人都因为替顾沉舟做事能拥有一把美式M1911式手枪而兴奋不已。</p>
 <p>　　“他一个人回来的？”约瑟夫问。</p>
@@ -107,6 +153,20 @@
 <p>　　“和我一起射。”顾沉舟在射精的临界点上，整个阴茎都胀红充血，他不住地挺动小腹，粗重急促地喘息，射进了贺海楼的穴道深处。</p>
 <p>　　贺海楼也咬着顾沉舟的肩膀射出来，白糊糊的液体悉数被包裹在顾沉舟白色的手帕里。他拿下手帕，盖在顾沉舟脸上，隔着白色冰冷的丝绸和他接吻，一起吞咽他饱含欲望的精液。</p>
 
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
 
 </article>
 

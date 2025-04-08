@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Azhai-同人站">
     <meta property="og:title" content="沉舟·同人-你"/>
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
   <body>
     <header>
@@ -55,7 +55,53 @@
         </section>
 <article class="post-content">
 
-    <p>　　你是被贺海楼扛进那间卧室的，时间大概是傍晚六点，天气还不错，他把你从车上抱下来时通过罩在身上的黑色布袋你隐约是可以感受到阳光的。也不算太糟糕，你想，起码他没有把你锁进地下室里。他的车空间很小，只有两个座，却拥有四平八稳的四个轮胎，你斜斜地半躺在副驾上被他带来，平生第一次享受了千万级别的专车，你呼吸一口，空气里的风都带着钞票的味道。你原本对这次挟持充满了恐惧，但是他长得那么好看，为你开车，还一手托着你的头，一手搂着你的腰，抱着失去行动能力的你来了他家，你想了想便也不怕了，也许正有好春光等着你们，他看上去活也不赖的。</p>
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　你是被贺海楼扛进那间卧室的，时间大概是傍晚六点，天气还不错，他把你从车上抱下来时通过罩在身上的黑色布袋你隐约是可以感受到阳光的。也不算太糟糕，你想，起码他没有把你锁进地下室里。他的车空间很小，只有两个座，却拥有四平八稳的四个轮胎，你斜斜地半躺在副驾上被他带来，平生第一次享受了千万级别的专车，你呼吸一口，空气里的风都带着钞票的味道。你原本对这次挟持充满了恐惧，但是他长得那么好看，为你开车，还一手托着你的头，一手搂着你的腰，抱着失去行动能力的你来了他家，你想了想便也不怕了，也许正有好春光等着你们，他看上去活也不赖的。</p>
 <p>　　于是你打消了挣扎的念头，安静而乖巧地躺在他的臂弯里，和他一起回了家。</p>
 <p>　　他没舍得让你自己走，开门，换鞋，然后用脚尖轻轻顶开卧室的房门，才小心翼翼地让你下来，站在了床边。套在你身上的布袋被他从上而下掀开，你看见了他柔软的大床，床品的颜色搭配很淡雅，很好睡的样子。你看见他躺了下去，在床上翻滚一圈然后抬头看向了你的眼睛，他对你露出了坏笑，英俊又调皮，那一刻你觉得自己已经爱上他了，他让你做什么你都是愿意的。</p>
 <p>　　他走到你的身后。他很高，需要弯一下腰才能和你齐平。你看不到他了，只能感受到他的脚贴着你的脚，微微向两边用力，就把你的腿分得更开了，你险些摔倒，他及时伸手扶住了你，然后打开了你身后的扣子。你彻底的，毫无保留地向他敞开了。他的手指在你的背脊上轻轻按压，然后他贴近了，你闻到了他身上淡淡的香水味，不热烈，若有若无的，让你沉醉。</p>
@@ -95,6 +141,20 @@
 <p>　　操他大爸的，下辈子不愿再当摄像机。你骂骂咧咧地没电关机了，顾沉舟和贺海楼相拥沉眠，甚至没有人为你充一下电。</p>
 <p>　　</p>
 
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
 
 </article>
 

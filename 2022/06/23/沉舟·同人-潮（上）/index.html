@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Azhai-同人站">
     <meta property="og:title" content="沉舟·同人-潮（上）"/>
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
   <body>
     <header>
@@ -55,7 +55,53 @@
         </section>
 <article class="post-content">
 
-    <p>　<br>　　“将军，你们回来了！”</p>
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　<br>　　“将军，你们回来了！”</p>
 <p>　　两个穿着笔挺军装，身形挺拔高大的男人并肩走进主楼，一手拎着军帽，一手自然地垂落随着步伐前后摆动，黑色的军靴踩在地板上，“嗒嗒嗒”地回响在楼道里，来往的士兵无不停下敬礼打招呼，向京海帝国第一军三位主战将军中的其中两位表示敬意。</p>
 <p>　　刚刚结束的一场战役中，三大主战场都取得了巨大的胜利，击退敌军主力半数以上。捷报传来，举国欢庆。所有的媒体头条都再一次被三位将军的英姿占据。</p>
 <p>　　而刚刚从战场回来的顾沉舟却丝毫没有战胜后的喜悦，在卫祥锦的陪同下朝总部机要处快步走去。</p>
@@ -110,6 +156,20 @@
 <p>　　说不清是幸还是不幸，他们真的如贺海楼所说的那样，食髓知味，灵肉交织。顾沉舟这个SSS级哨兵，京海帝国第一军的将军，成为了同样作为SSS级哨兵，京海帝国第一军将军的贺海楼的向导。</p>
 <p>　　　</p>
 
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
 
 </article>
 

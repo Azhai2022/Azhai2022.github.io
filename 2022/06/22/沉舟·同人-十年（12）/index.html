@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Azhai-同人站">
     <meta property="og:title" content="沉舟·同人-十年（番外2）"/>
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
   <body>
     <header>
@@ -55,7 +55,53 @@
         </section>
 <article class="post-content">
 
-    <p>　　贺海楼分不清是谁动手蒙上了他的眼睛，用一条粉红色的领带。</p>
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　贺海楼分不清是谁动手蒙上了他的眼睛，用一条粉红色的领带。</p>
 <p>　　他与那两人在黑暗里已经共享了许久呼吸，他们争相吻他，吮吸他的舌头，品尝他的味道。脖颈上被一左一右留下对称的两个吻，胸膛上是，腹肌上是，一直到腿间，所有的亲吻和爱抚，都是双份。</p>
 <p>　　他身上留满了两个人的印记。</p>
 <p>　　真是疯了，他在跟两个人做爱。</p>
@@ -160,6 +206,20 @@
 <p>　　清晨的第一缕阳光投射到玻璃上时，他们都没有看向自己，而是看向正酣眠的贺海楼，他们轻轻地开口对自己说，“好好爱他，他是你的海楼，也是我的。”</p>
 <p>　　  </p>
 
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
 
 </article>
 

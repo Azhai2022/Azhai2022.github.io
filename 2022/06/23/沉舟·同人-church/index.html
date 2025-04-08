@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Azhai-同人站">
     <meta property="og:title" content="沉舟·同人-church"/>
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
   <body>
     <header>
@@ -55,7 +55,53 @@
         </section>
 <article class="post-content">
 
-    <p>　　⚠️贺海楼女装 教堂做爱 用词粗鲁 对神不敬 介意勿点<br>　　⚠️贺海楼女装 教堂做爱 用词粗鲁 对神不敬 介意勿点<br>　　⚠️贺海楼女装 教堂做爱 用词粗鲁 对神不敬 介意勿点<br>　　🪓预警清清楚楚，雷就别看，看完再说雷你不是瞎就是贱🪓</p>
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　⚠️贺海楼女装 教堂做爱 用词粗鲁 对神不敬 介意勿点<br>　　⚠️贺海楼女装 教堂做爱 用词粗鲁 对神不敬 介意勿点<br>　　⚠️贺海楼女装 教堂做爱 用词粗鲁 对神不敬 介意勿点<br>　　🪓预警清清楚楚，雷就别看，看完再说雷你不是瞎就是贱🪓</p>
 <p>　　</p>
 <p>　　<br>　　“上帝保佑你。”</p>
 <p>　　隔着七彩的玻璃，里面的人保持着镇静的声音，捏了捏眉心，送走上午最后一个来忏悔的人。刚刚离开那个男人来忏悔一场罪行，他上个月杀了自己的父亲。</p>
@@ -136,6 +182,20 @@
 <p>　　PS：所有的内容都不必深究，我就是想营造一种文化宗教时空性别都混乱的场景。跨越一切他们都要相爱，love is love</p>
 <p>　　</p>
 
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
 
 </article>
 

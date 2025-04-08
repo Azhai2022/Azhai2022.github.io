@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Azhai-同人站">
     <meta property="og:title" content="沉舟·同人-十年（4）"/>
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
   <body>
     <header>
@@ -55,7 +55,53 @@
         </section>
 <article class="post-content">
 
-    <p>　　自己喝了多少酒？在会所是喝了一些，不过可以忽略不计，后来去了别墅就各种酒掺着喝下去不少，有一些大概还是加了料的。</p>
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　自己喝了多少酒？在会所是喝了一些，不过可以忽略不计，后来去了别墅就各种酒掺着喝下去不少，有一些大概还是加了料的。</p>
 <p>　　刺眼的灯光、烧人的体温、燥热的欲望。贺海楼跳下泳池的时候激起不小的水花，沉在池底许久都没有浮上来。他像曾经很多次那样无端迷恋起被水压着胸腔无法呼吸的感觉，眼前那些迷乱的东西随着逐渐模糊的意识一点点离他远去。他的世界唯有在与死亡一脚之隔的时候才格外安静，他总是贪恋那一刻的宁和，如果可以，他愿意随之死去。</p>
 <p>　　口鼻中最后一丝氧气被呼出，耳膜被压得发疼，心跳甚至开始变得微弱。贺海楼享受着濒死的快感，像以往每一次那样，在被教唆着赴死和固执地再苟且到明天里不断抉择。</p>
 <p>　　“贺少，恭喜了。”</p>
@@ -110,6 +156,20 @@
 <p>　　贺海楼只觉得满足又疲乏，感觉到自己的额头好像又被轻吻了一下。手铐被打卡，他很想扯下遮住眼睛的布条去看看男人的样子，却累得没有一丝力气，隐约听到有人在耳边留下清风般的一句呢喃，“记住今天的感觉。”而后就彻底失去了意识……</p>
 <p>　　</p>
 
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
 
 </article>
 

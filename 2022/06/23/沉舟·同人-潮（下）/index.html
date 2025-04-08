@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Azhai-同人站">
     <meta property="og:title" content="沉舟·同人-潮（下）"/>
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
   <body>
     <header>
@@ -55,7 +55,53 @@
         </section>
 <article class="post-content">
 
-    <p>　　外头的机要室里，医生通过监视器看到的画面是贺海楼背靠着床坐在诊疗室的蓝色地毯上，他已经一天一夜没有任何动作了，盯着地毯一角的图案连眼睛眨动的频率都很少。</p>
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　外头的机要室里，医生通过监视器看到的画面是贺海楼背靠着床坐在诊疗室的蓝色地毯上，他已经一天一夜没有任何动作了，盯着地毯一角的图案连眼睛眨动的频率都很少。</p>
 <p>　　人的肉眼看不见哨兵的精神世界，机器也探测不到，通过一个监控器，医生的观察其实是完全无用的。</p>
 <p>　　只有当顾沉舟踏进诊疗室时，才将贺海楼的状况尽收眼底。</p>
 <p>　　本该碧波荡漾的汪洋变成了腥红的血海，穿着两种军装代表着两个郭嘉的士兵尸体和残肢成串成串地漂浮在海上，没有尽头，不见终结。</p>
@@ -120,6 +166,20 @@
 <p>　　从哨兵塔出来的时候，夜色正浓，明黄的探照灯在整个总部来回照射，顾沉舟只穿了一件衬衫，大步踏出哨兵塔的大门，怀里抱着沉睡过去的贺海楼，他身上正盖着属于顾沉舟的、别人碰也不敢碰的军装外套。</p>
 <p>　　星星垂落，英雄归家了。</p>
 
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
 
 </article>
 

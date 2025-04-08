@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Azhai-同人站">
     <meta property="og:title" content="沉舟·同人-师生"/>
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
   <body>
     <header>
@@ -55,7 +55,53 @@
         </section>
 <article class="post-content">
 
-    <p>　　“你已经看了一晚上文件了。”贺海楼擦着头发从浴室里出来，身上披了一件属于顾沉舟的白色衬衫，赤脚踩在地板上，头发上的水珠流到后颈，滑到背上，在腰间游荡了一回后沿着后臀滴落到地上，像在留记号似的一路从浴室滴到了客厅，再到顾沉舟坐着的沙发上。</p>
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　“你已经看了一晚上文件了。”贺海楼擦着头发从浴室里出来，身上披了一件属于顾沉舟的白色衬衫，赤脚踩在地板上，头发上的水珠流到后颈，滑到背上，在腰间游荡了一回后沿着后臀滴落到地上，像在留记号似的一路从浴室滴到了客厅，再到顾沉舟坐着的沙发上。</p>
 <p>　　衬衫堪堪遮到腰少下一点的位置，后面看得见一半翘臀，前面更是看得见一片大好春色。</p>
 <p>　　顾沉舟拿起手边的茶润了润有些烟干火燎的喉咙，放下手里的文件，等贺海楼走过来，跨坐上自己的腿。他没有把双腿放平，保持着交叠的姿势，让贺海楼坐上去的受力点只有一个腿面的宽度，与其说是坐，不如说是骑在自己腿上。</p>
 <p>　　“怎么又不吹头发，睡着了又要头疼。”顾沉舟捏了捏贺海楼的后颈，接过他手里的毛巾，盖到头上轻轻地抓了几下，同时故意上下晃动几下双腿，让他失去平衡，只能抓着他的肩膀才能坐得稳，至于因为赤身坐着的缘故，腿间某个器官正肆无忌惮地躺在顾沉舟腿面上，一经颠晃，居然抬起了头。</p>
@@ -93,6 +139,20 @@
 <p>　　贺海楼跟着咯咯笑了几声，“顾同学一定是三好学生。”</p>
 <p>　　夜色渐浓稠，顾沉舟看了眼窗外的月光，抱着贺海楼往浴室里走去，边走边用还未完全软下去的东西顶了顶，“我觉得我们可以温习一下功课…”</p>
 
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
 
 </article>
 

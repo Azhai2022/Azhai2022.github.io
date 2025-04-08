@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Azhai-同人站">
     <meta property="og:title" content="沉舟·同人-异乡人（18）"/>
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
   <body>
     <header>
@@ -55,7 +55,53 @@
         </section>
 <article class="post-content">
 
-    <p>　　贺海楼回到地下室时，原本那一盏不怎么亮的灯被熄灭了，室内没有丁点光线，他走了两步，踢倒了一把凳子。</p>
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　贺海楼回到地下室时，原本那一盏不怎么亮的灯被熄灭了，室内没有丁点光线，他走了两步，踢倒了一把凳子。</p>
 <p>　　“顾沉舟？”贺海楼站在屋子中间，放缓了呼吸试图捕捉到顾沉舟的声音和气息，以辨别他所在的方位。</p>
 <p>　　“别动。”一声暗哑的气音吹到贺海楼右耳朵旁边，他反应极快地向旁边伸手，顾沉舟的手被他牵住了，对方的手指滑过他的掌心，握住他的手腕，举到了头顶。</p>
 <p>　　“贺海楼，你被拘捕了。”顾沉舟的嘴唇蹭着贺海楼的脖子说话的同时，响起金属扣的声音，他的右手被锁在了铁链上。贺海楼没有试图挣扎，而是不慌不忙地用左手去摸顾沉舟的脸，“那一会儿，我可以射你脸上吗？”</p>
@@ -125,6 +171,20 @@
 <p>　　“海楼。”顾沉舟趴在贺海楼背上，一边亲吻他的肩膀和后背，一边摸着他的手腕问，“下次射你里面好不好。”</p>
 <p>　　等再次回到宴会厅里时，贺海楼换了一声深蓝色的西装，他端着酒杯，自如地穿梭在宾客中，与每一个人都侃侃而谈，与每一个人都交换最大的利益。顾沉舟坐在不远处的沙发上默默观察着一切，在他眼里，透视过整洁的衣物，只看到贺海楼赤裸的肉体、红肿的下身，和腰上一滴没有擦干净的精液。</p>
 
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
 
 </article>
 

@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Azhai-同人站">
     <meta property="og:title" content="沉舟·同人-重要的事"/>
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
   <body>
     <header>
@@ -55,7 +55,53 @@
         </section>
 <article class="post-content">
 
-    <p>　　凌晨的啤酒喝得有点多，沙发上的两个人渐渐从肩靠肩坐着，时不时要欢呼雀跃的状态变成慵懒地倒在地毯上，贺海楼趴在顾沉舟身上，揪他的头发，啃他的脸颊。</p>
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　凌晨的啤酒喝得有点多，沙发上的两个人渐渐从肩靠肩坐着，时不时要欢呼雀跃的状态变成慵懒地倒在地毯上，贺海楼趴在顾沉舟身上，揪他的头发，啃他的脸颊。</p>
 <p>　　“你身上怎么这么香。”顾沉舟嗅着贺海楼脖子慢悠悠地说，“弄了什么勾引人的东西啊？”</p>
 <p>　　贺海楼闷闷地笑了声：“我勾引你还需要弄什么东西吗？”他动手摸了摸顾沉舟的腿根，“你是不是闻到我迷人的荷尔蒙气息了，只有喜欢我的人才闻得到。”</p>
 <p>　　“那喜欢你的人多不多？”顾沉舟问，他懒懒地看着贺海楼眼睛，凑上去亲了亲他薄薄的眼皮。</p>
@@ -85,6 +131,20 @@
 <p>　　“鸡巴，还有所有。”顾沉舟边回答边顶了一下贺海楼，弄得贺海楼小声呻吟。</p>
 <p>　　电视里，他们喜欢的球队进了球，顾沉舟看了一眼，告诉贺海楼。贺海楼没有回头，也没有欢呼，他们同全世界一起看球，却与世界格格不入，他们用亲吻和融合庆祝胜利。</p>
 
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
 
 </article>
 

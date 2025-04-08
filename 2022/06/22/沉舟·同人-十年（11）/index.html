@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Azhai-同人站">
     <meta property="og:title" content="沉舟·同人-十年（番外1）"/>
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
   <body>
     <header>
@@ -55,7 +55,53 @@
         </section>
 <article class="post-content">
 
-    <p>　　“什么贺海楼是谁？你们又玩的什么情趣？告诉贺海楼，我这会儿可在气头上，不要等我回去打他。”电话里的卫中校刚刚训完人，要不是看见来电人是顾沉舟的份儿上，早已经摔电话了。</p>
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　“什么贺海楼是谁？你们又玩的什么情趣？告诉贺海楼，我这会儿可在气头上，不要等我回去打他。”电话里的卫中校刚刚训完人，要不是看见来电人是顾沉舟的份儿上，早已经摔电话了。</p>
 <p>　　“回来任你打，你先告诉小舟，我是他谁。”卫祥锦踢着训练场上的石子，听到那头的贺海楼凑近了电话朝他嚷。</p>
 <p>　　“贺海楼，你真的很烦人，你们不是戒指都戴了么？一天到晚的还想要什么名分？”</p>
 <p>　　“戒指？这戒指？”顾沉舟看了看自己的左手无名指，又看了看贺海楼的左手无名指，果然是成对的。</p>
@@ -119,6 +165,20 @@
 <p>　　他亲了亲贺海楼的脖子，回答了那个没说完的问题，“我喜欢你。”</p>
 <p>　　</p>
 
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
 
 </article>
 

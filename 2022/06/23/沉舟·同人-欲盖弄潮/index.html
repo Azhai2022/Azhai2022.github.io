@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Azhai-同人站">
     <meta property="og:title" content="沉舟·同人-欲盖弄潮"/>
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
   <body>
     <header>
@@ -55,7 +55,53 @@
         </section>
 <article class="post-content">
 
-    <p>　　北国千里冰封，春寒之下怕冷的顾沉舟感冒了一场。贺海楼带着小病大愈的顾少去了热带海边度假。</p>
+    <style>
+        .password-box {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+        .password-box button {
+            padding: 10px 20px;
+            background-color: #0078e7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .password-box button:hover {
+            background-color: #005bb5;
+        }
+        .password-box .error {
+            color: red;
+            margin-top: 1em;
+            display: none;
+        }
+    </style>
+
+    <div class="password-box">
+        <p>这篇文章已加密，请输入访问密码：</p>
+        <input type="password" id="password-input" placeholder="请输入密码">
+        <br>
+        <button onclick="checkPassword()">提交</button>
+        <p class="error" id="password-error">密码错误，请重试。</p>
+    </div>
+
+    <div id="post-real-content" style="display:none;">
+        <p>　　北国千里冰封，春寒之下怕冷的顾沉舟感冒了一场。贺海楼带着小病大愈的顾少去了热带海边度假。</p>
 <p>　　去了那儿才知道大手笔的贺少买了一座小岛下来，有了一片只属于他们的海滩。这一次没有准备游轮，贺海楼亲自开了一艘汽艇载顾沉舟登岛。未经大规模开发的小岛保持着最原始的自然风光，苍翠密林，群鸟绕匝。小岛最中央建起了一座城堡式的别墅，彰显着小岛主人的典型喜好。</p>
 <p>　　别墅里设施齐全，显然贺海楼弄好这个小岛，这座别墅，不是一天两天了，不得不说，弄这些东西，贺海楼的确擅长。</p>
 <p>　　从酒柜里选了一瓶红酒出来，贺海楼只拿了一只杯子，盛上小半杯，自己喝了一口。</p>
@@ -120,6 +166,20 @@
 <p>　　……</p>
 <p>　　连最后一条围观的亲嘴鱼听后也溜着大吉了，茫茫海滩，相拥的两个人好似晒着太阳睡着了……</p>
 
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correct = "0813";
+            if (input === correct) {
+                document.querySelector('.password-box').style.display = 'none';
+                document.getElementById('post-real-content').style.display = 'block';
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+            }
+        }
+    </script>
 
 </article>
 
