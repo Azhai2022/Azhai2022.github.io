@@ -2554,3 +2554,45 @@ header {
 .post-word-count span {
   margin-right: 10px;
 }
+/* 修改 source/css/_partial/post.styl */
+#hexo-blog-encrypt {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: transparent;
+  border: 2px dashed #6e48aa;
+  border-radius: 0;
+  text-align: center;
+}
+#hexo-blog-encrypt h1 {
+  color: #6e48aa;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+#hexo-blog-encrypt input {
+  width: 80%;
+  padding: 10px 0;
+  margin: 1rem 0;
+  border: none;
+  border-bottom: 1px solid #6e48aa;
+  border-radius: 0;
+  background: transparent;
+  text-align: center;
+}
+#hexo-blog-encrypt input:focus {
+  outline: none;
+  border-bottom-width: 2px;
+}
+#hexo-blog-encrypt button {
+  margin-top: 1.5rem;
+  padding: 8px 30px;
+  background: transparent;
+  color: #6e48aa;
+  border: 1px solid #6e48aa;
+  border-radius: 20px;
+  transition: all 0.3s;
+}
+#hexo-blog-encrypt button:hover {
+  background: #6e48aa;
+  color: #fff;
+}
