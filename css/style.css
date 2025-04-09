@@ -2554,45 +2554,36 @@ header {
 .post-word-count span {
   margin-right: 10px;
 }
-/* 修改 source/css/_partial/post.styl */
 #hexo-blog-encrypt {
-  max-width: 500px;
-  margin: 3rem auto;
-  padding: 2rem;
-  background: transparent;
-  border: 2px dashed #6e48aa;
-  border-radius: 0;
+  max-width: 380px;
+  margin: 1.5rem auto;
+  padding: 1.2rem;
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
   text-align: center;
 }
 #hexo-blog-encrypt h1 {
-  color: #6e48aa;
-  font-weight: 300;
-  letter-spacing: 2px;
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 0.8rem;
 }
 #hexo-blog-encrypt input {
   width: 80%;
-  padding: 10px 0;
-  margin: 1rem 0;
-  border: none;
-  border-bottom: 1px solid #6e48aa;
-  border-radius: 0;
-  background: transparent;
-  text-align: center;
-}
-#hexo-blog-encrypt input:focus {
-  outline: none;
-  border-bottom-width: 2px;
+  padding: 8px;
+  margin: 0.3rem 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
 }
 #hexo-blog-encrypt button {
-  margin-top: 1.5rem;
-  padding: 8px 30px;
-  background: transparent;
-  color: #6e48aa;
-  border: 1px solid #6e48aa;
-  border-radius: 20px;
-  transition: all 0.3s;
+  padding: 6px 15px;
+  background: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
 }
 #hexo-blog-encrypt button:hover {
-  background: #6e48aa;
-  color: #fff;
+  background: #5a6268;
 }
