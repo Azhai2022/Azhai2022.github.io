@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Azhai-同人站">
     <meta property="og:title" content="搜索"/>
     
-</head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 
   <body>
     <header>
@@ -44,68 +44,21 @@
     </nav>
 </header>
 
-    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.5">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
-    span.s1 {font-kerning: none}
-    span.s2 {font: 12.0px 'Songti SC'; font-kerning: none}
-  </style>
-</head>
-<body>
-<p class="p1"><span class="s1">&lt;main class="wrap min"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;input type="text" id="search-input" placeholder="</span><span class="s2">请输入关键词</span><span class="s1">" autofocus&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;ul id="search-results"&gt;&lt;/ul&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script src="/search.xml" type="text/javascript"&gt;&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>fetch('/search.xml')</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.then(res =&gt; res.text())</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.then(xml =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const parser = new DOMParser();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const xmlDoc = parser.parseFromString(xml, 'text/xml');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const posts = Array.from(xmlDoc.getElementsByTagName('entry')).map(entry =&gt; ({</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>title: entry.getElementsByTagName('title')[0].textContent,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>url: entry.getElementsByTagName('url')[0].textContent,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>content: entry.getElementsByTagName('content')[0].textContent</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}));</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const input = document.getElementById('search-input');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const results = document.getElementById('search-results');</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>input.addEventListener('input', function() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const keyword = this.value.toLowerCase();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>results.innerHTML = '';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>if (!keyword) return;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const filtered = posts.filter(post =&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>post.title.toLowerCase().includes(keyword) ||</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>post.content.toLowerCase().includes(keyword)</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>if (filtered.length === 0) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>results.innerHTML = '&lt;li&gt;</span><span class="s2">没有找到相关内容</span><span class="s1">&lt;/li&gt;';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>filtered.forEach(post =&gt; {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const li = document.createElement('li');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>li.innerHTML = `&lt;a href="${post.url}"&gt;${post.title}&lt;/a&gt;`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>results.appendChild(li);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/main&gt;</span></p>
-</body>
-</html>
+    <main>
+    <div class="wrap min">
+        <section class="page-title">
+            <h2>搜索</h2>
+        </section>
+        <article class="page-content">
+        
+            <div id="local-search">
+  <input type="text" id="search-input" placeholder="输入关键词..." />
+  <div id="search-result"></div>
+</div>
+
+        </article>
+    </div>
+</main>
 
     <footer>
     <div class="buttons">
@@ -132,6 +85,13 @@
 
 
 <script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/search.js"></script>
+
+
 
   </body>
 </html>
