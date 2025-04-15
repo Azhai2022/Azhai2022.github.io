@@ -54,4 +54,50 @@ if (darkMode.getMode() == "dark" && (true || false)) {
 
 <script src="/js/theme/search.js"></script>
 <script>searchFunc('/search.xml', 'search-input', 'search-result');
-</script></body></html>
+</script><script>window.addEventListener('message', function (e) {
+  if (e.data && e.data.event === 'cusdis-loaded') {
+    const iframe = document.querySelector('iframe[src*="cusdis.com"]');
+    if (!iframe) return;
+    try {
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+      const emailInputWrapper = iframeDoc.querySelector('input[name="email"]')?.parentElement;
+      if (emailInputWrapper) {
+        emailInputWrapper.style.display = 'none';
+      }
+
+      const nameInput = iframeDoc.querySelector('input[name="author"]');
+      if (nameInput) {
+        nameInput.style.width = '160px';
+        nameInput.style.background = '#fffaf0';
+        nameInput.style.border = '1px solid #f1c40f';
+        nameInput.style.borderRadius = '6px';
+        nameInput.style.padding = '6px 10px';
+        nameInput.style.fontSize = '14px';
+      }
+
+      const textarea = iframeDoc.querySelector('textarea[name="content"]');
+      if (textarea) {
+        textarea.style.minHeight = '140px';
+        textarea.style.background = '#fffbe6';
+        textarea.style.border = '1px solid #f1c40f';
+        textarea.style.borderRadius = '10px';
+        textarea.style.padding = '12px';
+        textarea.style.fontSize = '15px';
+      }
+
+      const submitBtn = iframeDoc.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.style.backgroundColor = '#f1c40f';
+        submitBtn.style.color = '#fff';
+        submitBtn.style.border = 'none';
+        submitBtn.style.padding = '8px 20px';
+        submitBtn.style.fontSize = '14px';
+        submitBtn.style.borderRadius = '6px';
+        submitBtn.style.cursor = 'pointer';
+      }
+    } catch (err) {
+      console.warn('无法修改 Cusdis 样式，可能因跨域限制：', err);
+    }
+  }
+});</script></body></html>

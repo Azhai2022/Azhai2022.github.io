@@ -1,0 +1,35 @@
+/* 隐藏邮箱输入框 */
+input[name="email"] {
+  display: none !important;
+}
+
+/* 美化昵称框 */
+input[name="author"] {
+  width: 160px !important;
+  background: #fffaf0 !important;
+  border: 1px solid #f1c40f !important;
+  border-radius: 6px !important;
+  padding: 6px 10px !important;
+  font-size: 14px !important;
+}
+
+/* 美化输入框 */
+textarea[name="content"] {
+  min-height: 140px !important;
+  background: #fffbe6 !important;
+  border: 1px solid #f1c40f !important;
+  border-radius: 10px !important;
+  padding: 12px !important;
+  font-size: 15px !important;
+}
+
+/* 美化按钮 */
+button[type="submit"] {
+  background-color: #f1c40f !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 8px 20px !important;
+  font-size: 14px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+}

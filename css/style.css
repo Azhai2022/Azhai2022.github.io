@@ -1875,9 +1875,55 @@ details code {
   color: #4e4a55;
   animation: fade 1.2s ease-in-out infinite;
 }
-.comment {
-  margin: 60px auto 0;
-  width: 85%;
+#cusdis_thread {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #fff;
+  color: #333;
+}
+#cusdis_thread .cd-input-wrapper input[type="email"] {
+  display: none !important;
+}
+#cusdis_thread .cd-input-wrapper input[type="text"] {
+  width: 160px !important;
+  border: 1px solid #f1c40f;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 14px;
+  background: #fffaf0;
+  color: #333;
+}
+#cusdis_thread textarea {
+  border: 1px solid #f1c40f;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 16px;
+  background: #fffbe6;
+  color: #333;
+  min-height: 140px;
+  line-height: 1.6;
+}
+#cusdis_thread .cd-submit-button {
+  background-color: #f1c40f;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+#cusdis_thread .cd-submit-button:hover {
+  background-color: #e1b700;
+}
+#cusdis_thread .cd-footer {
+  display: none;
+}
+iframe[src*="cusdis.com"] {
+  border: none;
+  width: 100%;
+  min-height: 300px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.06);
 }
 .footer-content {
   max-width: 1080px;
