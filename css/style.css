@@ -721,6 +721,18 @@
 .icon {
   color: #b0b0b0;
 }
+.fa-ship {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  -webkit-mask: url("/img/ship.png") no-repeat center/contain;
+  mask: url("/img/ship.png") no-repeat center/contain;
+  vertical-align: -0.125em;
+}
+.fa-ship::before {
+  content: '' !important;
+}
 img {
   display: block;
   margin: 5px auto;
@@ -1642,11 +1654,17 @@ body .main .main-content {
 .post-content[text-indent=true] p {
   text-indent: 2em;
 }
+.comment-box-wrapper {
+  margin-bottom: 8px;
+}
 .comment-box-tip {
-  margin-top: 6px;
-  font-size: 16px;
-  color: #b1b1b1;
+  margin: 6px 0;
+  font-size: 14px;
+  color: #c7c7c7;
   line-height: 1.6;
+}
+#comment {
+  margin-top: 8px;
 }
 .fiction-meta {
   margin: 15px 0;
