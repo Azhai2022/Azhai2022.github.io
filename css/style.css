@@ -1642,6 +1642,12 @@ body .main .main-content {
 .post-content[text-indent=true] p {
   text-indent: 2em;
 }
+.comment-box-tip {
+  margin-top: 6px;
+  font-size: 16px;
+  color: #b1b1b1;
+  line-height: 1.6;
+}
 .fiction-meta {
   margin: 15px 0;
   padding: 15px 20px;
