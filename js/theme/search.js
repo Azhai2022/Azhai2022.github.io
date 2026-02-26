@@ -20,7 +20,7 @@ var searchFunc = function(path, search_id, content_id) {
       var initSearchCount = searchCount.innerText;
       var searchEmpty = document.getElementById('search-result-empty');
       if ($("#search-input").length > 0) {
-        $input.addEventListener('input', function () {
+        var runSearch = function () {
           $resultContent.innerHTML = "";
           if (this.value.trim().length <= 0) {
             searchCount.removeAttribute('search-count-show');
@@ -113,7 +113,18 @@ var searchFunc = function(path, search_id, content_id) {
           searchCount.setAttribute('search-count-show', true);
           searchCount.innerText = initSearchCount + matchCount;
           searchEmpty.removeAttribute('search-empty-show');
-        });
+        };
+        $input.addEventListener('input', runSearch);
+        if ($input.value && $input.value.trim().length > 0) {
+          runSearch.call($input);
+        }
+      }
+    },
+    error: function () {
+      var searchEmpty = document.getElementById('search-result-empty');
+      if (searchEmpty) {
+        searchEmpty.setAttribute('search-empty-show', true);
+        searchEmpty.innerText = '搜索索引加载失败，请刷新后重试。';
       }
     }
   });
