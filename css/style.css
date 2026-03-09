@@ -1258,15 +1258,8 @@ details[open] summary {
   display: none;
 }
 @media screen and (max-width: 820px) {
-  .article-item {
-    width: 45%;
-    margin-right: 4%;
-  }
   .article-item-title {
-    margin: 5px 5px 3px;
-  }
-  .article-item-preview {
-    margin: 0 5px 5px;
+    margin: 5px 0;
   }
 }
 .page-tag-name {
@@ -1643,7 +1636,10 @@ body .main .main-content {
   line-height: 1.6;
 }
 #comment {
-  margin-top: 8px;
+  margin: 8px auto 0;
+  max-width: 900px;
+  width: 100%;
+  padding: 0 10px;
 }
 .fiction-meta {
   margin: 15px 0;
