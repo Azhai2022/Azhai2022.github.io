@@ -1627,8 +1627,8 @@ body .main .main-content {
   text-indent: 2em;
 }
 .comment-box-wrapper {
-  margin: 0 7.5% 8px auto;
-  width: 86%;
+  margin: 0 auto 8px;
+  width: 90%;
 }
 .comment-box-tip {
   margin: 6px 0;
@@ -1637,8 +1637,8 @@ body .main .main-content {
   line-height: 1.6;
 }
 #comment {
-  margin: 8px 7.5% 0 auto;
-  width: 88%;
+  margin: 8px auto 0;
+  width: 90%;
   padding: 0;
 }
 .fiction-meta {
