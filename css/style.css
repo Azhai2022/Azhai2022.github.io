@@ -1627,19 +1627,19 @@ body .main .main-content {
   text-indent: 2em;
 }
 .comment-box-wrapper {
-  margin-bottom: 8px;
+  margin: 0 7.5% 8px auto;
+  width: 86%;
 }
 .comment-box-tip {
   margin: 6px 0;
   font-size: 14px;
-  color: #c7c7c7;
+  color: #b0b0b0;
   line-height: 1.6;
 }
 #comment {
-  margin: 8px auto 0;
-  max-width: 900px;
-  width: 100%;
-  padding: 0 10px;
+  margin: 8px 7.5% 0 auto;
+  width: 88%;
+  padding: 0;
 }
 .fiction-meta {
   margin: 15px 0;
