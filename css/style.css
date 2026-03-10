@@ -1641,6 +1641,9 @@ body .main .main-content {
   width: 90%;
   padding: 0;
 }
+#comment .wl-cards .wl-card {
+  margin-left: 0;
+}
 .fiction-meta {
   margin: 15px 0;
   padding: 15px 20px;
