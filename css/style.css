@@ -1559,12 +1559,13 @@ body .main .main-content {
 .post-info-first-line div {
   overflow: visible;
   white-space: nowrap;
-  margin: 5px 0;
+  margin: 5px 10px 5px 0;
 }
 .post-info-second-line {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
+  gap: 10px;
 }
 .post-info-second-line div {
   overflow: visible;

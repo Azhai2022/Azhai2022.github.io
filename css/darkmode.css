@@ -122,7 +122,10 @@ body.dm-dark .post-next a {
 body.dm-dark .categories-item {
   color: #e0e0e0;
 }
-body.dm-dark .categories-item:hover {
+body.dm-dark .inline-comment-btn {
+  background: rgba(255,255,255,0.35);
+}
+body.dm-dark .inline-comment-btn:hover {
   color: #fff;
 }
 body.dm-dark .category-list a {
