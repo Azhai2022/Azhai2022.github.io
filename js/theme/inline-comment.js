@@ -53,7 +53,7 @@
     return panel;
   }
 
-  function truncateOneLine(text, maxChars = 10) {
+  function truncateOneLine(text, maxChars = 20) {
     const cleaned = (text || '').replace(/\s+/g, '');
     const chars = Array.from(cleaned);
     if (chars.length <= maxChars) return chars.join('');
@@ -78,7 +78,7 @@
       btn.className = 'inline-comment-btn';
       btn.textContent = '评';
       btn.setAttribute('aria-label', '对这段评论');
-      btn.dataset.quote = truncateOneLine(text, 10);
+      btn.dataset.quote = truncateOneLine(text, 20);
       btn.dataset.index = String(idx + 1);
       btn.dataset.anchor = p.id;
 
@@ -103,6 +103,23 @@
 
   function onReady() {
     decorateParagraphs();
+
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a');
+      if (!link) return;
+      const href = link.getAttribute('href') || '';
+      if (!href.startsWith('#p-')) return;
+      const target = document.querySelector(href);
+      if (!target) return;
+
+      e.preventDefault();
+      const rect = target.getBoundingClientRect();
+      const targetTop = rect.top + window.scrollY;
+      const offset = (window.innerHeight - rect.height) / 2;
+      const top = Math.max(0, targetTop - offset);
+      window.scrollTo({ top, behavior: 'smooth' });
+      history.replaceState(null, '', href);
+    });
   }
 
   if (document.readyState === 'loading') {
