@@ -1644,6 +1644,11 @@ body .main .main-content {
 #comment .wl-cards .wl-card {
   margin-left: 0;
 }
+#comment .wl-os,
+#comment .wl-browser,
+#comment .wl-ua {
+  display: none !important;
+}
 .fiction-meta {
   margin: 15px 0;
   padding: 15px 20px;
