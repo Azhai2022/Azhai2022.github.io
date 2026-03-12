@@ -10,8 +10,8 @@
       <div class="inline-comment-title">段评</div>
       <textarea class="inline-comment-textarea" placeholder="写下你的评论..."></textarea>
       <div class="inline-comment-actions">
-        <button type="button" class="inline-comment-cancel">取消</button>
         <button type="button" class="inline-comment-submit">发送</button>
+        <button type="button" class="inline-comment-cancel">取消</button>
       </div>
     `;
     document.body.appendChild(panel);
@@ -53,7 +53,7 @@
     return panel;
   }
 
-  function truncateOneLine(text, maxChars = 24) {
+  function truncateOneLine(text, maxChars = 10) {
     const cleaned = (text || '').replace(/\s+/g, '');
     const chars = Array.from(cleaned);
     if (chars.length <= maxChars) return chars.join('');
@@ -69,20 +69,27 @@
       const text = (p.textContent || '').trim();
       if (!text) return;
 
+      if (!p.id) {
+        p.id = `p-${idx + 1}`;
+      }
+
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'inline-comment-btn';
       btn.textContent = '评';
       btn.setAttribute('aria-label', '对这段评论');
-      btn.dataset.quote = truncateOneLine(text, 24);
+      btn.dataset.quote = truncateOneLine(text, 10);
       btn.dataset.index = String(idx + 1);
+      btn.dataset.anchor = p.id;
 
       btn.addEventListener('click', () => {
         const panel = buildPanel();
         const textarea = panel.querySelector('.inline-comment-textarea');
         const quote = btn.dataset.quote || '';
         const index = btn.dataset.index || '';
-        const prefix = quote ? `> 引用（第${index}段）：${quote}\n\n` : '';
+        const anchor = btn.dataset.anchor || '';
+        const jump = anchor ? ` [定位](#${anchor})` : '';
+        const prefix = quote ? `> 引用（第${index}段）：${quote}${jump}\n\n` : '';
         textarea.value = prefix;
         panel.classList.add('is-open');
         textarea.focus();

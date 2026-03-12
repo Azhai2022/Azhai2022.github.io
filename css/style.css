@@ -2384,9 +2384,9 @@ header {
   height: 18px;
   font-size: 11px;
   line-height: 18px;
-  border: 1px solid #111;
+  border: none;
   border-radius: 999px;
-  background: #111;
+  background: rgba(0,0,0,0.35);
   color: #fff;
   cursor: pointer;
 }
@@ -2397,12 +2397,13 @@ header {
   z-index: 9998;
   width: 320px;
   max-width: calc(100vw - 32px);
-  padding: 10px;
+  padding: 12px;
   background: #fff;
   border: 1px solid #e5e5e5;
   border-radius: 10px;
   box-shadow: 0 10px 24px rgba(0,0,0,0.14);
   display: none;
+  box-sizing: border-box;
 }
 .inline-comment-panel.is-open {
   display: block;
@@ -2414,19 +2415,21 @@ header {
 }
 .inline-comment-textarea {
   width: 100%;
-  min-height: 110px;
+  min-height: 90px;
+  max-height: 180px;
   resize: vertical;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 8px;
   font-size: 13px;
   line-height: 1.5;
+  box-sizing: border-box;
 }
 .inline-comment-actions {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 .inline-comment-actions button {
   height: 26px;
@@ -2456,7 +2459,7 @@ header {
   vertical-align: super;
   margin-left: 2px;
   border-radius: 999px;
-  background: #000;
+  background: #f9802d;
   color: #fff;
 }
 .inline-note-popup {
