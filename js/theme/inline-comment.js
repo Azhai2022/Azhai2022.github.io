@@ -60,6 +60,15 @@
     return chars.slice(0, maxChars).join('') + '……';
   }
 
+  function escapeHtml(text) {
+    return (text || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   function decorateParagraphs() {
     const paragraphs = document.querySelectorAll('.post-content p');
     if (!paragraphs.length) return;
@@ -88,8 +97,9 @@
         const quote = btn.dataset.quote || '';
         const index = btn.dataset.index || '';
         const anchor = btn.dataset.anchor || '';
-        const jump = anchor ? ` [定位](#${anchor})` : '';
-        const prefix = quote ? `> 引用（第${index}段）：${quote}${jump}\n\n` : '';
+        const jump = anchor ? ` <a href="#${anchor}">定位</a>` : '';
+        const safeQuote = escapeHtml(quote);
+        const prefix = quote ? `<blockquote>引用（第${index}段）：${safeQuote}${jump}</blockquote>\n\n` : '';
         textarea.value = prefix;
         panel.classList.add('is-open');
         textarea.focus();
