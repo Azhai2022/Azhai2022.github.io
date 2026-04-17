@@ -133,9 +133,22 @@ var searchFunc = function(path, search_id, content_id) {
 function toggleSearchWindow(){
   'use strict';
   var searchPanel = document.getElementById('search-panel');
+  if (!searchPanel) return;
+
   if (searchPanel.getAttribute('search-show')) {
     searchPanel.removeAttribute('search-show')
-  } else {
-    searchPanel.setAttribute('search-show', true);
+    return;
+  }
+
+  // Ensure hidden mobile menu layer is closed before opening search.
+  if (typeof closeTopMenu === 'function') {
+    closeTopMenu();
+  }
+
+  searchPanel.setAttribute('search-show', true);
+
+  var input = document.getElementById('search-input');
+  if (input && typeof input.focus === 'function') {
+    input.focus();
   }
 }
