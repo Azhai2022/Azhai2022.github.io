@@ -1,5 +1,8 @@
 var searchFunc = function(path, search_id, content_id) {
   'use strict';
+  var escapeRegExp = function (text) {
+    return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  };
   $.ajax({
     url: path,
     dataType: "xml",
@@ -67,7 +70,7 @@ var searchFunc = function(path, search_id, content_id) {
             // show search results
             if (isMatch) {
               matchCount++;
-              str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+              str += "<li><a href='" + data_url + "' class='search-result-title'>" + data.title + "</a>";
               var content = data.content.trim().replace(/<[^>]+>/g, "");
               if (first_occur >= 0) {
                 // cut out 100 characters
@@ -90,7 +93,7 @@ var searchFunc = function(path, search_id, content_id) {
 
                 // highlight all keywords
                 keywords.forEach(function (keyword) {
-                  var regS = new RegExp(keyword, "gi");
+                  var regS = new RegExp(escapeRegExp(keyword), "gi");
                   match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
                 });
 
