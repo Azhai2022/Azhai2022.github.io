@@ -131,6 +131,10 @@
 	overflow: hidden;
 }
 
+.hbe-form {
+	margin: 0;
+}
+
 .hbe-input-field-default {
 	width: 100%;
 	background: transparent;
@@ -216,6 +220,19 @@
 	color: #555555;
 	-webkit-transform: translate3d(0, 2.1em, 0) scale3d(0.65, 0.65, 1);
 	transform: translate3d(0, 2.1em, 0) scale3d(0.65, 0.65, 1);
+}
+
+.hbe-submit {
+	display: inline-block;
+	margin-top: 6px;
+	padding: 4px 14px;
+	font-size: 0.8em;
+	line-height: 1.2;
+	border: 1px solid #999;
+	border-radius: 4px;
+	background: #fff;
+	color: #555;
+	cursor: pointer;
 }
 /* default theme }}} */
 
