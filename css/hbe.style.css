@@ -147,7 +147,7 @@
 	text-align: left;
 	padding: 0.5em 0;
 	pointer-events: none;
-	font-size: 0.9em;
+	font-size: 0.78em;
 }
 
 .hbe-input-label-default::before,
@@ -178,7 +178,8 @@
 
 .hbe-input-label-content-default {
 	padding: 0;
-	white-space: nowrap;
+	white-space: normal;
+	line-height: 1.35;
 	-webkit-transform-origin: 0 0;
 	transform-origin: 0 0;
 	-webkit-transition: -webkit-transform 0.2s, color 0.2s;
