@@ -9,7 +9,7 @@
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'hbe-button';
-    btn.textContent = 'Encrypt again';
+    btn.textContent = '重新加密';
     btn.addEventListener('click', () => {
       const storageName = 'hexo-blog-encrypt:#' + window.location.pathname;
       window.localStorage.removeItem(storageName);
