@@ -27,7 +27,9 @@ var searchFunc = function(path, search_id, content_id) {
           content: $('content', this).text(),
           url: $('url', this).text()
         };
-      }).get();
+      }).get().filter(function(item) {
+        return item.title !== '同人小剧场合集';
+      });
 
       var input = document.getElementById(search_id);
       var resultContent = document.getElementById(content_id);
