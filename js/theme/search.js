@@ -27,9 +27,7 @@ var searchFunc = function(path, search_id, content_id) {
           content: $('content', this).text(),
           url: $('url', this).text()
         };
-      }).get().filter(function(item) {
-        return item.title !== '同人小剧场合集';
-      });
+      }).get();
 
       var input = document.getElementById(search_id);
       var resultContent = document.getElementById(content_id);
@@ -73,16 +71,11 @@ var searchFunc = function(path, search_id, content_id) {
 
           keywords.forEach(function(keyword, i) {
             var indexTitle = dataTitle.indexOf(keyword);
-            var indexContent = dataContent.indexOf(keyword);
-
-            if (indexTitle < 0 && indexContent < 0) {
+            if (indexTitle < 0) {
               isMatch = false;
               return;
             }
 
-            if (indexContent >= 0 && i === 0) {
-              firstOccur = indexContent;
-            }
           });
 
           if (!isMatch) return;
@@ -90,7 +83,7 @@ var searchFunc = function(path, search_id, content_id) {
           matchCount++;
           str += "<li><a href='" + data.url + "' class='search-result-title'>" + title + '</a>';
 
-          if (plainContent.length > 0) {
+          if (plainContent.length > 0 && firstOccur >= 0) {
             var start = firstOccur >= 0 ? Math.max(firstOccur - 20, 0) : 0;
             var end = Math.min(start + 100, plainContent.length);
             var matchContent = plainContent.substring(start, end);
