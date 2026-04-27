@@ -1,129 +1,132 @@
 var searchFunc = function(path, search_id, content_id) {
   'use strict';
-  var escapeRegExp = function (text) {
+
+  var escapeRegExp = function(text) {
     return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   };
+
+  var debounce = function(fn, wait) {
+    var timer = null;
+    return function() {
+      var ctx = this;
+      var args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(function() {
+        fn.apply(ctx, args);
+      }, wait);
+    };
+  };
+
   $.ajax({
     url: path,
-    dataType: "xml",
-    success: function( xmlResponse ) {
-      // get the contents from search data
-      var datas = $( "entry", xmlResponse ).map(function() {
+    dataType: 'xml',
+    success: function(xmlResponse) {
+      var datas = $('entry', xmlResponse).map(function() {
         return {
-          title: $( "title", this ).text(),
-          content: $("content",this).text(),
-          url: $( "url" , this).text()
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
         };
       }).get();
 
-      var $input = document.getElementById(search_id);
-      if (!$input) return;
-      var $resultContent = document.getElementById(content_id);
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
       var searchCount = document.getElementById('search-count');
-      var initSearchCount = searchCount.innerText;
       var searchEmpty = document.getElementById('search-result-empty');
-      if ($("#search-input").length > 0) {
-        var runSearch = function () {
-          $resultContent.innerHTML = "";
-          if (this.value.trim().length <= 0) {
-            searchCount.removeAttribute('search-count-show');
-            return;
-          }
-          var str = '<ul class=\"search-result-list\">';
-          var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-          var matchCount = 0;
+      if (!input || !resultContent) return;
 
-          // perform local searching
-          datas.forEach(function (data) {
-            var isMatch = true;
-            // var content_index = [];
-            if (!data.title || data.title.trim() === '') {
-              data.title = "Untitled";
-            }
-            var data_title = data.title.trim().toLowerCase();
-            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
-            var data_url = data.url;
-            var index_title = -1;
-            var index_content = -1;
-            var first_occur = -1;
-            // only match artiles with not empty contents
-            if (data_content !== '') {
-              keywords.forEach(function (keyword, i) {
-                index_title = data_title.indexOf(keyword);
-                index_content = data_content.indexOf(keyword);
+      var initSearchCount = searchCount ? searchCount.innerText : '';
 
-                if (index_title < 0 && index_content < 0) {
-                  isMatch = false;
-                } else {
-                  if (index_content < 0) {
-                    index_content = 0;
-                  }
-                  if (i == 0) {
-                    first_occur = index_content;
-                  }
-                  // content_index.push({index_content:index_content, keyword_len:keyword_len});
-                }
-              });
-            } else {
+      var runSearch = function() {
+        var keywordText = this.value ? this.value.trim().toLowerCase() : '';
+        resultContent.innerHTML = '';
+
+        if (!keywordText) {
+          if (searchCount) searchCount.removeAttribute('search-count-show');
+          if (searchEmpty) searchEmpty.removeAttribute('search-empty-show');
+          return;
+        }
+
+        var keywords = keywordText.split(/[\s\-]+/).filter(Boolean);
+        if (!keywords.length) {
+          if (searchCount) searchCount.removeAttribute('search-count-show');
+          if (searchEmpty) searchEmpty.removeAttribute('search-empty-show');
+          return;
+        }
+
+        var str = '<ul class="search-result-list">';
+        var matchCount = 0;
+        var maxResultCount = 80;
+
+        datas.forEach(function(data) {
+          if (matchCount >= maxResultCount) return;
+
+          var title = (data.title || 'Untitled').trim();
+          var dataTitle = title.toLowerCase();
+          var plainContent = (data.content || '').trim().replace(/<[^>]+>/g, '');
+          var dataContent = plainContent.toLowerCase();
+
+          var isMatch = true;
+          var firstOccur = -1;
+
+          keywords.forEach(function(keyword, i) {
+            var indexTitle = dataTitle.indexOf(keyword);
+            var indexContent = dataContent.indexOf(keyword);
+
+            if (indexTitle < 0 && indexContent < 0) {
               isMatch = false;
+              return;
             }
-            // show search results
-            if (isMatch) {
-              matchCount++;
-              str += "<li><a href='" + data_url + "' class='search-result-title'>" + data.title + "</a>";
-              var content = data.content.trim().replace(/<[^>]+>/g, "");
-              if (first_occur >= 0) {
-                // cut out 100 characters
-                var start = first_occur - 20;
-                var end = first_occur + 80;
 
-                if (start < 0) {
-                  start = 0;
-                }
-
-                if (start == 0) {
-                  end = 100;
-                }
-
-                if (end > content.length) {
-                  end = content.length;
-                }
-
-                var match_content = content.substring(start, end);
-
-                // highlight all keywords
-                keywords.forEach(function (keyword) {
-                  var regS = new RegExp(escapeRegExp(keyword), "gi");
-                  match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
-                });
-
-                str += "<p class=\"search-result-content\">" + match_content + "...</p>"
-              }
-              str += "</li>";
+            if (indexContent >= 0 && i === 0) {
+              firstOccur = indexContent;
             }
           });
-          str += "</ul>";
 
-          // show special notes if no matched article
-          if (matchCount <= 0) {
-            $resultContent.innerHTML = "";
-            searchCount.removeAttribute('search-count-show');
-            searchEmpty.setAttribute('search-empty-show', true);
-            return;
+          if (!isMatch) return;
+
+          matchCount++;
+          str += "<li><a href='" + data.url + "' class='search-result-title'>" + title + '</a>';
+
+          if (plainContent.length > 0) {
+            var start = firstOccur >= 0 ? Math.max(firstOccur - 20, 0) : 0;
+            var end = Math.min(start + 100, plainContent.length);
+            var matchContent = plainContent.substring(start, end);
+
+            keywords.forEach(function(keyword) {
+              var regS = new RegExp(escapeRegExp(keyword), 'gi');
+              matchContent = matchContent.replace(regS, '<em class="search-keyword">' + keyword + '</em>');
+            });
+
+            str += '<p class="search-result-content">' + matchContent + '...</p>';
           }
 
-          $resultContent.innerHTML = str;
+          str += '</li>';
+        });
+
+        str += '</ul>';
+
+        if (matchCount <= 0) {
+          if (searchCount) searchCount.removeAttribute('search-count-show');
+          if (searchEmpty) searchEmpty.setAttribute('search-empty-show', true);
+          resultContent.innerHTML = '';
+          return;
+        }
+
+        resultContent.innerHTML = str;
+        if (searchCount) {
           searchCount.setAttribute('search-count-show', true);
           searchCount.innerText = initSearchCount + matchCount;
-          searchEmpty.removeAttribute('search-empty-show');
-        };
-        $input.addEventListener('input', runSearch);
-        if ($input.value && $input.value.trim().length > 0) {
-          runSearch.call($input);
         }
+        if (searchEmpty) searchEmpty.removeAttribute('search-empty-show');
+      };
+
+      input.addEventListener('input', debounce(runSearch, 120));
+      if (input.value && input.value.trim().length > 0) {
+        runSearch.call(input);
       }
     },
-    error: function () {
+    error: function() {
       var searchEmpty = document.getElementById('search-result-empty');
       if (searchEmpty) {
         searchEmpty.setAttribute('search-empty-show', true);
@@ -131,19 +134,18 @@ var searchFunc = function(path, search_id, content_id) {
       }
     }
   });
-}
+};
 
-function toggleSearchWindow(){
+function toggleSearchWindow() {
   'use strict';
   var searchPanel = document.getElementById('search-panel');
   if (!searchPanel) return;
 
   if (searchPanel.getAttribute('search-show')) {
-    searchPanel.removeAttribute('search-show')
+    searchPanel.removeAttribute('search-show');
     return;
   }
 
-  // Ensure hidden mobile menu layer is closed before opening search.
   if (typeof closeTopMenu === 'function') {
     closeTopMenu();
   }
