@@ -230,6 +230,9 @@ if (darkMode.getMode() == "dark" && (true || false)) {
 
 <script src="/js/theme/search.js"></script>
 <script>searchFunc('/search.xml', 'search-input', 'search-result');
+if (document.getElementById('local-search-input') && document.getElementById('local-search-result')) {
+  searchFunc('/search.xml', 'local-search-input', 'local-search-result');
+}
 </script><script>window.addEventListener('message', function (e) {
   if (e.data && e.data.event === 'cusdis-loaded') {
     const iframe = document.querySelector('iframe[src*="cusdis.com"]');

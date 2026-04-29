@@ -78,6 +78,9 @@ if (darkMode.getMode() == "dark" && (true || false)) {
 
 <script src="/js/theme/search.js"></script>
 <script>searchFunc('/search.xml', 'search-input', 'search-result');
+if (document.getElementById('local-search-input') && document.getElementById('local-search-result')) {
+  searchFunc('/search.xml', 'local-search-input', 'local-search-result');
+}
 </script>
 <script src="/js/theme/toc.js"></script>
 <script>decodeToc();

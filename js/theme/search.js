@@ -2,7 +2,7 @@ var searchFunc = function(path, search_id, content_id) {
   'use strict';
 
   var escapeRegExp = function(text) {
-    return text.replace(/[.*+?^${}()|[\]\]/g, '\$&');
+    return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   };
 
   var debounce = function(fn, wait) {
