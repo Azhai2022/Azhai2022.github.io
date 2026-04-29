@@ -24,7 +24,6 @@ var searchFunc = function(path, search_id, content_id) {
       var datas = $('entry', xmlResponse).map(function() {
         return {
           title: $('title', this).text(),
-          content: $('content', this).text(),
           url: $('url', this).text()
         };
       }).get().filter(function(item) {
@@ -65,43 +64,28 @@ var searchFunc = function(path, search_id, content_id) {
 
           var title = (data.title || 'Untitled').trim();
           var dataTitle = title.toLowerCase();
-          var plainContent = (data.content || '').trim().replace(/<[^>]+>/g, '');
-          var dataContent = plainContent.toLowerCase();
 
           var isMatch = true;
-          var firstOccur = -1;
 
-          keywords.forEach(function(keyword, i) {
+          keywords.forEach(function(keyword) {
             var indexTitle = dataTitle.indexOf(keyword);
-            var indexContent = dataContent.indexOf(keyword);
 
-            if (indexTitle < 0 && indexContent < 0) {
+            if (indexTitle < 0) {
               isMatch = false;
-              return;
-            }
-
-            if (indexContent >= 0 && i === 0) {
-              firstOccur = indexContent;
             }
           });
 
           if (!isMatch) return;
 
           matchCount++;
-          str += "<li><a href='" + data.url + "' class='search-result-title'>" + title + '</a>';
+          var highlightedTitle = title;
 
-          if (plainContent.length > 0) {
-            var start = firstOccur >= 0 ? Math.max(firstOccur - 20, 0) : 0;
-            var end = Math.min(start + 100, plainContent.length);
-            var matchContent = plainContent.substring(start, end);
+          keywords.forEach(function(keyword) {
+            var regS = new RegExp(escapeRegExp(keyword), 'gi');
+            highlightedTitle = highlightedTitle.replace(regS, '<em class="search-keyword">' + keyword + '</em>');
+          });
 
-            keywords.forEach(function(keyword) {
-              var regS = new RegExp(escapeRegExp(keyword), 'gi');
-              matchContent = matchContent.replace(regS, '<em class="search-keyword">' + keyword + '</em>');
-            });
-
-            str += '<p class="search-result-content">' + matchContent + '...</p>';
-          }
+          str += "<li><a href='" + data.url + "' class='search-result-title'>" + highlightedTitle + '</a>';
 
           str += '</li>';
         });
