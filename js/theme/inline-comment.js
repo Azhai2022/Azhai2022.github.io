@@ -114,6 +114,14 @@
   function onReady() {
     decorateParagraphs();
 
+    const postContent = document.querySelector('.post-content');
+    if (postContent && window.MutationObserver) {
+      const observer = new MutationObserver(() => {
+        decorateParagraphs();
+      });
+      observer.observe(postContent, { childList: true, subtree: true });
+    }
+
     document.addEventListener('click', (e) => {
       const link = e.target.closest('a');
       if (!link) return;
