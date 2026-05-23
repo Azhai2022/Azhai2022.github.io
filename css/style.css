@@ -1800,8 +1800,9 @@ body .main .main-content {
   white-space: nowrap;
   padding-left: 100%;
   animation: blog-marquee 14s linear infinite;
-  color: #fff;
-  text-shadow: 2px 2px 2px rgba(0,0,0,0.125);
+  color: #d93025;
+  font-weight: 700;
+  text-shadow: none;
 }
 .blog-marquee-track span {
   display: inline-block;
