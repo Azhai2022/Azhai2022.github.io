@@ -2122,15 +2122,20 @@ header {
 }
 @media screen and (max-width: 768px) {
   #top-menu-btn {
-    display: inline-block;
-    width: 22px;
-    height: 22px;
-    margin-left: 15px;
-    font-size: 17px;
-    cursor: pointer;
+    display: none;
   }
   .top-menu-expanded {
+    display: inline-block;
+    font-size: 16px;
+  }
+  .top-menu-expanded .top-menu-item {
+    margin-right: 12px;
+  }
+  .top-menu-expanded .top-menu-item span {
     display: none;
+  }
+  .top-menu-expanded .top-menu-item i {
+    margin-right: 0;
   }
   .top-search span {
     display: none;
@@ -2140,67 +2145,7 @@ header {
     padding: 2px 5px;
   }
   #top-menu-hidden {
-    z-index: 5;
-    position: fixed;
-    top: 50px;
-    width: 100%;
-    height: calc(100% - 50px);
-    margin: 0 auto;
-    animation: show-menu 0.5s;
-    background-color: rgba(255,255,255,0.5);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    flex-direction: column;
-    font-weight: 1000;
-  }
-  #top-menu-hidden:not([menu-show]) {
-    animation: disable-menu 0.5s;
-    pointer-events: none;
-  }
-  #top-menu-hidden .menu-hidden-content {
-    background-color: rgba(255,255,255,0.5);
-    box-shadow: 0 1px 1px rgba(0,0,0,0.125);
-    max-height: 80%;
-    overflow-y: auto;
-  }
-  #top-menu-hidden .menu-hidden-content .menu-hidden-nav {
-    width: 90%;
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    padding: 20px 0;
-  }
-  #top-menu-hidden .menu-hidden-content .menu-hidden-item {
-    padding: 8px 35px;
-    margin: 8px 10px;
-    border: 1px solid #f9ae08;
-    border-radius: 15px;
-    text-decoration: none;
-    line-height: 1.5em;
-    font-size: 18px;
-    background-color: #ffdf6a;
-    opacity: 0.8;
-    flex: 1;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: center;
-  }
-  #top-menu-hidden .menu-hidden-content .menu-hidden-item i {
-    margin-right: 5px;
-  }
-  #top-menu-hidden .menu-hidden-content .menu-hidden-item:hover {
-    background-color: #fff7dc;
-  }
-  #top-menu-hidden .menu-hidden-content .menu-hidden-item:hover i {
-    animation: beat 1s infinite;
-  }
-  #top-menu-hidden .menu-hidden-blank {
-    flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
+    display: none;
   }
 }
 .index-menu {
