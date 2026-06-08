@@ -1460,6 +1460,15 @@ body .main .main-content {
   margin: 0;
   white-space: nowrap;
 }
+.index-posts .index-post-item .post-title-index .post-updated {
+  padding: 3px 12px;
+  border: 1px solid #4caf50;
+  border-radius: 15px;
+  text-align: center;
+  color: #4caf50;
+  font-size: 16px;
+  white-space: nowrap;
+}
 .index-posts .index-post-item .post-head-info {
   font-size: 16px;
   color: #b1b1b1;
