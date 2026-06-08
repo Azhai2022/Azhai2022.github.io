@@ -2079,6 +2079,9 @@ header {
 #top-menu-hidden {
   display: none;
 }
+.mobile-nav {
+  display: none;
+}
 .nav-ribbon {
   display: flex;
   align-items: center;
@@ -2122,15 +2125,33 @@ header {
 }
 @media screen and (max-width: 768px) {
   #top-menu-btn {
-    display: inline-block;
-    width: 22px;
-    height: 22px;
-    margin-left: 15px;
-    font-size: 17px;
-    cursor: pointer;
+    display: none;
   }
   .top-menu-expanded {
     display: none;
+  }
+  .mobile-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 8px 0;
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .mobile-nav-item {
+    text-decoration: none;
+    color: #fba414;
+  }
+  .mobile-nav-item:hover {
+    color: #f9802d;
+  }
+  .mobile-nav-search {
+    cursor: pointer;
+    color: #fba414;
+  }
+  .mobile-nav-search:hover {
+    color: #f9802d;
   }
   .top-search span {
     display: none;
