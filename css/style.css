@@ -2127,8 +2127,8 @@ header {
   .top-menu-expanded {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 13px;
+    gap: 16px;
+    font-size: 15px;
     font-weight: 800;
   }
   .top-menu-expanded .top-menu-item {
@@ -2140,13 +2140,16 @@ header {
   .top-menu-expanded .top-menu-item span {
     display: inline;
   }
+  .top-search {
+    margin-left: auto;
+  }
   .top-search span {
     display: inline;
   }
   .top-search #top-search-btn {
     border-radius: 70px;
     padding: 2px 10px 2px 8px;
-    font-size: 13px;
+    font-size: 15px;
     border: 1px solid #ccc;
   }
   #top-menu-hidden {
