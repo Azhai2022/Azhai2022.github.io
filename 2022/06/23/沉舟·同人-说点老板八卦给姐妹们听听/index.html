@@ -135,6 +135,19 @@ if (darkMode.getMode() == "dark" && (true || true)) {
 if (document.getElementById('local-search-input') && document.getElementById('local-search-result')) {
   searchFunc('/search.xml', 'local-search-input', 'local-search-result');
 }
+</script><script>function jumpToPage() {
+  var input = document.getElementById('page-jump-input');
+  var page = parseInt(input.value);
+  var total = parseInt(input.getAttribute('max'));
+  if (page && page >= 1 && page <= total) {
+    var basePath = window.location.pathname.replace(/page\/\d+\/?$/, '');
+    if (page === 1) {
+      window.location.href = basePath;
+    } else {
+      window.location.href = basePath + 'page/' + page + '/';
+    }
+  }
+}
 </script><script>window.addEventListener('message', function (e) {
   if (e.data && e.data.event === 'cusdis-loaded') {
     const iframe = document.querySelector('iframe[src*="cusdis.com"]');

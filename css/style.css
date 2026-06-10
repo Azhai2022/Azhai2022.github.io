@@ -2266,6 +2266,38 @@ header {
   border-radius: 10px;
   padding: 0.5px 10px;
 }
+.pagination .page-jump {
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 16px;
+}
+.pagination .page-jump #page-jump-input {
+  width: 45px;
+  padding: 3px 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  outline: none;
+}
+.pagination .page-jump #page-jump-input:focus {
+  border-color: #fba414;
+}
+.pagination .page-jump #page-jump-btn {
+  padding: 3px 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  color: #4e4a55;
+}
+.pagination .page-jump #page-jump-btn:hover {
+  border-color: #fba414;
+  color: #fba414;
+}
 #search-panel {
   position: fixed;
   top: 50px;
