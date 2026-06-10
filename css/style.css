@@ -2266,13 +2266,24 @@ header {
   border-radius: 10px;
   padding: 0.5px 10px;
 }
-.pagination-mobile {
+.pagination .pagination-mobile {
   display: none;
 }
+.pagination .pagination-mobile a {
+  color: #4e4a55;
+  text-decoration: none;
+}
+.pagination .pagination-mobile a:hover {
+  color: #fba414;
+}
+.pagination .pagination-mobile .page-mobile-dots {
+  color: #4e4a55;
+}
 .page-jump {
-  margin-left: 15px;
+  margin: 10px auto 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 5px;
   font-size: 16px;
 }
@@ -2302,31 +2313,15 @@ header {
   color: #fba414;
 }
 @media screen and (max-width: 768px) {
-  .pagination-desktop {
+  .pagination .pagination-desktop {
     display: none;
   }
-  .pagination-mobile {
-    margin: 30px auto 5px;
+  .pagination .pagination-mobile {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
     font-size: 18px;
-  }
-  .pagination-mobile a {
-    color: #4e4a55;
-    text-decoration: none;
-  }
-  .pagination-mobile a:hover {
-    color: #fba414;
-  }
-  .pagination-mobile .page-mobile-dots {
-    color: #4e4a55;
-  }
-  .page-jump {
-    margin-left: 0;
-    margin-top: 10px;
-    justify-content: center;
   }
 }
 #search-panel {
