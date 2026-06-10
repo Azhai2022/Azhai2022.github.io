@@ -2320,8 +2320,23 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     font-size: 18px;
+  }
+  .pagination .pagination-mobile .page-mobile-current {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0.5px 10px;
+  }
+  .pagination .pagination-mobile a {
+    color: #4e4a55;
+    text-decoration: none;
+  }
+  .pagination .pagination-mobile a:hover {
+    color: #fba414;
+  }
+  .pagination .pagination-mobile .page-mobile-dots {
+    color: #4e4a55;
   }
 }
 #search-panel {
