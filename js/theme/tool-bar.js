@@ -2,8 +2,10 @@ window.onscroll = function () {
   'use strict';
   if (window.scrollY > 200 || document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
     document.getElementById('back-to-top').style.display = 'block';
+    document.getElementById('go-to-bottom').style.display = 'block';
   } else {
     document.getElementById('back-to-top').style.display = 'none';
+    document.getElementById('go-to-bottom').style.display = 'none';
   }
 };
 
@@ -12,6 +14,13 @@ function scrollToTop() {
   window.scrollTo(0, 0);
   document.body.scrollTop = 0; // Safari
   document.documentElement.scrollTop = 0; // Chrome, Firefox, IE, Opera
+}
+
+function scrollToBottom() {
+  'use strict';
+  window.scrollTo(0, document.body.scrollHeight);
+  document.body.scrollTop = document.body.scrollHeight; // Safari
+  document.documentElement.scrollTop = document.body.scrollHeight; // Chrome, Firefox, IE, Opera
 }
 
 function tocToggle() {

@@ -2426,6 +2426,13 @@ header {
 #tool-bar-main #back-to-top:hover {
   animation: bounce 1s ease-in-out infinite;
 }
+#tool-bar-main #go-to-bottom {
+  display: none;
+  animation: showup 1s;
+}
+#tool-bar-main #go-to-bottom:hover {
+  animation: bounce 1s ease-in-out infinite;
+}
 #tool-bar-main #tool-toggle {
   animation: spin 1.2s ease-in-out;
 }
