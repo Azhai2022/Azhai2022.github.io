@@ -2266,14 +2266,17 @@ header {
   border-radius: 10px;
   padding: 0.5px 10px;
 }
-.pagination .page-jump {
+.pagination-mobile {
+  display: none;
+}
+.page-jump {
   margin-left: 15px;
   display: flex;
   align-items: center;
   gap: 5px;
   font-size: 16px;
 }
-.pagination .page-jump #page-jump-input {
+.page-jump #page-jump-input {
   width: 45px;
   padding: 3px 5px;
   border: 1px solid #ccc;
@@ -2282,10 +2285,10 @@ header {
   font-size: 16px;
   outline: none;
 }
-.pagination .page-jump #page-jump-input:focus {
+.page-jump #page-jump-input:focus {
   border-color: #fba414;
 }
-.pagination .page-jump #page-jump-btn {
+.page-jump #page-jump-btn {
   padding: 3px 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -2294,9 +2297,37 @@ header {
   font-size: 16px;
   color: #4e4a55;
 }
-.pagination .page-jump #page-jump-btn:hover {
+.page-jump #page-jump-btn:hover {
   border-color: #fba414;
   color: #fba414;
+}
+@media screen and (max-width: 768px) {
+  .pagination-desktop {
+    display: none;
+  }
+  .pagination-mobile {
+    margin: 30px auto 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: 18px;
+  }
+  .pagination-mobile a {
+    color: #4e4a55;
+    text-decoration: none;
+  }
+  .pagination-mobile a:hover {
+    color: #fba414;
+  }
+  .pagination-mobile .page-mobile-dots {
+    color: #4e4a55;
+  }
+  .page-jump {
+    margin-left: 0;
+    margin-top: 10px;
+    justify-content: center;
+  }
 }
 #search-panel {
   position: fixed;
