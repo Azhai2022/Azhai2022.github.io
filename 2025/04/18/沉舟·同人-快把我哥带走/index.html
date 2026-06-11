@@ -59,21 +59,65 @@
 </div><div class="fiction-status">～ 完结 ～</div><div class="post-end"><div class="post-prev"><a href="/2025/04/28/%E6%B2%89%E8%88%9F%C2%B7%E5%90%8C%E4%BA%BA-D%E7%90%83%E7%89%B9%E5%B7%A5%E8%B4%BA%E6%B5%B7%E6%A5%BC/" title="上一篇文章"><i class="fa-solid fa-chevron-left fa-lg"></i></a></div><div class="post-reward" onclick="openPostReward()" title="赞赏"><i class="fa-regular fa-thumbs-up fa-xl fa-beat-fade"></i></div><div id="reward-panel" onclick="closePostReward()"><div class="reward-container"><p>你也喜欢这篇文章？贺少也觉得有道理！</p>
 <div class="reward-nav"><div class="reward-item"><img class="reward-img" src="/img/reward/wechat.png" title="小舟指谁谁升官" alt="小舟指谁谁升官"/><span>小舟指谁谁升官</span></div><div class="reward-item"><img class="reward-img" src="/img/reward/alipay.png" title="小楼指谁谁发财" alt="小楼指谁谁发财"/><span>小楼指谁谁发财</span></div></div></div></div><div class="post-next"><a href="/2025/04/13/%E6%B2%89%E8%88%9F%C2%B7%E5%90%8C%E4%BA%BA-%E5%9C%A8P%E5%9F%8E%E6%9C%80%E5%90%8E%E4%B8%80%E6%AC%A1%E6%8D%A1%E5%88%B0%E7%9A%84%E7%A9%BA%E6%8A%95%E6%98%AF%E4%BA%BA%E9%97%B4%E7%9A%84%E5%A4%AA%E9%98%B3(%E8%BF%9E%E8%BD%BD%E4%B8%AD)/" title="下一篇文章"><i class="fa-solid fa-chevron-right fa-lg"></i></a></div></div></article><div class="comment" id="comment"><link rel="stylesheet" href="https://cdn.staticfile.org/waline/3.0.0/waline.css"/><div id="waline"></div><script type="module">import { init } from 'https://cdn.staticfile.org/waline/3.0.0/waline.js';
 
-window.__WALINE_REACTION_SYNC__ = {
-  serverURL: 'https://comment.zhai.azhai.space',
-  lang: 'zh-CN',
-  path: '/2025/04/18/%E6%B2%89%E8%88%9F%C2%B7%E5%90%8C%E4%BA%BA-%E5%BF%AB%E6%8A%8A%E6%88%91%E5%93%A5%E5%B8%A6%E8%B5%B0/',
-  reactionKeys: ['reaction0', 'reaction1', 'reaction2']
+const walineServerURL = 'https://comment.zhai.azhai.space';
+const walineLang = 'zh-CN';
+const walinePath = '/2025/04/18/%E6%B2%89%E8%88%9F%C2%B7%E5%90%8C%E4%BA%BA-%E5%BF%AB%E6%8A%8A%E6%88%91%E5%93%A5%E5%B8%A6%E8%B5%B0/';
+const reactionKeys = ['reaction0', 'reaction1', 'reaction2'];
+
+const syncReactionVotes = async () => {
+  const votes = Array.from(document.querySelectorAll('#waline .wl-reaction-votes'));
+  if (!votes.length) return;
+
+  try {
+    const url = new URL('/api/article', walineServerURL);
+    url.searchParams.set('path', walinePath);
+    url.searchParams.set('type', reactionKeys.join(','));
+    if (walineLang) url.searchParams.set('lang', walineLang);
+
+    const response = await fetch(url.toString(), { credentials: 'omit' });
+    if (!response.ok) return;
+
+    const payload = await response.json();
+    const article = Array.isArray(payload?.data) ? payload.data[0] : payload?.data;
+    if (!article) return;
+
+    reactionKeys.forEach((key, index) => {
+      const value = article[key];
+      if (typeof value === 'undefined' || !votes[index]) return;
+      votes[index].textContent = String(value);
+    });
+  } catch (_) {
+    // ignore sync errors
+  }
+};
+
+const bindReactionSync = () => {
+  const root = document.getElementById('waline');
+  if (!root) return;
+
+  const observer = new MutationObserver(() => {
+    syncReactionVotes();
+  });
+
+  observer.observe(root, { childList: true, subtree: true });
+
+  root.addEventListener('click', (event) => {
+    const reactionItem = event.target.closest('.wl-reaction-item, .wl-reaction li, .wl-reaction-list li');
+    if (!reactionItem) return;
+    [250, 800, 1600, 2600].forEach((delay) => setTimeout(syncReactionVotes, delay));
+  });
+
+  [0, 400, 1200, 2400].forEach((delay) => setTimeout(syncReactionVotes, delay));
 };
 
 init({
   el: '#waline',
-  serverURL: 'https://comment.zhai.azhai.space',
-  lang: 'zh-CN',
+  serverURL: walineServerURL,
+  lang: walineLang,
   meta: ["nick","mail"],
   requiredMeta: [],
   login: 'disable',
-  path: '/2025/04/18/%E6%B2%89%E8%88%9F%C2%B7%E5%90%8C%E4%BA%BA-%E5%BF%AB%E6%8A%8A%E6%88%91%E5%93%A5%E5%B8%A6%E8%B5%B0/',
+  path: walinePath,
   like: true,
   locale: {
     placeholder: '欢迎评论，你的评论是对斋最大的鼓励^ _ ^',
@@ -95,7 +139,9 @@ init({
     '/img/reaction/zaizai.svg'
   ],
   dark: 'body.dm-dark'
-});</script></div><div id="post-toc"><aside class="toc-aside"><div class="toc-title"><span><i class="fa-solid fa-ship"></i>目录</span></div><div class="toc-container" id="toc-body"></div></aside><div class="toc-blank" onclick="tocToggle()"></div></div></div></div><div id="tool-bar"><div id="tool-bar-main"><div id="tool-toggle" onclick="toolToggle()" title="设置"><i class="fa-solid fa-gear"></i></div><div id="toc-toggle" onclick="tocToggle()" title="目录"><i class="fa-solid fa-list-ul"></i></div><div id="go-to-comment" onclick="gotoComment()" title="评论"><i class="fa-regular fa-message fa-flip-horizontal"></i></div><div id="back-to-top" onclick="scrollToTop()" title="返回顶部"><i class="fa-solid fa-chevron-up"></i></div><div id="go-to-bottom" onclick="scrollToBottom()" title="navigation.go_to_bottom"><i class="fa-solid fa-chevron-down"></i></div></div><div id="tool-bar-more" style="display: none;"><div id="darkmode-switch" onclick="darkmodeSwitch()" title="深色模式"><i class="fa-solid fa-circle-half-stroke"></i></div><div id="font-size-increase" onclick="fontSizeIncrease()" title="放大字体"><i class="fa-solid fa-plus"></i></div><div id="font-size-decrease" onclick="fontSizeDecrease()" title="缩小字体"><i class="fa-solid fa-minus"></i></div></div></div><div id="search-panel"><div class="search-container"><div class="search-head"><div class="search-title"><span><i class="fa-solid fa-ship"></i>搜索</span></div><div class="search-close-btn" onclick="toggleSearchWindow()"><i class="fa-regular fa-circle-xmark"></i></div></div><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input id="search-input" type="text" placeholder="请输入需要搜索的标题……" value=""/></div><div class="search-body"><div id="search-count">匹配结果数: </div><div id="search-result"></div><div id="search-result-empty">未搜索到匹配的文章。</div></div></div></div><footer><div class="footer-content"><div class="copyright-info"><span>GCZ </span><i class="fa-solid fa-heart fa-sm"></i><span> HHL</span><br/><i class="fa-regular fa-copyright fa-xs"></i><span>2022 - 2026 </span><a href="/about">Azhai</a><br/><span>累计发布：158篇｜145.0w字</span><br/><i class="fa-solid fa-cat fa-sm"></i><span>Powered by </span><a href="https://hexo.io/" target="_blank">Hexo</a><span> &amp; </span><a href="https://github.com/chanwj/hexo-theme-meow" target="_blank" title="v2.1.3">Theme Meow</a><i class="fa-solid fa-cat fa-sm"></i></div></div></footer>
+});
+
+bindReactionSync();</script></div><div id="post-toc"><aside class="toc-aside"><div class="toc-title"><span><i class="fa-solid fa-ship"></i>目录</span></div><div class="toc-container" id="toc-body"></div></aside><div class="toc-blank" onclick="tocToggle()"></div></div></div></div><div id="tool-bar"><div id="tool-bar-main"><div id="tool-toggle" onclick="toolToggle()" title="设置"><i class="fa-solid fa-gear"></i></div><div id="toc-toggle" onclick="tocToggle()" title="目录"><i class="fa-solid fa-list-ul"></i></div><div id="go-to-comment" onclick="gotoComment()" title="评论"><i class="fa-regular fa-message fa-flip-horizontal"></i></div><div id="back-to-top" onclick="scrollToTop()" title="返回顶部"><i class="fa-solid fa-chevron-up"></i></div><div id="go-to-bottom" onclick="scrollToBottom()" title="navigation.go_to_bottom"><i class="fa-solid fa-chevron-down"></i></div></div><div id="tool-bar-more" style="display: none;"><div id="darkmode-switch" onclick="darkmodeSwitch()" title="深色模式"><i class="fa-solid fa-circle-half-stroke"></i></div><div id="font-size-increase" onclick="fontSizeIncrease()" title="放大字体"><i class="fa-solid fa-plus"></i></div><div id="font-size-decrease" onclick="fontSizeDecrease()" title="缩小字体"><i class="fa-solid fa-minus"></i></div></div></div><div id="search-panel"><div class="search-container"><div class="search-head"><div class="search-title"><span><i class="fa-solid fa-ship"></i>搜索</span></div><div class="search-close-btn" onclick="toggleSearchWindow()"><i class="fa-regular fa-circle-xmark"></i></div></div><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input id="search-input" type="text" placeholder="请输入需要搜索的标题……" value=""/></div><div class="search-body"><div id="search-count">匹配结果数: </div><div id="search-result"></div><div id="search-result-empty">未搜索到匹配的文章。</div></div></div></div><footer><div class="footer-content"><div class="copyright-info"><span>GCZ </span><i class="fa-solid fa-heart fa-sm"></i><span> HHL</span><br/><i class="fa-regular fa-copyright fa-xs"></i><span>2022 - 2026 </span><a href="/about">Azhai</a><br/><span>累计发布：158篇｜145.0w字</span><br/><i class="fa-solid fa-cat fa-sm"></i><span>Powered by </span><a href="https://hexo.io/" target="_blank">Hexo</a><span> &amp; </span><a href="https://github.com/chanwj/hexo-theme-meow" target="_blank" title="v2.1.3">Theme Meow</a><i class="fa-solid fa-cat fa-sm"></i></div></div></footer>
 <script>const GLOBAL_CONFIG = {
   comment: { theme: ''}
 }
@@ -133,9 +179,6 @@ if (darkMode.getMode() == "dark" && (true || true)) {
 <script src="/js/theme/inline-comment.js"></script>
 
 <script src="/js/theme/waline-draft.js"></script>
-
-
-<script src="/js/theme/waline-reaction-sync.js"></script>
 
 
 <script src="/js/theme/comment-gate.js"></script>

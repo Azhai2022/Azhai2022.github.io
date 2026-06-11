@@ -4,6 +4,8 @@
   if (!config || !config.serverURL || !config.path || !Array.isArray(config.reactionKeys)) return;
 
   let syncing = false;
+  let observer = null;
+  let bootTimer = null;
 
   function getReactionVotes() {
     return Array.from(document.querySelectorAll('#waline .wl-reaction-votes'));
@@ -54,28 +56,35 @@
     const root = document.getElementById('waline');
     if (!root) return false;
 
+    if (!observer) {
+      observer = new MutationObserver(() => {
+        syncWithRetry([0, 300]);
+      });
+      observer.observe(root, { childList: true, subtree: true });
+    }
+
     root.addEventListener('click', (event) => {
       const reactionItem = event.target.closest('.wl-reaction-item, .wl-reaction li, .wl-reaction-list li');
       if (!reactionItem) return;
-      syncWithRetry([300, 1000, 2000]);
+      syncWithRetry([200, 800, 1600, 2600]);
     });
 
     return true;
   }
 
   function init() {
-    let bound = false;
+    bindReactionSync();
+    syncWithRetry([0, 400, 1200, 2400]);
+
+    if (bootTimer) clearInterval(bootTimer);
     const start = Date.now();
-
-    const timer = setInterval(() => {
-      const votes = getReactionVotes();
-      if (votes.length) {
-        syncWithRetry([0, 600, 1500]);
+    bootTimer = setInterval(() => {
+      syncReactionVotes();
+      if (Date.now() - start > 10000) {
+        clearInterval(bootTimer);
+        bootTimer = null;
       }
-
-      if (!bound) bound = bindReactionSync();
-      if ((bound && votes.length) || Date.now() - start > 8000) clearInterval(timer);
-    }, 300);
+    }, 1000);
   }
 
   if (document.readyState === 'loading') {
@@ -83,4 +92,6 @@
   } else {
     init();
   }
+
+  window.__syncWalineReactionVotes = syncReactionVotes;
 })();
