@@ -118,3 +118,35 @@ function fontSizeDecrease() {
     localStorage.setItem('font-size', sizeNum);
   }
 }
+
+var ttsUtterance = null;
+var ttsSpeaking = false;
+
+function ttsToggle() {
+  'use strict';
+  if (ttsSpeaking) {
+    window.speechSynthesis.cancel();
+    ttsSpeaking = false;
+    document.getElementById('tts-btn').classList.remove('tts-active');
+    return;
+  }
+  var postContent = document.querySelector('.post-content');
+  if (!postContent) return;
+  var text = postContent.innerText;
+  if (!text) return;
+  ttsUtterance = new SpeechSynthesisUtterance(text);
+  ttsUtterance.lang = 'zh-CN';
+  ttsUtterance.rate = 1;
+  ttsUtterance.onend = function() {
+    ttsSpeaking = false;
+    document.getElementById('tts-btn').classList.remove('tts-active');
+  };
+  window.speechSynthesis.speak(ttsUtterance);
+  ttsSpeaking = true;
+  document.getElementById('tts-btn').classList.add('tts-active');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.getElementById('tts-btn');
+  if (btn) btn.addEventListener('click', ttsToggle);
+});
