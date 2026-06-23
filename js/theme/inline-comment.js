@@ -83,8 +83,9 @@
       window.visualViewport.addEventListener('resize', () => {
         if (!panel.classList.contains('is-open')) return;
         const vh = window.visualViewport.height;
-        panel.style.maxHeight = Math.min(vh - 40, 400) + 'px';
-        panel.style.bottom = (window.innerHeight - vh + 16) + 'px';
+        const offset = window.innerHeight - vh;
+        panel.style.maxHeight = Math.min(vh - 32, 400) + 'px';
+        panel.style.bottom = Math.max(offset + 8, 16) + 'px';
       });
     }
 
