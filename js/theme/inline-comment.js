@@ -40,14 +40,70 @@
   }
 
   let savedScrollY = 0;
+  let viewportRaf = null;
+
+  function isSmallScreen() {
+    return window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
+  }
+
+  function syncPanelViewport() {
+    const rootStyle = document.documentElement.style;
+
+    if (!window.visualViewport) {
+      rootStyle.setProperty('--inline-comment-keyboard-offset', '0px');
+      rootStyle.setProperty('--inline-comment-viewport-height', `${window.innerHeight}px`);
+      return;
+    }
+
+    const viewport = window.visualViewport;
+    const keyboardOffset = Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop);
+    rootStyle.setProperty('--inline-comment-keyboard-offset', `${Math.round(keyboardOffset)}px`);
+    rootStyle.setProperty('--inline-comment-viewport-height', `${Math.round(viewport.height)}px`);
+  }
+
+  function schedulePanelViewportSync() {
+    if (viewportRaf) cancelAnimationFrame(viewportRaf);
+    viewportRaf = requestAnimationFrame(() => {
+      viewportRaf = null;
+      const panel = document.getElementById('inline-comment-panel');
+      if (!panel || !panel.classList.contains('is-open')) return;
+      syncPanelViewport();
+    });
+  }
+
+  function createBackdrop() {
+    let backdrop = document.getElementById('inline-comment-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.id = 'inline-comment-backdrop';
+      backdrop.className = 'inline-comment-backdrop';
+      document.body.appendChild(backdrop);
+    }
+    return backdrop;
+  }
+
+  function openPanel(panel) {
+    savedScrollY = window.scrollY || window.pageYOffset || 0;
+    createBackdrop();
+    syncPanelViewport();
+    panel.classList.add('is-open');
+    document.documentElement.classList.add('inline-comment-panel-open');
+  }
 
   function closePanel(panel) {
+    const textarea = panel.querySelector('.inline-comment-textarea');
+    if (textarea) textarea.blur();
     panel.classList.remove('is-open');
-    panel.style.maxHeight = '';
-    panel.style.bottom = '';
     const backdrop = document.getElementById('inline-comment-backdrop');
     if (backdrop) backdrop.remove();
-    window.scrollTo(0, savedScrollY);
+    document.documentElement.classList.remove('inline-comment-panel-open');
+    document.documentElement.style.removeProperty('--inline-comment-keyboard-offset');
+    document.documentElement.style.removeProperty('--inline-comment-viewport-height');
+    if (isSmallScreen()) {
+      requestAnimationFrame(() => {
+        window.scrollTo(0, savedScrollY);
+      });
+    }
     activeButton = null;
   }
 
@@ -79,14 +135,19 @@
     `;
     document.body.appendChild(panel);
 
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', () => {
-        if (!panel.classList.contains('is-open')) return;
-        const vh = window.visualViewport.height;
-        const offset = window.innerHeight - vh;
-        panel.style.maxHeight = Math.min(vh - 32, 400) + 'px';
-        panel.style.bottom = Math.max(offset + 8, 16) + 'px';
+    const textarea = panel.querySelector('.inline-comment-textarea');
+    textarea.addEventListener('focus', () => {
+      [80, 240, 500].forEach((delay) => {
+        setTimeout(schedulePanelViewportSync, delay);
       });
+    });
+    textarea.addEventListener('blur', () => {
+      setTimeout(schedulePanelViewportSync, 120);
+    });
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', schedulePanelViewportSync);
+      window.visualViewport.addEventListener('scroll', schedulePanelViewportSync);
     }
 
     panel.querySelector('.inline-comment-cancel').addEventListener('click', () => {
@@ -320,7 +381,6 @@
         const quote = btn.dataset.quote || '';
         const index = btn.dataset.index || '';
         const anchor = btn.dataset.anchor || '';
-        savedScrollY = window.scrollY || window.pageYOffset || 0;
         textarea.value = '';
         textarea.dataset.paraIndex = index;
         textarea.dataset.paraQuote = quote;
@@ -328,15 +388,10 @@
         activeButton = btn;
         list.innerHTML = '<div class="inline-comment-loading">加载中...</div>';
 
-        let backdrop = document.getElementById('inline-comment-backdrop');
-        if (!backdrop) {
-          backdrop = document.createElement('div');
-          backdrop.id = 'inline-comment-backdrop';
-          backdrop.className = 'inline-comment-backdrop';
-          document.body.appendChild(backdrop);
+        openPanel(panel);
+        if (isSmallScreen()) {
+          setTimeout(schedulePanelViewportSync, 250);
         }
-
-        panel.classList.add('is-open');
 
         const comments = await fetchParagraphComments(index);
         renderParagraphComments(panel, comments);

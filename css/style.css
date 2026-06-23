@@ -2498,6 +2498,7 @@ header {
   background: rgba(0,0,0,0.35);
   color: #fff;
   cursor: pointer;
+  touch-action: manipulation;
 }
 .inline-comment-btn.has-comments {
   min-width: 18px;
@@ -2505,7 +2506,7 @@ header {
 .inline-comment-panel {
   position: fixed;
   right: 16px;
-  bottom: 16px;
+  bottom: calc(16px + var(--inline-comment-keyboard-offset, 0px));
   z-index: 9998;
   width: 320px;
   max-width: calc(100vw - 32px);
@@ -2519,10 +2520,10 @@ header {
   overflow: hidden;
   display: none;
   flex-direction: column;
-  transition: none;
+  transition: bottom 0.18s ease, transform 0.18s ease;
 }
 .inline-comment-panel.is-open {
-  display: block;
+  display: flex;
 }
 .inline-comment-title {
   font-size: 12px;
@@ -2578,11 +2579,17 @@ header {
   resize: vertical;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 8px;
-  font-size: 13px;
+  padding: 9px 10px;
+  font-size: 16px;
   line-height: 1.5;
   box-sizing: border-box;
   flex-shrink: 0;
+  -webkit-text-size-adjust: 100%;
+  outline: none;
+}
+.inline-comment-textarea:focus {
+  border-color: rgba(17,17,17,0.72);
+  box-shadow: 0 0 0 3px rgba(17,17,17,0.08);
 }
 .inline-comment-actions {
   display: flex;
@@ -2600,6 +2607,7 @@ header {
   color: #fff;
   font-size: 12px;
   cursor: pointer;
+  touch-action: manipulation;
 }
 .inline-comment-actions .inline-comment-cancel {
   background: #fff;
@@ -2616,6 +2624,44 @@ header {
   bottom: 0;
   z-index: 9997;
   background: transparent;
+}
+@media (max-width: 640px) {
+  .inline-comment-panel {
+    left: 8px;
+    right: 8px;
+    bottom: 16px;
+    width: auto;
+    max-width: none;
+    max-height: 60vh;
+    padding: 14px;
+    border-radius: 16px 16px 12px 12px;
+    box-shadow: 0 16px 42px rgba(0,0,0,0.2);
+  }
+  .inline-comment-title {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .inline-comment-list {
+    max-height: 34vh;
+    margin-bottom: 10px;
+  }
+  .inline-comment-textarea {
+    min-height: 96px;
+    max-height: 30vh;
+    border-radius: 10px;
+  }
+  .inline-comment-actions {
+    gap: 10px;
+  }
+  .inline-comment-actions button {
+    min-width: 72px;
+    height: 36px;
+    font-size: 15px;
+    border-radius: 10px;
+  }
+  .inline-comment-backdrop {
+    background: rgba(0,0,0,0.18);
+  }
 }
 .inline-note-ref {
   cursor: pointer;
