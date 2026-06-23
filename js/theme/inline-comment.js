@@ -61,6 +61,9 @@
     panel.className = 'inline-comment-panel';
     panel.innerHTML = `
       <div class="inline-comment-title">段评</div>
+      <div class="inline-comment-list">
+        <div class="inline-comment-loading">加载中...</div>
+      </div>
       <textarea class="inline-comment-textarea" placeholder="写下你的评论..."></textarea>
       <div class="inline-comment-actions">
         <button type="button" class="inline-comment-submit">发送</button>
@@ -131,6 +134,76 @@
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;');
+  }
+
+  function stripHtml(html) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+  }
+
+  async function fetchParagraphComments(paraIndex) {
+    try {
+      const url = new URL('/api/comment/', getWalineServer());
+      url.searchParams.set('path', getCommentPath());
+      url.searchParams.set('pageSize', String(PAGE_SIZE));
+
+      const res = await fetch(url.toString());
+      const data = await res.json();
+      const comments = data.data?.data || [];
+      const results = [];
+
+      function matchComment(comment) {
+        const text = (comment.comment || comment.orig || '');
+        const match = text.match(/第(\d+)段/);
+        if (match && match[1] === String(paraIndex)) {
+          const clean = stripHtml(comment.comment || '').replace(/^.*?】\s*/, '').replace(/^引用（第\d+段）：.*?定位\s*/, '').trim();
+          if (clean) {
+            results.push({
+              nick: comment.nick || '匿名',
+              content: clean,
+              time: comment.time
+            });
+          }
+        }
+        if (comment.children) {
+          comment.children.forEach(matchComment);
+        }
+      }
+
+      comments.forEach(matchComment);
+
+      const totalPages = data.data?.totalPages || 1;
+      for (let p = 2; p <= totalPages; p++) {
+        url.searchParams.set('page', String(p));
+        const nextRes = await fetch(url.toString());
+        const nextData = await nextRes.json();
+        const nextComments = nextData.data?.data || [];
+        nextComments.forEach(matchComment);
+      }
+
+      return results;
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function renderParagraphComments(panel, comments) {
+    const list = panel.querySelector('.inline-comment-list');
+    if (!comments.length) {
+      list.innerHTML = '<div class="inline-comment-empty">暂无段评</div>';
+      return;
+    }
+    list.innerHTML = comments.map(c => {
+      const time = new Date(c.time).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      return `<div class="inline-comment-item">
+        <div class="inline-comment-item-header">
+          <span class="inline-comment-item-nick">${escapeHtml(c.nick)}</span>
+          <span class="inline-comment-item-time">${time}</span>
+        </div>
+        <div class="inline-comment-item-content">${escapeHtml(c.content)}</div>
+      </div>`;
+    }).join('');
   }
 
   async function fetchCommentCounts() {
@@ -213,9 +286,10 @@
         return;
       }
 
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', async () => {
         const panel = buildPanel();
         const textarea = panel.querySelector('.inline-comment-textarea');
+        const list = panel.querySelector('.inline-comment-list');
         const quote = btn.dataset.quote || '';
         const index = btn.dataset.index || '';
         const anchor = btn.dataset.anchor || '';
@@ -224,7 +298,12 @@
         const prefix = quote ? `<blockquote>引用（第${index}段）：${safeQuote}${jump}</blockquote>\n\n` : '';
         textarea.value = prefix;
         activeButton = btn;
+        list.innerHTML = '<div class="inline-comment-loading">加载中...</div>';
         panel.classList.add('is-open');
+
+        const comments = await fetchParagraphComments(index);
+        renderParagraphComments(panel, comments);
+
         textarea.focus();
         textarea.setSelectionRange(textarea.value.length, textarea.value.length);
       });
