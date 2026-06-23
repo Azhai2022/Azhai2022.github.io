@@ -2519,6 +2519,7 @@ header {
   overflow: hidden;
   display: none;
   flex-direction: column;
+  transition: none;
 }
 .inline-comment-panel.is-open {
   display: block;

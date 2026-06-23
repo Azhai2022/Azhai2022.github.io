@@ -315,7 +315,7 @@
         const comments = await fetchParagraphComments(index);
         renderParagraphComments(panel, comments);
 
-        textarea.focus();
+        textarea.focus({ preventScroll: true });
         textarea.setSelectionRange(textarea.value.length, textarea.value.length);
       });
 
