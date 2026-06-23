@@ -47,6 +47,8 @@ const walineServerURL = "https://comment.zhai.azhai.space";
 const walineLang = "zh-CN";
 const walinePath = "/2023/05/11/沉舟·同人-老板他口是心非/";
 const reactionKeys = ['reaction0', 'reaction1', 'reaction2'];
+window.__WALINE_COMMENT_PATH__ = walinePath;
+window.__WALINE_SERVER_URL__ = walineServerURL;
 
 const syncReactionVotes = async () => {
   const votes = Array.from(document.querySelectorAll('#waline .wl-reaction-votes'));

@@ -2499,6 +2499,9 @@ header {
   color: #fff;
   cursor: pointer;
 }
+.inline-comment-btn.has-comments {
+  min-width: 18px;
+}
 .inline-comment-panel {
   position: fixed;
   right: 16px;

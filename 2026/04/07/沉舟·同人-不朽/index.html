@@ -105,6 +105,8 @@ const walineServerURL = "https://comment.zhai.azhai.space";
 const walineLang = "zh-CN";
 const walinePath = "/2026/04/07/沉舟·同人-不朽/";
 const reactionKeys = ['reaction0', 'reaction1', 'reaction2'];
+window.__WALINE_COMMENT_PATH__ = walinePath;
+window.__WALINE_SERVER_URL__ = walineServerURL;
 
 const syncReactionVotes = async () => {
   const votes = Array.from(document.querySelectorAll('#waline .wl-reaction-votes'));
