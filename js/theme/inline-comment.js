@@ -39,12 +39,15 @@
       .trim();
   }
 
+  let savedScrollY = 0;
+
   function closePanel(panel) {
     panel.classList.remove('is-open');
     panel.style.maxHeight = '';
     panel.style.bottom = '';
     const backdrop = document.getElementById('inline-comment-backdrop');
     if (backdrop) backdrop.remove();
+    window.scrollTo(0, savedScrollY);
     activeButton = null;
   }
 
@@ -316,6 +319,7 @@
         const quote = btn.dataset.quote || '';
         const index = btn.dataset.index || '';
         const anchor = btn.dataset.anchor || '';
+        savedScrollY = window.scrollY || window.pageYOffset || 0;
         textarea.value = '';
         textarea.dataset.paraIndex = index;
         textarea.dataset.paraQuote = quote;
