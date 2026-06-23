@@ -118,3 +118,43 @@ function fontSizeDecrease() {
     localStorage.setItem('font-size', sizeNum);
   }
 }
+
+function randomPost(tag) {
+  'use strict';
+  fetch('/posts.json')
+    .then(function(res) { return res.json(); })
+    .then(function(posts) {
+      if (tag) {
+        posts = posts.filter(function(p) {
+          return p.tags && p.tags.some(function(t) { return t.indexOf(tag) !== -1; });
+        });
+      }
+      if (posts && posts.length) {
+        var post = posts[Math.floor(Math.random() * posts.length)];
+        window.location.href = '/' + post.path;
+      }
+    });
+}
+
+function toggleRandomMenu() {
+  'use strict';
+  var header = document.querySelector('.random-header');
+  var menu = document.querySelector('.random-menu');
+  if (menu && header) {
+    menu.classList.toggle('open');
+    header.classList.toggle('open');
+  }
+}
+
+document.addEventListener('click', function(e) {
+  'use strict';
+  var random = document.querySelector('.sidebar-random');
+  if (random && !random.contains(e.target)) {
+    var menu = document.querySelector('.random-menu');
+    var header = document.querySelector('.random-header');
+    if (menu && header) {
+      menu.classList.remove('open');
+      header.classList.remove('open');
+    }
+  }
+});

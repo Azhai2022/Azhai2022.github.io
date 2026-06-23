@@ -1849,6 +1849,54 @@ body .main .main-content {
   max-width: 1080px;
   margin-top: 10px;
 }
+.sidebar-random {
+  width: 100%;
+  max-width: 1080px;
+  margin-top: 10px;
+}
+.sidebar-random .random-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  color: #4a9eed;
+  font-size: 14px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sidebar-random .random-header:hover {
+  background: rgba(255,255,255,0.1);
+}
+.sidebar-random .random-header .random-arrow {
+  margin-left: auto;
+  font-size: 12px;
+  transition: transform 0.2s;
+}
+.sidebar-random .random-header.open .random-arrow {
+  transform: rotate(180deg);
+}
+.sidebar-random .random-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: rgba(0,0,0,0.15);
+  border-radius: 0 0 8px 8px;
+}
+.sidebar-random .random-menu.open {
+  max-height: 100px;
+}
+.sidebar-random .random-menu .random-option {
+  padding: 8px 12px;
+  color: #4a9eed;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sidebar-random .random-menu .random-option:hover {
+  background: rgba(255,255,255,0.08);
+}
 .sidebar-panel {
   border: 1px solid rgba(255,255,255,0.2);
   border-radius: 8px;
