@@ -41,6 +41,8 @@
 
   function closePanel(panel) {
     panel.classList.remove('is-open');
+    panel.style.maxHeight = '';
+    panel.style.bottom = '';
     const backdrop = document.getElementById('inline-comment-backdrop');
     if (backdrop) backdrop.remove();
     activeButton = null;
@@ -74,6 +76,15 @@
     `;
     document.body.appendChild(panel);
 
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', () => {
+        if (!panel.classList.contains('is-open')) return;
+        const vh = window.visualViewport.height;
+        panel.style.maxHeight = Math.min(vh - 40, 400) + 'px';
+        panel.style.bottom = (window.innerHeight - vh + 16) + 'px';
+      });
+    }
+
     panel.querySelector('.inline-comment-cancel').addEventListener('click', () => {
       closePanel(panel);
     });
@@ -84,6 +95,16 @@
       if (!content) return;
       const targetButton = activeButton;
       const targetIndex = targetButton ? targetButton.dataset.index : '';
+
+      const paraIndex = textarea.dataset.paraIndex || '';
+      const paraQuote = textarea.dataset.paraQuote || '';
+      const paraAnchor = textarea.dataset.paraAnchor || '';
+      let fullContent = content;
+      if (paraIndex && paraQuote) {
+        const jump = paraAnchor ? ` <a href="#${paraAnchor}">定位</a>` : '';
+        const safeQuote = escapeHtml(paraQuote);
+        fullContent = `<blockquote>引用（第${paraIndex}段）：${safeQuote}${jump}</blockquote>\n\n` + content;
+      }
 
       const walineRoot = document.getElementById('waline');
       const walineEditor = walineRoot ? walineRoot.querySelector('textarea') : null;
@@ -96,7 +117,7 @@
         return;
       }
 
-      walineEditor.value = content;
+      walineEditor.value = fullContent;
       walineEditor.dispatchEvent(new Event('input', { bubbles: true }));
       walineSubmit.click();
 
@@ -295,10 +316,10 @@
         const quote = btn.dataset.quote || '';
         const index = btn.dataset.index || '';
         const anchor = btn.dataset.anchor || '';
-        const jump = anchor ? ` <a href="#${anchor}">定位</a>` : '';
-        const safeQuote = escapeHtml(quote);
-        const prefix = quote ? `<blockquote>引用（第${index}段）：${safeQuote}${jump}</blockquote>\n\n` : '';
-        textarea.value = prefix;
+        textarea.value = '';
+        textarea.dataset.paraIndex = index;
+        textarea.dataset.paraQuote = quote;
+        textarea.dataset.paraAnchor = anchor;
         activeButton = btn;
         list.innerHTML = '<div class="inline-comment-loading">加载中...</div>';
 
@@ -314,9 +335,6 @@
 
         const comments = await fetchParagraphComments(index);
         renderParagraphComments(panel, comments);
-
-        textarea.focus({ preventScroll: true });
-        textarea.setSelectionRange(textarea.value.length, textarea.value.length);
       });
 
       btn.dataset.inlineCommentBound = 'true';
