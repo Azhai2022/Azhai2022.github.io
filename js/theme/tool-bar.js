@@ -78,7 +78,6 @@ function darkmodeSwitch() {
       });
     }
   }
-  toolToggle();
 }
 
 function sendGiscusMessage(message) {
