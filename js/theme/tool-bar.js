@@ -241,8 +241,11 @@ function hideBookmarkBanner() {
 // 书签初始化
 (function initBookmark() {
   'use strict';
+  var bookmarkActive = false;  // 标记是否有未恢复的书签
+
   var data = loadBookmark();
   if (data) {
+    bookmarkActive = true;
     updateBookmarkIcon(true);
     showBookmarkBanner(data);
   }
@@ -252,6 +255,7 @@ function hideBookmarkBanner() {
   if (restoreBtn) {
     restoreBtn.addEventListener('click', function() {
       var saved = loadBookmark();
+      bookmarkActive = false;  // 恢复后停止阻止自动保存
       if (saved && saved.position > 0) {
         hideBookmarkBanner();
         setTimeout(function() {
@@ -267,6 +271,7 @@ function hideBookmarkBanner() {
   var clearBtn = document.getElementById('bookmark-clear');
   if (clearBtn) {
     clearBtn.addEventListener('click', function() {
+      bookmarkActive = false;
       clearBookmark();
     });
   }
@@ -274,6 +279,7 @@ function hideBookmarkBanner() {
   // 自动保存（防抖500ms）
   var bookmarkTimer = null;
   window.addEventListener('scroll', function() {
+    if (bookmarkActive) return;  // 有未恢复的书签时，不自动更新
     clearTimeout(bookmarkTimer);
     bookmarkTimer = setTimeout(function() {
       var scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -285,6 +291,7 @@ function hideBookmarkBanner() {
 
   // 页面关闭前保存
   window.addEventListener('beforeunload', function() {
+    if (bookmarkActive) return;
     var scrollTop = window.scrollY || document.documentElement.scrollTop;
     if (scrollTop > 200) {
       saveBookmark();
