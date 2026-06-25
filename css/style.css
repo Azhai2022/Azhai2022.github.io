@@ -2019,6 +2019,15 @@ body .main .main-content {
   max-height: 300px;
   overflow-y: auto;
 }
+.sidebar-panel #last-read-list {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: rgba(0,0,0,0.15);
+}
+.sidebar-panel.open #last-read-list {
+  max-height: 100px;
+}
 .sidebar-panel .empty-msg {
   padding: 12px;
   text-align: center;

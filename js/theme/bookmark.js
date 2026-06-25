@@ -1,5 +1,6 @@
 (() => {
   const FAVORITE_KEY = 'zhai_favorites';
+  const LAST_READ_KEY = 'zhai_last_read';
 
   function getFavorites() {
     try {
@@ -11,6 +12,18 @@
 
   function saveFavorites(items) {
     localStorage.setItem(FAVORITE_KEY, JSON.stringify(items));
+  }
+
+  function getLastRead() {
+    try {
+      return JSON.parse(localStorage.getItem(LAST_READ_KEY)) || null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function saveLastRead(data) {
+    localStorage.setItem(LAST_READ_KEY, JSON.stringify(data));
   }
 
   function getId(url) {
@@ -74,6 +87,34 @@
       `).join('');
   }
 
+  function updateLastReadPanel() {
+    const list = document.getElementById('last-read-list');
+    if (!list) return;
+
+    const lastRead = getLastRead();
+    if (!lastRead) {
+      list.innerHTML = '<div class="empty-msg">暂无记录</div>';
+      return;
+    }
+
+    list.innerHTML = `
+      <a class="list-item" href="${lastRead.url}">
+        <span class="item-title">${lastRead.title}</span>
+      </a>
+    `;
+  }
+
+  function trackLastRead() {
+    const title = document.querySelector('.post-title h1')?.textContent?.trim();
+    if (!title) return;
+
+    saveLastRead({
+      title: title,
+      url: window.location.pathname,
+      time: Date.now()
+    });
+  }
+
   function init() {
     const favBtn = document.querySelector('.favorite-btn');
     if (favBtn) {
@@ -82,6 +123,12 @@
     }
 
     updatePanel();
+    updateLastReadPanel();
+
+    // 如果是文章页，记录上次阅读
+    if (document.querySelector('.post-title')) {
+      trackLastRead();
+    }
 
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains('item-remove')) {
