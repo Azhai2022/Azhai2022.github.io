@@ -108,6 +108,9 @@
     const title = document.querySelector('.post-title h1')?.textContent?.trim();
     if (!title) return;
 
+    // 排除置顶文章
+    if (document.querySelector('article[data-sticky="true"]')) return;
+
     saveLastRead({
       title: title,
       url: window.location.pathname,
