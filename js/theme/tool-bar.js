@@ -157,3 +157,137 @@ document.addEventListener('click', function(e) {
     }
   }
 });
+
+// ===== 书签功能 =====
+function getBookmarkKey() {
+  'use strict';
+  return 'meow-bookmark-' + window.location.pathname;
+}
+
+function saveBookmark() {
+  'use strict';
+  var key = getBookmarkKey();
+  var scrollTop = window.scrollY || document.documentElement.scrollTop;
+  var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  var percent = docHeight > 0 ? Math.round((scrollTop / docHeight) * 100) : 0;
+  var data = {
+    position: scrollTop,
+    percent: percent,
+    timestamp: Date.now()
+  };
+  localStorage.setItem(key, JSON.stringify(data));
+  updateBookmarkIcon(true);
+}
+
+function loadBookmark() {
+  'use strict';
+  var key = getBookmarkKey();
+  var raw = localStorage.getItem(key);
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw);
+  } catch (e) {
+    return null;
+  }
+}
+
+function clearBookmark() {
+  'use strict';
+  var key = getBookmarkKey();
+  localStorage.removeItem(key);
+  updateBookmarkIcon(false);
+  hideBookmarkBanner();
+}
+
+function toggleBookmark() {
+  'use strict';
+  var existing = loadBookmark();
+  if (existing) {
+    clearBookmark();
+  } else {
+    saveBookmark();
+  }
+}
+
+function updateBookmarkIcon(hasBookmark) {
+  'use strict';
+  var btn = document.getElementById('bookmark-toggle');
+  if (!btn) return;
+  var icon = btn.querySelector('i');
+  if (hasBookmark) {
+    icon.className = 'fa-solid fa-bookmark';
+    btn.title = '已设置书签（点击清除）';
+  } else {
+    icon.className = 'fa-regular fa-bookmark';
+    btn.title = '添加书签';
+  }
+}
+
+function showBookmarkBanner(data) {
+  'use strict';
+  var banner = document.getElementById('bookmark-banner');
+  var info = document.getElementById('bookmark-info');
+  if (!banner || !info) return;
+  info.textContent = '已读 ' + data.percent + '%';
+  banner.style.display = 'block';
+}
+
+function hideBookmarkBanner() {
+  'use strict';
+  var banner = document.getElementById('bookmark-banner');
+  if (banner) banner.style.display = 'none';
+}
+
+// 书签初始化
+(function initBookmark() {
+  'use strict';
+  var data = loadBookmark();
+  if (data) {
+    updateBookmarkIcon(true);
+    showBookmarkBanner(data);
+  }
+
+  // 恢复按钮
+  var restoreBtn = document.getElementById('bookmark-restore');
+  if (restoreBtn) {
+    restoreBtn.addEventListener('click', function() {
+      var saved = loadBookmark();
+      if (saved && saved.position > 0) {
+        hideBookmarkBanner();
+        setTimeout(function() {
+          window.scrollTo({ top: saved.position, behavior: 'smooth' });
+        }, 100);
+      } else {
+        hideBookmarkBanner();
+      }
+    });
+  }
+
+  // 清除按钮
+  var clearBtn = document.getElementById('bookmark-clear');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function() {
+      clearBookmark();
+    });
+  }
+
+  // 自动保存（防抖500ms）
+  var bookmarkTimer = null;
+  window.addEventListener('scroll', function() {
+    clearTimeout(bookmarkTimer);
+    bookmarkTimer = setTimeout(function() {
+      var scrollTop = window.scrollY || document.documentElement.scrollTop;
+      if (scrollTop > 200) {
+        saveBookmark();
+      }
+    }, 500);
+  });
+
+  // 页面关闭前保存
+  window.addEventListener('beforeunload', function() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    if (scrollTop > 200) {
+      saveBookmark();
+    }
+  });
+})();
