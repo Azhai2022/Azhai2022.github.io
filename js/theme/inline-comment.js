@@ -172,19 +172,36 @@
       }
 
       const walineRoot = document.getElementById('waline');
-      const walineEditor = walineRoot ? walineRoot.querySelector('textarea') : null;
+      // Waline v3 使用 contenteditable div 而不是 textarea
+      const walineEditor = walineRoot
+        ? walineRoot.querySelector('.wl-editor, textarea, [contenteditable="true"]')
+        : null;
       const walineSubmit = walineRoot
-        ? walineRoot.querySelector('button[type="submit"], button.wl-submit')
+        ? walineRoot.querySelector('button.wl-btn, button[type="submit"], button.wl-submit')
         : null;
 
       if (!walineEditor || !walineSubmit) {
+        console.error('Waline editor or submit button not found');
         closePanel(panel);
         return;
       }
 
-      walineEditor.value = fullContent;
+      // 先点击编辑器使其获得焦点
+      walineEditor.click();
+      walineEditor.focus();
+
+      // 设置内容
+      if (walineEditor.tagName === 'TEXTAREA') {
+        walineEditor.value = fullContent;
+      } else {
+        walineEditor.innerText = fullContent;
+      }
       walineEditor.dispatchEvent(new Event('input', { bubbles: true }));
-      walineSubmit.click();
+
+      // 延迟点击提交按钮，确保 Waline 内部状态更新
+      setTimeout(() => {
+        walineSubmit.click();
+      }, 100);
 
       if (targetIndex) {
         commentCounts[targetIndex] = (commentCounts[targetIndex] || 0) + 1;
