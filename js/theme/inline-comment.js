@@ -245,7 +245,11 @@
         const text = (comment.comment || comment.orig || '');
         const match = text.match(/第(\d+)段/);
         if (match && match[1] === String(paraIndex)) {
-          const clean = stripHtml(comment.comment || '').replace(/^.*?】\s*/, '').replace(/^引用（第\d+段）：.*?定位\s*/, '').trim();
+          const clean = stripHtml(comment.comment || '')
+            .replace(/^[\s\S]*?】\s*/, '')
+            .replace(/引用（第\d+段）：[\s\S]*?定位\s*/, '')
+            .replace(/^[\s\S]*?<\/blockquote>\s*/, '')
+            .trim();
           if (clean) {
             results.push({
               nick: comment.nick || '匿名',
