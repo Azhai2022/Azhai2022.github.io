@@ -186,11 +186,7 @@
         return;
       }
 
-      // 先点击编辑器使其获得焦点
-      walineEditor.click();
-      walineEditor.focus();
-
-      // 设置内容
+      // 设置内容，不 focus 编辑器避免手机跳转到底部
       if (walineEditor.tagName === 'TEXTAREA') {
         walineEditor.value = fullContent;
       } else {
@@ -201,6 +197,7 @@
       // 延迟点击提交按钮，确保 Waline 内部状态更新
       setTimeout(() => {
         walineSubmit.click();
+        walineEditor.blur();
       }, 100);
 
       if (targetIndex) {
