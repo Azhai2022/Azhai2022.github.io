@@ -1,11 +1,1 @@
-function openPostReward(){
-  'use strict';
-  var rewardPanel = document.getElementById('reward-panel');
-  rewardPanel.setAttribute('reward-show', true);
-}
-
-function closePostReward(){
-  'use strict';
-  var rewardPanel = document.getElementById('reward-panel');
-  rewardPanel.removeAttribute('reward-show')
-}
+function openPostReward(){document.getElementById('reward-panel').setAttribute('reward-show',!0)}function closePostReward(){document.getElementById('reward-panel').removeAttribute('reward-show')}
