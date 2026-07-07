@@ -1766,7 +1766,8 @@ body .main .main-content {
 }
 #comment .wl-os,
 #comment .wl-browser,
-#comment .wl-ua {
+#comment .wl-ua,
+#comment .wl-addr {
   display: none !important;
 }
 .fiction-meta {
