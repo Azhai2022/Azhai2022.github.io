@@ -2248,6 +2248,13 @@ iframe[src*="cusdis.com"] {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.06);
 }
+body:not(.dm-dark) #waline .wl-card .wl-content,
+body:not(.dm-dark) #waline .wl-card .wl-content p,
+body:not(.dm-dark) #waline .wl-card .wl-content li,
+body:not(.dm-dark) #waline .wl-card .wl-content blockquote,
+body:not(.dm-dark) #waline .wl-card .wl-content span:not(.wl-emoji):not(.wl-tag) {
+  color: #000;
+}
 .footer-content {
   max-width: 1080px;
   width: 90%;
