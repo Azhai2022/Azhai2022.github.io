@@ -2041,15 +2041,17 @@ body .main .main-content {
   padding: 0 12px 12px;
 }
 .sidebar-panel .newsletter-panel-content > p {
-  margin: 0 0 8px;
+  margin: 3px 0 8px;
   color: rgba(255,255,255,0.8);
-  font-size: 13px;
+  font-size: 14px;
 }
 .sidebar-panel .newsletter-toggle {
+  appearance: none;
   width: 100%;
   border: 0;
   background: transparent;
   font: inherit;
+  font-size: 14px;
   text-align: left;
 }
 .sidebar-panel .empty-msg {
@@ -2512,11 +2514,14 @@ header {
   color: #000;
   border-bottom: 6px solid #000;
 }
+.newsletter-panel-content {
+  font-size: 14px;
+}
 .newsletter-panel-content label {
   display: block;
   margin-bottom: 5px;
   color: #fff;
-  font-size: 13px;
+  font-size: 14px;
 }
 .newsletter-fields {
   display: flex;
@@ -2552,7 +2557,7 @@ header {
 .newsletter-status {
   min-height: 1.5em;
   margin: 8px 0 0 !important;
-  font-size: 13px;
+  font-size: 14px;
 }
 .newsletter-status[data-state='error'] {
   color: #a52a2a;
