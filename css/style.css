@@ -2054,8 +2054,47 @@ body .main .main-content {
   font-size: 14px;
   text-align: left;
 }
+.announcement-panel .panel-header {
+  cursor: default;
+  color: #68c174;
+}
+.announcement-panel .panel-header:hover {
+  background: transparent;
+}
+.announcement-panel .announcement-content {
+  background: transparent;
+}
+.announcement-panel .announcement-empty {
+  flex: 1;
+  color: #68c174;
+  font-size: 13px;
+}
+.announcement-panel .announcement-first {
+  flex: 1;
+  color: #68c174;
+  font-size: 13px;
+}
+.announcement-panel .announcement-list {
+  display: none;
+  margin: 0;
+  padding: 0 12px 10px 34px;
+  color: #68c174;
+  font-size: 13px;
+}
+.announcement-panel .announcement-list li {
+  padding: 3px 0;
+}
+.announcement-panel.has-announcements .announcement-empty {
+  display: none;
+}
+.announcement-panel.has-announcements .announcement-first {
+  display: inline;
+}
+.announcement-panel.has-followups .announcement-list {
+  display: block;
+}
 .sidebar-panel .empty-msg {
-  padding: 12px;
+  padding: 8px 12px;
   text-align: center;
   color: rgba(255,255,255,0.5);
   font-size: 13px;
