@@ -2970,6 +2970,27 @@ header {
   line-height: 1.5;
   word-break: break-all;
 }
+.inline-comment-item-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5px;
+}
+.inline-comment-reply {
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #777;
+  font-size: 11px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.inline-comment-reply:hover {
+  color: #111;
+}
+.inline-comment-reply:focus-visible {
+  outline: 2px solid rgba(17,17,17,0.35);
+  outline-offset: 2px;
+}
 .inline-comment-textarea {
   width: 100%;
   min-height: 60px;
@@ -3006,6 +3027,10 @@ header {
   font-size: 12px;
   cursor: pointer;
   touch-action: manipulation;
+}
+.inline-comment-actions button:disabled {
+  cursor: wait;
+  opacity: 0.55;
 }
 .inline-comment-actions .inline-comment-cancel {
   background: #fff;
