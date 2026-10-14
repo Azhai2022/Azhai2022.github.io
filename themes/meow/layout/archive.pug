@@ -1,0 +1,75 @@
+//- sort posts by year and month descendingly 根据年份和月份降序排列文章
+-
+  var postsSortByDate = {years:[], posts:{}};
+  for (post of page.posts.toArray()){
+    if (post.date.year() > 2099) continue;
+    let postYear = post.date.year();
+    let postMonth = post.date.month();
+
+    if (!postsSortByDate.years.includes(postYear)){
+      postsSortByDate.years.push(postYear);
+    }
+
+    if (!postsSortByDate.posts[postYear]){
+      postsSortByDate.posts[postYear] = {months:[]};
+      //- postsSortByDate.posts[postYear] = {};
+    }
+
+    if (!postsSortByDate.posts[postYear][postMonth]){
+      postsSortByDate.posts[postYear].months.push(postMonth);
+      postsSortByDate.posts[postYear][postMonth] = [];
+    }
+
+    postsSortByDate.posts[postYear][postMonth].push(post);
+    //- console.log(postsSortByDate.posts[postYear].months);
+  }
+  //- postsSortByDate.posts[2024].months.sort((a, b) => a - b);
+  //- console.log(postsSortByDate);
+
+.page-container
+  .page-title
+    h1
+      if is_tag()
+        i.fa-solid.fa-tags
+        a.page-tags-link(href= url_for(config.tag_dir))= __('menu.tags')
+        br
+        span.page-tag-name= page.tag
+      else if is_category()
+        i.fa-regular.fa-folder-open
+        | #{ __('menu.category') } : #{ page.category }
+      else
+        i.fa-solid.fa-box-archive
+        a.page-archives-link(href= url_for(config.archive_dir))= __('menu.archives')
+
+  .archives-container
+    if is_tag()
+      //- tag page: list posts without year/month grouping
+      .archives-article-list
+        - for (article of page.posts.toArray())
+          | !{ partial('_partial/article-item', {post: article, show_preview: false}) }
+    else
+      //- sort by year 根据年份分类
+      - for (year of postsSortByDate.years)
+        - let year_list = postsSortByDate.posts[year]
+        - let url_year = url_for(config.archive_dir)+ '/' + year
+        .archives-year
+          a.archives-year-link(href= url_year)
+            | #{ year }
+          //- sort by month 根据月份分类
+          - for (month of year_list.months)
+            -
+              let temp_date = new Date(year, month, 1);
+              let month_name = date(temp_date,'MMMM');
+              let month_num = date(temp_date,'MM')
+            .archives-month
+              a.archives-month-link(href= url_year + '/' + month_num)
+                i.fa-regular.fa-calendar
+                span.month-text= month_name
+              //- list posts 列出文章
+              .archives-article-list
+                - for (article of year_list[month])
+                  | !{ partial('_partial/article-item', {post: article, show_preview: false}) }
+
+//- pagination 分页
+.pagination
+  | !{ partial('_partial/pagination', {page: page}) }

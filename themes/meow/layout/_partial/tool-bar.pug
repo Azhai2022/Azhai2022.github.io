@@ -1,0 +1,39 @@
+#tool-bar
+  #tool-bar-main
+    //- darkmode switch 深色模式开关
+    if theme.darkmode.enable
+      #darkmode-switch( onclick= "darkmodeSwitch()", title= __('menu.darkmode') )
+        i.fa-solid.fa-circle-half-stroke
+
+    //- TOC switch TOC开关
+    if (is_post() && theme.toc.enable && !(undefined != page.toc && !page.toc))
+      #toc-toggle( onclick= "tocToggle()", title= __('menu.toc') )
+        i.fa-solid.fa-list-ul
+    
+    //- go to comment 跳转至评论区
+    if (is_post() && theme.comment.post_enable && (page.comments !== false)) || (page.layout == 'about' && theme.comment.about_enable)
+      #go-to-comment( onclick= "gotoComment()", title= __('menu.comment') )
+        i.fa-regular.fa-message.fa-flip-horizontal
+    
+    //- back to top button 返回顶部
+    #back-to-top( onclick= "scrollToTop()", title= __('navigation.back_to_top') )
+      i.fa-solid.fa-chevron-up
+
+    //- go to bottom button 一键到底部
+    #go-to-bottom( onclick= "scrollToBottom()", title= __('navigation.go_to_bottom') )
+      i.fa-solid.fa-chevron-down
+
+    //- bookmark 书签
+    if is_post()
+      #bookmark-toggle( onclick= "toggleBookmark()", title= __('menu.bookmark') )
+        i.fa-regular.fa-bookmark
+
+  //- "more functions" module "更多工具"模块
+  if theme.tool_bar.more_tools
+    #tool-bar-more(style="display: none;")
+      //- increase or decrease font size of post 增大或减小文章字体
+      if is_post() && theme.tool_bar.setting_font_size
+        #font-size-increase( onclick= "fontSizeIncrease()", title= __('menu.font_size_increase') )
+          i.fa-solid.fa-plus
+        #font-size-decrease( onclick= "fontSizeDecrease()", title= __('menu.font_size_decrease') )
+          i.fa-solid.fa-minus

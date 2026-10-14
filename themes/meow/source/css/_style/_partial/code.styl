@@ -1,0 +1,99 @@
+figure.highlight
+  margin: 10px auto
+  // padding: 3px 5px 0
+  background-color: code-light
+  border-radius: 10px
+  box-shadow: 1.5px 1.5px 2px rgba(0, 0, 0, 0.125)
+  font-size: code-font-size
+  position: relative
+
+  &:hover
+    #copyCodeBtn
+      visibility: visible
+
+  figcaption
+    font-size: article-title6-font-size
+    font-weight: bold
+    font-family: code-font
+    color: text-black-light 
+    line-height: 1.5em
+    padding: 5px 10px 5px 10px
+    background-color: code-dark
+    border-radius: 10px 10px 0 0
+
+  table
+    border-spacing: 5px 10px
+    line-height: 1.5em
+    margin: 2px 0
+    padding: 5px
+    border-collapse: separate
+    overflow-x: auto
+    display: block
+
+    td
+      padding: 0 5px 0 0
+      border: 0
+
+    pre
+      margin: 0
+  
+  .gutter
+    color: text-grey-light
+    font-size: code-line-number-font-size
+    padding-right: 10px
+    border-right: 1px solid text-grey-light
+
+  .line
+    font-family: code-font
+    padding-left: 5px
+  
+  // scrollbar for chrome
+  ::-webkit-scrollbar
+    height: 8px
+
+  ::-webkit-scrollbar-thumb
+    background-color: shadow-grey
+    border-radius: 30px
+  
+  ::-webkit-scrollbar-thumb:hover
+    background-color: border-grey
+
+  ::-webkit-scrollbar-track
+    background-color: transparent
+
+  // scrollbar for firefox
+  @-moz-document url-prefix()
+    scrollbar-color: shadow-grey transparent
+    scrollbar-width: thin
+
+code
+  background-color: code-normal
+  border-radius: 8px
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15)
+  // border: 0.5px solid rgba(0, 0, 0, 0.1)
+  padding: 0 8px
+  margin: 0 2px
+  font-family: default-font-family
+  color: green-normal // text-black-light
+  line-height: 1.8em
+
+details
+  code
+    background-color: code-dark
+
+#copyCodeBtn
+  position: absolute
+  top: 6px
+  right: 5px
+  padding: 5px
+  z-index: 3
+  border: none
+  font-size: article-title5-font-size
+  color: text-grey-light
+  background-color: transparent
+  cursor: pointer
+  visibility: hidden
+
+  &:hover
+    color: text-black-light
+    animation: fade 1.2s ease-in-out infinite

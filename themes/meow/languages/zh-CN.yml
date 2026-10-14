@@ -1,0 +1,122 @@
+# 导航栏菜单项显示值
+menu:
+  archives: 归档
+  category: 分类
+  categories: 分类
+  tags: 标签
+  about: 关于
+  search: 搜索
+  home: 主页
+  toc: 目录
+  settings: 设置
+  comment: 评论
+  darkmode: 深色模式
+  font_size_increase: 放大字体
+  font_size_decrease: 缩小字体
+  bookmark: 添加书签
+
+# 网站信息
+# 此处的配置仅影响页内展示，不影响网页meta
+blog_info:
+  title: Azhai
+  subtitle: 星星也从天空垂落了
+  description: 永远爱顾沉舟和贺海楼
+
+# 文章相关显示值
+article:
+  read_more: 阅读全文
+  word_count: 全文约%s字
+  copyright: 版权声明
+  copyright_desc: 非商业性使用-禁止二传二改
+  # 关于文章赞赏支持的说明，支持Markdown语法
+  reward: 你也喜欢这篇文章？贺少也觉得有道理！
+  previous_post: 上一篇文章
+  next_post: 下一篇文章
+  top: '**🔝**' # 支持Markdown语法
+
+# 导航相关
+navigation:
+  back_to_top: 返回顶部
+  back_to_home: 返回首页
+  menu_toggle: 打开菜单
+
+# 分页相关显示值
+pagination:
+  prev: 上一页
+  next: 下一页
+
+# 日期时间相关显示值
+datetime:
+  published: 发布日期
+  updated: 更新日期
+
+# 404页面相关
+page_not_found:
+  tips: 此页面不存在
+
+# 搜索面板相关
+search:
+  tips: 请输入需要搜索的标题……
+  result_count: 匹配结果数
+  no_result: 未搜索到匹配的文章。
+
+# 访问量统计
+page_view:
+  site_pv: 总访问量
+  site_uv: 总访客数
+  post_pv: 阅读次数
+
+# fiction类型的文章相关显示值
+fiction:
+  meta:
+    type: 类型
+    fandom: 原型
+    relationship: 关系
+    character: 角色
+    rating: 分级
+    warning: 预警
+  status:
+    complete: 完结
+    in_progress: 未完待续
+  summary: 简介
+  notes: 作者的话
+  rating:
+    General: 全年龄
+    Teen: 青少年及以上
+    Mature: 成人向
+    Explicit: 限制级
+
+# “关于”页面相关显示值
+about:
+  about_blog:
+    title: 关于本站
+    keywords: 个人站,同人,沉舟,顾沉舟,贺海楼
+    introduction: '- 这里是阿斋斋创作顾贺同人的后花园，截止2026年10月，已创作150万字顾贺同人文。
+    
+    - 欢迎喜欢沉舟，喜欢顾贺的读友和我共享嗑顾贺的快乐～
+    
+    - 本站所有内容仅限站内阅读，禁止传播，禁止保存，禁止任何形式的二传二改，不授权任何形式的商业性使用。
+
+    - 本站不定期开放，大家随缘访问。
+
+    - 感谢2022年学会搭建个人站的好学聪明斋；感谢制作此Meow主题并在GitHub上开源分享的小橘猫老师；感谢帮我解决密码bug的爱睡觉的小春子老师、感谢耐心教我解决所有问题的ChatGPT老师。'
+    supplement: '⚠️ 高亮提示：请大家不要传播本站的网址！截图时请勿带网址信息'
+  about_author:
+    title: 关于作者
+    description: 顾贺最忠实的仆人
+  about_contact: 联系方式
+  about_links: ''
+
+  password_hint:
+    title: 密码提示
+    
+
+  reward:
+    title: 赞赏
+    image: /imag/about-reward.png
+    description: 请斋喝冰美式
+
+  credits:
+    title: 致谢
+    # 致谢词，支持Markdown语法
+    description: '感谢这些朋友的大力支持～🫶<br/><span style="font-size: 16px; color: grey">包含打赏支持和积分支持😘</span>'

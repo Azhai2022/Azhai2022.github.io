@@ -1,0 +1,173 @@
+.comment#comment
+  - const walinePath = (page && page.path) ? decodeURI(url_for(page.path)) : url_for('/')
+  #waline(data-waline-status="idle")
+  script.
+    (() => {
+      const walineServerURL = !{JSON.stringify(theme.comment.waline.server_url)};
+      const walineLang = !{JSON.stringify(theme.comment.waline.lang)};
+      const walinePath = !{JSON.stringify(walinePath)};
+      const walineAssets = {
+        style: !{JSON.stringify(url_for('/css/third-party/waline.css'))},
+        script: !{JSON.stringify(url_for('/js/third-party/waline.umd.js'))}
+      };
+      const walineOptions = {
+        el: '#waline',
+        serverURL: walineServerURL,
+        lang: walineLang,
+        meta: !{JSON.stringify(theme.comment.waline.meta || [])},
+        requiredMeta: !{JSON.stringify(theme.comment.waline.required_meta || [])},
+        login: '#{theme.comment.waline.login}',
+        path: walinePath,
+        like: true,
+        locale: {
+          placeholder: '欢迎评论，你的评论是对斋最大的鼓励^ _ ^',
+          nick: '昵称',
+          mail: '邮箱',
+          level0: '咩咩',
+          level1: '律律',
+          level2: '顾贺99',
+          level3: '顾贺69'
+        },
+        emoji: !{JSON.stringify(theme.comment.waline.emoji || false)},
+        imageUploader: false,
+        search: false,
+        dark: '#{theme.comment.waline.dark}'
+      };
+
+      let walineObserverBound = false;
+
+      window.__WALINE_COMMENT_PATH__ = walinePath;
+      window.__WALINE_SERVER_URL__ = walineServerURL;
+
+      const sanitizeInlineQuoteBlockquotes = (scope = document) => {
+        const base = scope && scope.querySelectorAll ? scope : document;
+        const selector = base.id === 'waline' ? '.wl-content blockquote' : '#waline .wl-content blockquote';
+        base.querySelectorAll(selector).forEach((blockquote) => {
+          const html = blockquote.innerHTML || '';
+          const nextHtml = html.replace(/引用（第\s*[0-9０-９]+\s*段）\s*[：:]/, '引用：');
+          if (nextHtml !== html) {
+            blockquote.innerHTML = nextHtml;
+          }
+        });
+      };
+
+      const applyMetaPlaceholders = (scope = document) => {
+        const base = scope && scope.querySelectorAll ? scope : document;
+        const mail = base.id === 'waline' ? base.querySelector('#wl-mail') : document.querySelector('#waline #wl-mail');
+        const nick = base.id === 'waline' ? base.querySelector('#wl-nick') : document.querySelector('#waline #wl-nick');
+        if (mail) mail.setAttribute('placeholder', '选填，填写后可收到评论回复邮件提示');
+        if (nick) nick.setAttribute('placeholder', '选填');
+      };
+
+      const bindWalineObserver = () => {
+        if (walineObserverBound) return;
+
+        const root = document.getElementById('waline');
+        if (!root) return;
+
+        walineObserverBound = true;
+
+        const observer = new MutationObserver(() => {
+          sanitizeInlineQuoteBlockquotes(root);
+          applyMetaPlaceholders(root);
+        });
+
+        observer.observe(root, { childList: true, subtree: true });
+        [0, 400, 1200, 2400].forEach((delay) => setTimeout(() => {
+          sanitizeInlineQuoteBlockquotes(root);
+          applyMetaPlaceholders(root);
+        }, delay));
+      };
+
+      const loadWalineStyle = () => {
+        if (document.querySelector('link[data-waline-style="true"]')) return Promise.resolve();
+
+        return new Promise((resolve, reject) => {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = walineAssets.style;
+          link.setAttribute('data-waline-style', 'true');
+          link.onload = resolve;
+          link.onerror = reject;
+          document.head.appendChild(link);
+        });
+      };
+
+      const loadWalineScript = () => {
+        if (window.Waline && typeof window.Waline.init === 'function') {
+          return Promise.resolve(window.Waline);
+        }
+
+        if (window.__walineScriptPromise) return window.__walineScriptPromise;
+
+        window.__walineScriptPromise = new Promise((resolve, reject) => {
+          const existing = document.querySelector('script[data-waline-script="true"]');
+          if (existing) {
+            existing.addEventListener('load', () => resolve(window.Waline), { once: true });
+            existing.addEventListener('error', reject, { once: true });
+            return;
+          }
+
+          const script = document.createElement('script');
+          script.src = walineAssets.script;
+          script.async = true;
+          script.setAttribute('data-waline-script', 'true');
+          script.onload = () => resolve(window.Waline);
+          script.onerror = (error) => {
+            window.__walineScriptPromise = null;
+            reject(error);
+          };
+          document.body.appendChild(script);
+        });
+
+        return window.__walineScriptPromise;
+      };
+
+      const initWaline = () => {
+        const root = document.getElementById('waline');
+        if (!root) return Promise.resolve();
+        if (root.getAttribute('data-waline-status') === 'ready') return Promise.resolve();
+        if (window.__walineInitPromise) return window.__walineInitPromise;
+
+        root.setAttribute('data-waline-status', 'loading');
+
+        window.__walineInitPromise = Promise.all([loadWalineStyle(), loadWalineScript()])
+          .then(() => {
+            if (!window.Waline || typeof window.Waline.init !== 'function') {
+              throw new Error('Waline failed to load');
+            }
+
+            Waline.init(walineOptions);
+            sanitizeInlineQuoteBlockquotes(root);
+            bindWalineObserver();
+            root.setAttribute('data-waline-status', 'ready');
+          })
+          .catch((error) => {
+            root.setAttribute('data-waline-status', 'error');
+            root.textContent = '评论加载失败，请刷新后重试。';
+            console.error(error);
+          });
+
+        return window.__walineInitPromise;
+      };
+
+      window.__WALINE_ENSURE_READY__ = initWaline;
+
+      const commentRoot = document.getElementById('comment');
+      if (!commentRoot) return;
+
+      const shouldInitImmediately = Boolean(location.hash && /^#(comment|waline|wl-)/.test(location.hash));
+
+      if (shouldInitImmediately || !('IntersectionObserver' in window)) {
+        initWaline();
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+        initWaline();
+      }, { rootMargin: '400px 0px' });
+
+      observer.observe(commentRoot);
+    })();

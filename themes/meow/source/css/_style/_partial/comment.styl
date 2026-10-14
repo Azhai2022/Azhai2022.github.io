@@ -1,0 +1,65 @@
+// === 通用字体与背景风格 ===
+#cusdis_thread
+  font-family "PingFang SC", "Microsoft YaHei", sans-serif
+  background #fff
+  color #333
+
+  // === 隐藏邮箱栏 ===
+  .cd-input-wrapper input[type="email"]
+    display none !important
+
+  // === 修改昵称输入框样式 ===
+  .cd-input-wrapper input[type="text"]
+    width 160px !important
+    border 1px solid #f1c40f
+    border-radius 6px
+    padding 6px 10px
+    font-size 14px
+    background #fffaf0
+    color #333
+
+  // === 评论框样式 ===
+  textarea
+    border 1px solid #f1c40f
+    border-radius 10px
+    padding 12px
+    font-size 16px
+    background #fffbe6
+    color #333
+    min-height 140px
+    line-height 1.6
+
+  // === 提交按钮样式 ===
+  .cd-submit-button
+    background-color #f1c40f
+    color #fff
+    border none
+    padding 10px 20px
+    font-size 15px
+    border-radius 8px
+    cursor pointer
+    transition all 0.3s ease
+
+    &:hover
+      background-color #e1b700
+
+  // === 去除底部链接 ===
+  .cd-footer
+    display none
+
+// === iframe 容器样式增强 ===
+iframe[src*="cusdis.com"]
+  border none
+  width 100%
+  min-height 300px
+  border-radius 12px
+  box-shadow 0 4px 8px rgba(0, 0, 0, 0.06)
+
+// Waline comment text overrides
+body:not(.dm-dark) #waline
+  .wl-card .wl-content
+  .wl-card .wl-content p
+  .wl-card .wl-content li
+  .wl-card .wl-content blockquote
+  .wl-card .wl-content span:not(.wl-emoji):not(.wl-tag)
+    color #000

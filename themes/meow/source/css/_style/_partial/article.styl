@@ -1,0 +1,293 @@
+// ===== 书签恢复提示条 =====
+.bookmark-banner
+  position: sticky
+  top: 55px
+  z-index: 4
+  margin-bottom: 15px
+  padding: 10px 15px
+  background-color: code-light
+  border: 1px solid border-grey
+  border-radius: 8px
+  display: flex
+  align-items: center
+  gap: 10px
+  font-size: 14px
+  animation: showup 0.5s
+
+  i
+    color: orange-fresh
+    font-size: 16px
+
+  .bookmark-banner-info
+    color: text-grey
+    margin-left: auto
+
+  .bookmark-banner-restore
+    padding: 4px 12px
+    background-color: orange-fresh
+    color: white
+    border: none
+    border-radius: 4px
+    font-size: 13px
+    cursor: pointer
+    transition: background-color 0.2s
+
+    &:hover
+      background-color: orange-middle
+
+  .bookmark-banner-close
+    padding: 2px 8px
+    background: none
+    border: none
+    color: text-grey
+    font-size: 18px
+    cursor: pointer
+    line-height: 1
+
+    &:hover
+      color: red-normal
+
+.post
+  margin: 0 auto
+  width: 85%
+
+.post-title
+  border-bottom: 2px solid border-grey
+
+  h1
+    margin: 20px 0 15px
+    font-size: article-title-font-size
+    color: orange-middle
+
+    i
+      margin-right: 5px
+
+.post-info
+  font-size: info-font-size-larger
+  color: text-grey-light
+
+.post-info-first-line
+  display: flex
+  flex-flow: row wrap
+  align-items: center
+  margin-top: 10px
+
+  div
+    overflow: visible
+    white-space: nowrap
+    margin: 5px 10px 5px 0
+
+.post-info-second-line
+  display: flex
+  flex-flow: row wrap
+  align-items: center
+  // margin-top: 5px
+
+  div
+    overflow: visible
+    white-space: nowrap
+    margin: 5px 0
+
+.pageview-post
+  margin: 5px 0
+  overflow: hidden
+  white-space: nowrap
+
+#busuanzi_container_page_pv
+  padding: 0 5px
+
+.post-end
+  display: flex
+  flex-flow: row nowrap
+  align-items: center
+  justify-content: space-between
+  margin: 16px auto 16px
+
+.favorite-btn
+  display: flex
+  align-items: center
+  justify-content: center
+  gap: 6px
+  padding: 8px 16px
+  border: 1px solid border-grey
+  border-radius: 20px
+  cursor: pointer
+  color: text-grey
+  font-size: 14px
+  transition: all 0.2s
+  margin: 30px auto
+  width: fit-content
+
+  &:hover
+    color: #ff6b6b
+    border-color: #ff6b6b
+
+  &.active
+    background-color: #ff6b6b
+    color: white
+    border-color: #ff6b6b
+
+  i
+    font-size: 16px
+
+.post-prev,.post-next
+  width: 45px
+  height: 45px
+  display: flex
+  justify-content: center
+  align-items: center
+
+  a
+    color: text-grey
+
+    &:hover
+      color: orange-fresh
+
+.post-prev a:hover
+  animation: to-left 0.8s infinite
+
+.post-next a:hover
+  animation: to-right 0.8s infinite
+
+.post-reward
+  border: 1px solid border-grey
+  border-radius: 50%
+  width: 45px
+  height: 45px
+  margin: 0 auto
+  display: flex
+  justify-content: center
+  align-items: center
+
+  &:hover
+    background-color: orange-normal
+    color: white
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.125)
+
+.post-content[text-indent=true]
+  p
+    text-indent: 2em
+
+.comment-box-wrapper
+  margin: 0 auto 8px
+  width: 90%
+
+.comment-box-tip
+  margin: 6px 0
+  font-size: 14px
+  color: #b0b0b0
+  line-height: 1.6
+
+#comment
+  margin: 8px auto 0
+  width: 90%
+  padding: 0
+
+  .wl-cards
+    .wl-card
+      margin-left: 0
+
+  .wl-os,
+  .wl-browser,
+  .wl-ua,
+  .wl-addr
+    display: none !important
+
+.fiction-meta
+  margin: 15px 0
+  padding: 15px 20px
+  background-color: code-light
+  border-radius: 15px
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.125)
+  display: flex
+  flex-flow: column nowrap
+
+.fiction-meta-item
+  display: flex
+  flex-flow: row nowrap
+  font-size: info-font-size-larger
+  margin-top: 8px
+
+  &:first-child
+    margin-top: 0
+  
+  &:hover
+    background-color: rgba(255, 255, 255, 0.8)
+
+.fiction-meta-key
+  width: 130px
+  margin-right 10px
+  border-right: 1px solid border-grey
+  font-weight: bold
+  color: text-black-light
+  white-space: nowrap
+
+  i
+    margin-right: 5px
+
+.fiction-meta-value
+  flex: 1
+
+#fiction-meta-rating
+  span[rating=Teen],span[rating=Mature],span[rating=Explicit]
+    font-weight: bold
+  
+  span[rating=Mature],span[rating=Explicit]
+    color: red-dark
+
+#fiction-meta-warning
+  span
+    font-weight: bold
+    color: red-dark
+
+.fiction-before-content
+  margin: 20px 0 35px
+  border-bottom: 2px solid transparent
+  border-image: linear-gradient(to right, rgba(31, 18, 53, 0.1), rgba(31, 18, 53, 0.35), rgba(31, 18, 53, 0.1)) 1
+
+  &[text-indent=true]
+    p
+      text-indent: 2em
+
+.fiction-summary
+  margin: 20px 0 30px
+
+.fiction-notes-before
+  margin: 20px 0
+  padding-bottom: 10px
+
+.fiction-status
+  margin: 35px auto 20px
+  text-align: center
+  color: text-grey-light
+  font-weight: bold
+
+.fiction-notes-after
+  margin: 35px 0 0
+  padding-bottom: 10px
+  border-top: 2px solid transparent
+  border-image: linear-gradient(to right, rgba(31, 18, 53, 0.1), rgba(31, 18, 53, 0.35), rgba(31, 18, 53, 0.1)) 1
+
+  &[text-indent=true]
+    p
+      text-indent: 2em
+
+@media screen and (max-width: 768px)
+  .fiction-meta-item
+    flex-flow: column nowrap
+    font-size: info-font-size-smaller
+
+  .fiction-meta-key
+    width: auto
+    border-right: 0
+
+  .fiction-meta-value
+    flex: initial
+    margin-top: 5px
+    margin-left: 1em
+  
+  .post-info
+    font-size: info-font-size-smaller
+  
+  .post-title h1
+    font-size: article-title1-font-size

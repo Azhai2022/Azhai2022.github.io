@@ -1,0 +1,201 @@
+.inline-comment-btn
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  margin-left: 6px
+  padding: 0 6px
+  height: 18px
+  font-size: 11px
+  line-height: 18px
+  border: none
+  border-radius: 999px
+  background: rgba(0, 0, 0, 0.35)
+  color: #fff
+  cursor: pointer
+  touch-action: manipulation
+
+  &.has-comments
+    min-width: 18px
+
+.inline-comment-panel
+  position: fixed
+  right: 16px
+  bottom: calc(16px + var(--inline-comment-keyboard-offset, 0px))
+  z-index: 9998
+  width: 320px
+  max-width: calc(100vw - 32px)
+  max-height: 60vh
+  padding: 12px
+  background: #fff
+  border: 1px solid #e5e5e5
+  border-radius: 10px
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14)
+  box-sizing: border-box
+  overflow: hidden
+  display: none
+  flex-direction: column
+  transition: bottom 0.18s ease, transform 0.18s ease
+
+.inline-comment-panel.is-open
+  display: flex
+
+.inline-comment-title
+  font-size: 12px
+  color: #555
+  margin-bottom: 6px
+  flex-shrink: 0
+
+.inline-comment-list
+  flex: 1
+  min-height: 0
+  overflow-y: auto
+  margin-bottom: 8px
+  border: 1px solid #eee
+  border-radius: 8px
+  padding: 4px
+
+.inline-comment-loading, .inline-comment-empty
+  text-align: center
+  color: #999
+  font-size: 12px
+  padding: 12px 0
+
+.inline-comment-item
+  padding: 8px
+  border-bottom: 1px solid #f0f0f0
+  font-size: 12px
+
+  &:last-child
+    border-bottom: none
+
+.inline-comment-item-header
+  display: flex
+  justify-content: space-between
+  margin-bottom: 4px
+
+.inline-comment-item-nick
+  color: #333
+  font-weight: 500
+
+.inline-comment-item-time
+  color: #999
+
+.inline-comment-item-content
+  color: #555
+  line-height: 1.5
+  word-break: break-all
+
+.inline-comment-item-footer
+  display: flex
+  justify-content: flex-end
+  margin-top: 5px
+
+.inline-comment-reply
+  padding: 0
+  border: none
+  background: transparent
+  color: #777
+  font-size: 11px
+  cursor: pointer
+  touch-action: manipulation
+
+  &:hover
+    color: #111
+
+  &:focus-visible
+    outline: 2px solid rgba(17, 17, 17, 0.35)
+    outline-offset: 2px
+
+.inline-comment-textarea
+  width: 100%
+  min-height: 60px
+  max-height: 120px
+  resize: vertical
+  border: 1px solid #ddd
+  border-radius: 8px
+  padding: 9px 10px
+  font-size: 16px
+  line-height: 1.5
+  box-sizing: border-box
+  flex-shrink: 0
+  -webkit-text-size-adjust: 100%
+  outline: none
+
+  &:focus
+    border-color: rgba(17, 17, 17, 0.72)
+    box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.08)
+
+.inline-comment-actions
+  display: flex
+  justify-content: flex-end
+  gap: 8px
+  margin-top: 8px
+  flex-shrink: 0
+
+.inline-comment-actions button
+  height: 26px
+  padding: 0 10px
+  border-radius: 6px
+  border: 1px solid #111
+  background: #111
+  color: #fff
+  font-size: 12px
+  cursor: pointer
+  touch-action: manipulation
+
+  &:disabled
+    cursor: wait
+    opacity: 0.55
+
+.inline-comment-actions .inline-comment-cancel
+  background: #fff
+  color: #111
+
+#comment blockquote
+  padding-right: 18px
+
+.inline-comment-backdrop
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 9997
+  background: transparent
+
+@media (max-width: 640px)
+  .inline-comment-panel
+    left: 8px
+    right: 8px
+    bottom: 16px
+    width: auto
+    max-width: none
+    max-height: 60vh
+    padding: 14px
+    border-radius: 16px 16px 12px 12px
+    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.2)
+
+  .inline-comment-title
+    font-size: 14px
+    margin-bottom: 8px
+
+  .inline-comment-list
+    max-height: 34vh
+    margin-bottom: 10px
+
+  .inline-comment-textarea
+    min-height: 96px
+    max-height: 30vh
+    border-radius: 10px
+
+  .inline-comment-actions
+    gap: 10px
+
+  .inline-comment-actions button
+    min-width: 72px
+    height: 36px
+    font-size: 15px
+    border-radius: 10px
+
+  .inline-comment-backdrop
+    background: rgba(0, 0, 0, 0.18)

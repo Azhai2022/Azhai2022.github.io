@@ -1,0 +1,186 @@
+# Theme Configuration 主题配置
+# Source: https://github.com/chanwj/hexo-theme-meow
+# Docs: https://chanwj.github.io
+
+# theme version 主题所使用的版本
+version: v2.1.3
+
+# site icon 网站图标
+blog_pic: img/site-icon.png
+
+# author picture 作者头像
+author_pic: img/author.jpg
+
+# background image/color 背景图片/颜色
+background:
+  type: 2 # 1: image 图片 | 2: color 颜色 | 3: gradient style 渐变
+  color: # (css color name css颜色名称) 'MistyRose' | (color code 颜色代码) '#FFE4E1'
+  image_url: img/homepage-bg.png # image path 图片路径
+  gradient: linear-gradient(to bottom right,#ffa751,#ffe259) # gradient css statement 渐变css语句
+  attachment: fixed # background scrollable 背景是否可以随页面滚动: scroll | fixed
+
+# menu config 导航栏菜单项
+# archives/categories/tags will use the path in root config automatically 归档、分类以及标签页使用根目录配置中的路径
+# other custom pages require path configuration manually 其他自定义页面需要配置页面路径
+menu:
+  archives:
+  tags:
+  about: /about
+
+# search function 搜索功能
+search:
+  enable: true
+
+# site register info 网站备案信息（比如ICP）
+register_info:
+  enable: false
+  record_info: 京ICP备………………号
+  query_url: https://beian.miit.gov.cn/
+
+# the year that this site was built 创建网站的年份
+since_year: 2022
+
+# users can select text content 允许用户选取网站上的文本内容
+selectable: true
+
+# toc of post 文章目录导航栏
+toc:
+  enable: true
+  list_number: false # show list number 是否显示编号
+  max_depth: 6 # Maximum heading depth of generated toc 生成 TOC 的最大深度
+  max_items: Infinity # Maximum number of items in generated toc, default: Infinity 生成的toc的最大项目数，默认为Infinity无限
+
+# count words in post 文章字数统计
+word_count:
+  enable: true
+
+# indent the first line of paragraph in post by 2em 文章段落首行缩进2字符
+text_indent:
+  enable: false
+
+# copyright statement 版权声明（比如CC协议）
+copyright:
+  enable: true
+  license: CC BY-NC-ND 4.0
+  link: 
+
+# simplify style in post excerpt, set false to make excerpt show in the original way 简化摘要中的样式，false则按文章中的样式来显示
+excerpt_simplify: true
+
+# tags page config 标签页面设置
+# tag cloud & tag list: just choose one to display 标签云与标签列表只需要选择其一显示
+tags:
+  show_count: true # show posts total count of each tag 显示每个标签的文章总数
+  tag_cloud: true
+  tag_list: false
+
+# categories page config 分类页面设置
+categories:
+  show_count: true # show posts total count of each category 显示每个分类的文章总数
+  depth: 0 # decide the depth of categories to display: 0-all, 1-only first layer... 显示分类层级：0-显示全部层级，1-只显示第一层……
+
+# page view counting(with busuanzi) 访问量统计（使用不蒜子）
+page_view:
+  enable: false
+  site_pv: false # show site's page view 显示网站访问量信息
+  post_pv: false # show post's page view 显示文章访问量信息
+
+# contact information, add item in 'name: url' format, stay blank if you don't want to show that item 联系方式，新增项请按'名称: 链接网址'配置，不需要显示的项目则置空
+# currently support icons of items below, any other links will be display in paw icon 目前支持以下网站图标，其他链接统一用猫爪图标显示
+# Email|邮箱,Github,Twitter,Facebook,Instagram,Tiktok|抖音,Bilibili,Weibo|微博,Mastodon,Wechat|公众号
+contact_info:
+  邮箱: gczhhl99@163.com
+
+# email updates
+newsletter:
+  enable: true
+  server_url: 'https://comments.azhai.space'
+
+# other links to display 其他链接
+links:
+  enable: false
+  links_list:
+    hexo-theme-meow: # link name 链接名称
+      desc: 本主题的Github仓库 # link description 链接简介
+      url: https://github.com/chanwj/hexo-theme-meow
+    技术博客A:
+      desc: 好友A的个人博客，此处仅用于展示效果
+      url: /
+    Friend's Blog:
+      desc: My Friend's Blog, for example.
+      url: /
+
+# reward module 赞赏栏目
+reward:
+  enable: true
+  QR_code: # list your payment QR Code so that users can pay you a coffee 列出你的收款二维码，让用户可以扫描打赏
+    小舟指谁谁升官: /img/reward/wechat.png # payment name: QRCode's image url 支付方式名称: 二维码图片路径
+    小楼指谁谁发财: /img/reward/alipay.png
+about_reward:
+  enable: true
+  QR_code: # list your payment QR Code so that users can pay you a coffee 列出你的收款二维码，让用户可以扫描打赏
+   wechat : /img/reward/about-reward.png
+
+
+# show 'previous article' and 'next article' at the end of post 在文章最后生成'上一篇'和'下一篇'文章的链接
+post_prev_next: true
+
+# the root of site's path, must be as same as the 'root' configuration in the root's _config.yml 网站根目录，填写值与根目录下的_config.yml中的root项必须一致
+# if this site was not deployed on a project page(e.g. username.github.io/repository), the default root should be '/' 若网站并非部署在子目录下，root则默认为'/'
+root: /
+
+
+comment:
+  post_enable: true
+  about_enable: true
+  type: waline
+  waline:
+    server_url: 'https://comments.azhai.space'
+    lang: 'zh-CN'
+    meta:
+      - nick
+      - mail
+    required_meta: []
+    login: 'disable'
+    emoji:
+      - '/waline-emojis/qq'
+    dark: 'body.dm-dark'
+
+
+# credits module 致谢栏目
+credits:
+  enable: true
+  # list people you want to express gratitude, Markdown available 致谢名单，支持Markdown语法
+  credits_list: 'ʕ ᵔᴥᵔ ʔ、薄荷糖、陆辞绾、竹本、W_y、chloe、形、桃雪奈奈子、山河余袅、TATWTOTMT、用户7332156642、杀掉那颗香菜、照小砖、小霞、封建余孽太子、九百九年少、Lllkkzzzzsxx、元先森森森、了了_、辻302726、信徒、用户5633971856、mo_荼蘼、是estalla啦啦啦啦、经常心动过速、弗兰切西瓜、彼时轻舟、柴斯、泫然ouo、Hopeownhappiness、余舟生、陈沐欣、好学如好德、一花和楚、lne-log10、海楼的龙虾、师兄变得很无趣我决定刺杀他、但我喜欢海棠、李非木不非常、好困但熬夜'
+
+# font config 字体配置
+font:
+  # import fonts links, use Google Fonts 导入字体链接，使用谷歌字体库
+  # format: - 'url' 配置格式：- 'url'
+  # recommended fonts 推荐字体
+  # https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400..700&display=swap
+  # https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap
+  # https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300..700&display=swap
+  url_list:
+    - 'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300..700&display=swap'
+  # use fonts, please keep the content in double quotation marks and seperate each font with comma 使用字体，请用双引号将全部字体包裹起来，逗号分隔不同字体
+  font_family: "'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', Sans-serif, Serif"
+
+# toolbar configuration 悬浮工具栏配置
+tool_bar:
+  more_tools: true # display more function button available (e.g. darkmode) 展示更多可用的功能按钮（比如深色模式）
+  setting_font_size: true # increase or decrease font size of post 增大或减小文章字体
+
+# darkmode 深色模式
+darkmode:
+  enable: true
+  start_at: 24:00 # time to start dark theme 自动切换深色模式的开始时间
+  end_at: 06:00 # time to end dark theme 自动切换深色模式的结束时间
+  check_system_scheme: false # check if system indicates light or dark color themes 检查系统是否指定模式
+  save_on_toggle: true # save current mode in local storage 在本地保存现有模式
+
+password_hints:
+  - title: 26年以前
+    tip: 顾贺求婚纪念日4位数
+  - title: 26年所有
+    tip: 贺海楼车牌号数字部分

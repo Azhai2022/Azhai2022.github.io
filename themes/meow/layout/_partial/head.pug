@@ -1,0 +1,46 @@
+meta(charset='utf-8')
+meta(name="viewport" content="width=device-width, initial-scale=1.0")
+meta(name="author" content= config.author)
+//- meta(name="description" content= config.description)
+meta(name="keyword" content= config.keywords)
+
+//- Open Graph message for SEO 优化SEO的Open Graph信息
+- const firstOgImage = first_content_image(page && page.content)
+- const defaultOgImage = theme.blog_pic ? url_for(theme.blog_pic) : null
+| !{ open_graph({description: page.summary, image: firstOgImage || defaultOgImage}) }
+
+//- page title: current page name - blog's name - blog's subtitle 页面标题：当前页面名称 - 博客标题 - 博客副标题
+title
+  if is_archive()
+    | !{ __('menu.archives') } - 
+  else if is_category()
+    | !{ __('menu.category') } : !{ page.category } - 
+  else if is_tag()
+    | !{ __('menu.tags') } : !{ page.tag } - 
+  else if page.title
+    | !{ page.title } - 
+  | !{ __('blog_info.title') } - !{ __('blog_info.subtitle') }
+
+//- favicon 网站图标
+if theme.blog_pic
+  | !{ favicon_tag(theme.blog_pic) }
+
+//- link css 引入css
+| !{ css({href: 'css/style', id: 'dm-light'}) }
+//- icon library 图标库 (use staticfile CDN for reliability)
+| !{ css('https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css') }
+
+if theme.comment && theme.comment.type === 'waline' && theme.comment.waline && theme.comment.waline.server_url
+  link(rel='preconnect' href=theme.comment.waline.server_url crossorigin)
+  if is_post()
+    link(rel='preload' href=(theme.comment.waline.server_url + '/inline-counts.json') as='fetch' crossorigin)
+
+//- link js 引入js
+//- page view counting 统计网站浏览量数据
+if theme.page_view.enable
+  | !{ js({src:'//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js', async: true}) }
+
+//- aplayer 音乐播放器
+if page.music
+  | !{ css('css/third-party/APlayer.min') }
+  | !{ js('js/third-party/APlayer.min') }

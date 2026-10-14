@@ -1,0 +1,140 @@
+//- send needful configuration values to script 向script传入需要的配置值
+script.
+  const GLOBAL_CONFIG = {
+    comment: { theme: '#{theme.comment.data_theme}'}
+  }
+
+//- darkmode 深色模式
+if theme.darkmode.enable
+  | !{ js('js/third-party/darkmode') }
+
+  script.
+    var options = {
+      dark: '#{url_for("/css/darkmode.css")}',
+      startAt: '#{theme.darkmode.start_at}',
+      endAt: '#{theme.darkmode.end_at}',
+      checkSystemScheme: '#{theme.darkmode.check_system_scheme}',
+      saveOnToggle: '#{theme.darkmode.save_on_toggle}'
+    };
+    var darkMode = new DarkMode(options);
+    // change comment theme synchronously 同步修改评论区主题
+    if (darkMode.getMode() == "dark" && (#{theme.comment.post_enable} || #{theme.comment.about_enable})) {
+      if (document.getElementById('comment')) {
+        document.getElementById('comment').getElementsByTagName('script')[0].setAttribute('data-theme', 'noborder_dark');
+      }
+    }
+
+//- get current font size in local storage 在本地存储中获取文章当前字体大小
+if is_post() && theme.tool_bar.setting_font_size
+  script.
+    if (localStorage.getItem('font-size')) {
+      document.querySelector('.post-content').style.fontSize = localStorage.getItem('font-size') + 'px';
+    }
+
+| !{ js('js/theme/tool-bar') }
+| !{ js('js/theme/menu') }
+| !{ js('js/theme/home-gate') }
+if is_post()
+  | !{ js('js/theme/inline-note') }
+  script(src=url_for('/js/theme/inline-comment.js') + '?v=20261014-reply')
+if ((is_post() && theme.comment.post_enable && (page.comments !== false)) || (page.layout == 'about' && theme.comment.about_enable))
+  | !{ js('js/theme/waline-draft') }
+  | !{ js('js/theme/comment-gate') }
+
+//- clipboard 剪贴板
+| !{ js('js/third-party/clipboard.min') }
+| !{ js('js/theme/copy') }
+script.
+  copyCode();
+
+//- reward function 奖赏功能
+if theme.reward.enable && is_post()
+  | !{ js('js/theme/reward') }
+
+//- bookmark/favorite function 收藏/书签功能
+| !{ js('js/theme/bookmark') }
+
+//- search function 搜索功能
+if theme.search.enable
+  | !{ js('js/jquery-3.7.1.min') }
+  | !{ js('js/theme/search') }
+  
+  script.
+    searchFunc('#{url_for(config.search.path)}', 'search-input', 'search-result');
+    if (document.getElementById('local-search-input') && document.getElementById('local-search-result')) {
+      searchFunc('#{url_for(config.search.path)}', 'local-search-input', 'local-search-result');
+    }
+
+//- page jump function 分页跳转功能
+script.
+  function jumpToPage() {
+    var input = document.getElementById('page-jump-input');
+    var page = parseInt(input.value);
+    var total = parseInt(input.getAttribute('max'));
+    if (page && page >= 1 && page <= total) {
+      var basePath = window.location.pathname.replace(/page\/\d+\/?$/, '');
+      if (page === 1) {
+        window.location.href = basePath;
+      } else {
+        window.location.href = basePath + 'page/' + page + '/';
+      }
+    }
+  }
+
+//- APlayer 音乐播放器
+if page.music && theme.toc.enable && (page.toc == undefined || page.toc)
+  | !{ js('js/theme/toc') }
+  //- Since APlayer conflicts with TOC function, it is necessary to decode URLs from TOC 因为APlayer与TOC功能冲突，需要额外对TOC链接进行解码才能正常跳转
+  script.
+    decodeToc();
+
+
+//- 自定义：隐藏 Cusdis 邮箱并美化评论框样式
+script.
+  window.addEventListener('message', function (e) {
+    if (e.data && e.data.event === 'cusdis-loaded') {
+      const iframe = document.querySelector('iframe[src*="cusdis.com"]');
+      if (!iframe) return;
+      try {
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+        const emailInputWrapper = iframeDoc.querySelector('input[name="email"]')?.parentElement;
+        if (emailInputWrapper) {
+          emailInputWrapper.style.display = 'none';
+        }
+
+        const nameInput = iframeDoc.querySelector('input[name="author"]');
+        if (nameInput) {
+          nameInput.style.width = '160px';
+          nameInput.style.background = '#fffaf0';
+          nameInput.style.border = '1px solid #f1c40f';
+          nameInput.style.borderRadius = '6px';
+          nameInput.style.padding = '6px 10px';
+          nameInput.style.fontSize = '14px';
+        }
+
+        const textarea = iframeDoc.querySelector('textarea[name="content"]');
+        if (textarea) {
+          textarea.style.minHeight = '140px';
+          textarea.style.background = '#fffbe6';
+          textarea.style.border = '1px solid #f1c40f';
+          textarea.style.borderRadius = '10px';
+          textarea.style.padding = '12px';
+          textarea.style.fontSize = '15px';
+        }
+
+        const submitBtn = iframeDoc.querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.style.backgroundColor = '#f1c40f';
+          submitBtn.style.color = '#fff';
+          submitBtn.style.border = 'none';
+          submitBtn.style.padding = '8px 20px';
+          submitBtn.style.fontSize = '14px';
+          submitBtn.style.borderRadius = '6px';
+          submitBtn.style.cursor = 'pointer';
+        }
+      } catch (err) {
+        console.warn('无法修改 Cusdis 样式，可能因跨域限制：', err);
+      }
+    }
+  });

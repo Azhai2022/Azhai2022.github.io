@@ -1,0 +1,128 @@
+a
+  color: orange-middle
+
+a:hover
+  color: orange-fresh
+
+p
+  line-height: 1.6em
+  text-align: justify
+  vertical-align: baseline
+
+h1
+  font-size: article-title1-font-size
+  margin: 1em 0
+
+h2
+  font-size: article-title2-font-size
+  margin: 0.9em 0
+
+h3
+  font-size: article-title3-font-size
+  margin: 0.8em 0
+
+h4
+  font-size: article-title4-font-size
+  margin: 0.7em 0
+
+h5
+  font-size: article-title5-font-size
+  margin: 0.7em 0
+  
+h6
+  font-size: article-title6-font-size
+  margin: 0.6em 0
+
+h1,h2,h3,h4,h5,h6
+  font-weight: 1200
+
+hr
+  border: 1px solid transparent
+  border-image: linear-gradient(to right, rgba(31, 18, 53, 0.1), rgba(31, 18, 53, 0.35), rgba(31, 18, 53, 0.1)) 1
+
+blockquote
+  margin: 15px 0
+  padding: 6px 12px
+  background-color: quote-background
+  // border-radius: 10px
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1)
+  border-left: 10px solid yellow-light
+  line-height: 2em
+
+blockquote.light
+  background-color: transparent
+  box-shadow: none
+  border-left-color: shadow-grey
+  color: text-grey
+
+blockquote.pink
+  background-color: pink-light
+  border-left-color: pink-normal
+
+blockquote.red
+  background-color: red-fresh
+  border-left-color: red-dark
+
+blockquote.blue
+  background-color: blue-light
+  border-left-color: blue-normal
+
+blockquote.green
+  background-color: green-light
+  border-left-color: green-fresh
+
+ul
+  padding-left: 1em
+  line-height: 1.8em
+
+ol
+  padding-left: 1em
+  line-height: 1.8em
+
+input[type='checkbox']:disabled
+  width: 15px
+  height: 15px
+
+table
+  margin: 1.5em 0
+  border-collapse: collapse;
+  width: 100%
+
+  ul, ol
+    padding-left: 25px
+    line-height: normal
+    margin: 0
+
+th, td
+  vertical-align: middle;
+  padding: 5px 8px
+  border: 1px solid border-grey
+
+thead
+  background-color: text-black-light
+  color: white
+
+.table-center
+  width: 100%
+  overflow-x: auto
+
+details
+  margin: 10px auto
+
+  summary
+    border-radius: 10px
+    background-color: code-light
+    padding: 10px 20px
+    font-weight: bold
+
+    &:hover
+      color: orange-middle
+  
+  &[open]
+    padding: 10px 20px
+    background-color: code-light
+    border-radius: 10px
+
+    summary
+      padding: 0
+      text-decoration: underline

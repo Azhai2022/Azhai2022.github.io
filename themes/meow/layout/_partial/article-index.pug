@@ -1,0 +1,44 @@
+article.index-post-item
+  //- 文章标题
+  .post-title-index
+    h1
+      a(href= url_for(post.path))
+        i.fa-solid.fa-ship
+        | #{ post.title }
+    
+    if post.sticky
+      .post-top
+        | !{ markdown(__('article.top'))}
+    
+    - const now = Date.now();
+    - const twoDays = 2 * 24 * 60 * 60 * 1000;
+    - const updateDate = page.update_date || post.update_date;
+    - const isUpdated = !post.sticky && updateDate && (now - new Date(updateDate).getTime()) < twoDays && (now - new Date(updateDate).getTime()) >= 0;
+    if isUpdated
+      .post-updated
+        | 有更新
+
+  .post-head-info
+    //- post's date info 文章日期相关信息
+    | !{ partial('_partial/post/date') }
+
+    //- post's categories info 文章分类
+    | !{ partial('_partial/post/post-categories') }
+
+  //- post's excerpt 文章摘要
+  .post-excerpt(excerpt-simplify= theme.excerpt_simplify.toString())
+    if post.excerpt
+      | !{ post.excerpt }
+    else if post.summary
+      | !{ markdown(post.summary) }
+    else
+      //- no summary: show nothing
+      
+    
+  //- read more button "阅读全文"按钮
+  .read-more
+    i.fa-solid.fa-ship.fa-xs
+    a.read-more-link(href= url_for(post.path))= __('article.read_more')
+
+  //- post's tags info 文章标签
+  | !{ partial('_partial/post/post-tags') }

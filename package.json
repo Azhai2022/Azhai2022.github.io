@@ -5,8 +5,12 @@
   "scripts": {
     "build": "hexo generate",
     "clean": "hexo clean",
-    "deploy": "hexo deploy",
-    "server": "hexo server"
+    "deploy": "PATH=/usr/bin:/bin:/usr/sbin:/sbin:$PATH hexo deploy",
+    "server": "hexo server",
+    "newsletter:check": "node newsletter-cli.js preflight",
+    "newsletter:baseline": "node newsletter-cli.js baseline",
+    "newsletter:preview": "node newsletter-cli.js preview",
+    "newsletter:send": "node newsletter-cli.js send"
   },
   "hexo": {
     "version": "6.3.0"

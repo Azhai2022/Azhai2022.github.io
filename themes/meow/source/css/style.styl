@@ -1,0 +1,11 @@
+importUrl(url_list)
+  if url_list
+    for url_item in url_list
+      @import url(url_item)
+
+importUrl(hexo-config('font.url_list'))
+
+@import '_style/_default/*'
+@import '_style/*'
+@import '_style/_partial/*'
+@import '_style/_partial/post/*'

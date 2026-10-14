@@ -1,0 +1,111 @@
+- page.music = true
+
+.about-container
+  #aplayer
+  script.
+    window.addEventListener('DOMContentLoaded', function () {
+      const ap = new APlayer({
+        container: document.getElementById('aplayer'),
+        fixed: false,
+        autoplay: false,
+        audio: [{
+          name: '希律律',
+          artist: '咩咩咩',
+          url: '/audio/希律律.MP3',
+          cover: '/images/cover1.jpg'
+        }]
+      });
+    });
+
+  .about-blog
+    h1
+      i.fa-solid.fa-paw
+      | #{ __('about.about_blog.title') }
+
+    .about-keywords
+      - const keywords = __('about.about_blog.keywords');
+      - const keywords_list = keywords.split(',');
+      - for (kw of keywords_list)
+        span.about-keywords-tag= kw
+
+    .about-blog-intro
+      | !{ markdown(__('about.about_blog.introduction')) }
+
+    .about-blog-supplement
+      | !{ markdown(__('about.about_blog.supplement')) }
+
+  .about-author
+    h1
+      i.fa-solid.fa-paw
+      | #{ __('about.about_author.title') }
+
+    .about-author-nav
+      img#author-img(src= url_for(theme.author_pic), decoding='async')
+
+      .about-author-info
+        .author-name 阿斋斋
+
+        .author-desc= __('about.about_author.description')
+
+  if theme.links.enable
+    .about-links
+      h1
+        i.fa-solid.fa-paw
+        | #{ __('about.about_links') }
+      
+      .links-nav
+        - for (links_item in theme.links.links_list)
+          a.links-item(href= theme.links.links_list[links_item].url)
+            span.links-item-title
+              i.fa-solid.fa-link
+              |  #{ links_item }
+            span.links-item-desc= theme.links.links_list[links_item].desc
+
+  if theme.password_hints && theme.password_hints.length > 0
+    .about-password-hint
+      h1
+        i.fa-solid.fa-paw
+        | #{ __('about.password_hint.title') }
+
+      table.password-hint-table
+        thead
+          tr
+            th 文章名
+            th 提示
+        tbody
+          - for (hint of theme.password_hints)
+            tr
+              td= hint.title
+              td= hint.tip
+
+
+  if theme.about_reward && theme.about_reward.enable
+    .about-reward
+      h1
+        i.fa-solid.fa-paw
+        | #{ __('about.reward.title') }
+
+      .about-reward-desc
+        | !{ markdown(__('about.reward.description')) }
+
+      .about-reward-nav
+        - for (reward_item in theme.about_reward.QR_code)
+          .about-reward-item
+            img.about-reward-img(src= url_for(theme.about_reward.QR_code[reward_item]), title= reward_item, alt= reward_item, loading='lazy', decoding='async')
+            span= reward_item
+
+  if theme.credits.enable
+    .about-credits
+      h1
+        i.fa-solid.fa-paw
+        | #{ __('about.credits.title') }
+      
+      .about-credits-desc
+        | !{ markdown(__('about.credits.description')) }
+      
+      .about-credits-list
+        | !{ markdown(theme.credits.credits_list) }
+
+//- Comment zone 评论区
+if theme.comment.about_enable
+  | !{ partial('_partial/comment') }

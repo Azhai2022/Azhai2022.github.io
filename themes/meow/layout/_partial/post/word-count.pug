@@ -1,0 +1,19 @@
+-
+  var pure_content = post.encrypt ? strip_html(post.origin) : strip_html(post.content);
+  //- count Chinese/English characters and punctuation; ignore whitespace (including blank lines)
+  var char_count = Array.from((pure_content || "").replace(/\s+/g, "")).length;
+  var word_num = "";
+  if (char_count >= 10000) {
+    word_num = (char_count / 10000).toFixed(1) + "W";
+  } else if (char_count >= 100) {
+    word_num = (char_count / 1000).toFixed(1) + "K";
+  } else {
+    word_num = char_count.toString();
+  }
+
+if theme.word_count.enable
+  .post-word-count
+    i.icon.fa-solid.fa-pen-to-square
+    span= _p('article.word_count', (post.lang).startsWith('zh') ? word_num : char_count.toString())
+    i.icon.fa-regular.fa-clock
+    span= '阅读约 ' + min2read(post.encrypt ? post.origin : post.content) + ' 分钟'

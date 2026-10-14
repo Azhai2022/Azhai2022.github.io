@@ -1,0 +1,30 @@
+-//- index menu bar 首页菜单栏
+//- .index-menu
+//-   | !{ partial('_partial/menu-index', null, {cache: true}) }
+
+//- posts list 文章列表
+.index-posts
+  - const now = Date.now();
+  - const sevenDays = 7 * 24 * 60 * 60 * 1000;
+  - const posts = page.posts.toArray();
+  - const sorted = posts.sort((a, b) => {
+  -   const aSticky = a.sticky || 0;
+  -   const bSticky = b.sticky || 0;
+  -   const aUpdated = a.update_date ? new Date(a.update_date).getTime() : 0;
+  -   const bUpdated = b.update_date ? new Date(b.update_date).getTime() : 0;
+  -   const aIsUpdated = aUpdated && (now - aUpdated) < sevenDays && (now - aUpdated) >= 0;
+  -   const bIsUpdated = bUpdated && (now - bUpdated) < sevenDays && (now - bUpdated) >= 0;
+  -   if (aSticky && bSticky) return bSticky - aSticky;
+  -   if (aSticky) return -1;
+  -   if (bSticky) return 1;
+  -   if (aIsUpdated && bIsUpdated) return bUpdated - aUpdated;
+  -   if (aIsUpdated) return -1;
+  -   if (bIsUpdated) return 1;
+  -   return new Date(b.date).getTime() - new Date(a.date).getTime();
+  - });
+  - for (post of sorted)
+    | !{ partial('_partial/article-index', {post: post}) }
+
+//- pagination function 分页功能
+.pagination
+  | !{ partial('_partial/pagination', {page: page}) }
