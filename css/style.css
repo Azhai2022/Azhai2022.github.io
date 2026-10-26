@@ -1882,7 +1882,7 @@ body .main .main-content {
     min-width: 0;
   }
   .post-info-first-line.has-update-content .post-info-date-row > .post-date {
-    flex: 0 1 auto;
+    flex: 0 0 auto;
     max-width: none;
     min-width: 0;
     margin: 5px 0;
@@ -1892,12 +1892,16 @@ body .main .main-content {
   }
   .post-info-first-line.has-update-content .post-info-date-row > .post-tags,
   .post-info-first-line.has-update-content .post-info-date-row > .post-categories {
-    flex: 0 1 auto;
+    flex: 0 0 auto;
     min-width: 0;
     max-width: none;
     margin: 5px 0;
-    white-space: normal;
-    overflow-wrap: anywhere;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+  .post-info-first-line.has-update-content .post-info-date-row > .post-tags .post-tag,
+  .post-info-first-line.has-update-content .post-info-date-row > .post-categories .post-category {
+    white-space: nowrap;
   }
   .post-info-first-line.has-update-content .post-info-update-row {
     display: block;
