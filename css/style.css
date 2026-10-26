@@ -1657,6 +1657,12 @@ body .main .main-content {
   white-space: nowrap;
   margin: 5px 10px 5px 0;
 }
+.post-info-first-line.has-update-content .post-info-date-row {
+  display: contents;
+}
+.post-info-first-line.has-update-content .post-info-update-row {
+  display: contents;
+}
 .post-info-second-line {
   display: flex;
   flex-flow: row wrap;
@@ -1868,17 +1874,38 @@ body .main .main-content {
   .post-info {
     font-size: 16px;
   }
-  .post-info-first-line .post-date.has-update-content {
-    display: contents;
+  .post-info-first-line.has-update-content .post-info-date-row {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    flex: 0 1 100%;
+    min-width: 0;
   }
-  .post-info-first-line .post-date.has-update-content .post-date-times {
-    flex: 0 0 100%;
+  .post-info-first-line.has-update-content .post-info-date-row > .post-date {
+    flex: 0 1 auto;
+    max-width: none;
     min-width: 0;
     margin: 5px 0;
+  }
+  .post-info-first-line.has-update-content .post-info-date-row > .post-date .post-date-times {
     white-space: nowrap;
   }
-  .post-info-first-line .post-date.has-update-content .post-update-content {
+  .post-info-first-line.has-update-content .post-info-date-row > .post-tags,
+  .post-info-first-line.has-update-content .post-info-date-row > .post-categories {
+    flex: 0 1 auto;
     min-width: 0;
+    max-width: none;
+    margin: 5px 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .post-info-first-line.has-update-content .post-info-update-row {
+    display: block;
+    flex: 0 0 100%;
+    margin: 0;
+  }
+  .post-info-first-line.has-update-content .post-info-update-row > .post-update-content {
+    display: inline-block;
     max-width: 100%;
     margin: 5px 10px 5px 0;
     white-space: normal;
@@ -1892,6 +1919,17 @@ body .main .main-content {
   }
   .post-title h1 {
     font-size: 26px;
+  }
+}
+@media screen and (max-width: 360px) {
+  .post-info-first-line.has-update-content .post-info-date-row {
+    font-size: 14px;
+  }
+  .post-info-first-line.has-update-content .post-info-date-row > .post-date {
+    margin-right: 4px;
+  }
+  .post-info-first-line.has-update-content .post-info-date-row > .post-date .post-date-item {
+    margin-right: 4px;
   }
 }
 .blog-info {
@@ -2912,15 +2950,19 @@ header {
   margin-right: 10px;
   white-space: nowrap;
 }
-.post-date .post-update-content {
+.post-date.has-update-content {
+  white-space: normal;
+}
+.post-update-content {
   display: inline-block;
+  min-width: 0;
   max-width: calc(100% - 10px);
   margin-right: 10px;
   vertical-align: top;
   overflow-wrap: anywhere;
 }
-.post-date.has-update-content {
-  white-space: normal;
+.post-update-content i {
+  margin-right: 5px;
 }
 .inline-comment-btn {
   display: inline-flex;
