@@ -1509,7 +1509,7 @@ body .main .main-content {
   font-size: 16px;
   color: #b1b1b1;
   overflow: hidden;
-  white-space: nowrap;
+  white-space: normal;
 }
 .index-posts .index-post-item .post-head-info div {
   margin-top: 5px;
@@ -2875,12 +2875,27 @@ header {
 .post-copyright a:hover {
   color: #fba414;
 }
+.post-date {
+  max-width: 100%;
+  min-width: 0;
+}
 .post-date i {
   margin-right: 5px;
 }
-.post-date time,
-.post-date span {
+.post-date .post-date-item {
+  display: inline-block;
   margin-right: 10px;
+  white-space: nowrap;
+}
+.post-date .post-update-content {
+  display: inline-block;
+  max-width: calc(100% - 10px);
+  margin-right: 10px;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.post-date.has-update-content {
+  white-space: normal;
 }
 .inline-comment-btn {
   display: inline-flex;
