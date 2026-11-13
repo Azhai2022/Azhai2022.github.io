@@ -41,13 +41,13 @@
     }
   }
 
-  function refreshPosts() {
+  function refreshBadges() {
     window.clearTimeout(expiryTimer);
     const versions = readVersions();
     const now = Date.now();
     let nextCheck = Infinity;
 
-    const posts = Array.from(document.querySelectorAll('.index-post-item')).map((post) => {
+    document.querySelectorAll('.index-post-item[data-update-version]').forEach((post) => {
       const badge = post.querySelector('.post-updated');
       const version = updateVersion(post);
       const unread = version !== null && versions[postPath(post)] !== version;
@@ -58,39 +58,24 @@
       if (badge && unread && age < UPDATE_WINDOW) {
         nextCheck = Math.min(nextCheck, age < 0 ? -age : UPDATE_WINDOW - age);
       }
-
-      const published = Number(post.dataset.publishVersion) || 0;
-      return {
-        post,
-        sticky: Number(post.dataset.stickyPriority) || 0,
-        published,
-        activity: activeUpdate ? Math.max(published, version) : published,
-      };
     });
 
-    // Read and expired updates return to publication order without a rebuild.
-    posts.sort((a, b) => b.sticky - a.sticky || b.activity - a.activity || b.published - a.published);
-    const list = document.querySelector('.index-posts');
-    if (list) posts.forEach(({ post }, index) => {
-      if (list.children[index] !== post) list.insertBefore(post, list.children[index] || null);
-    });
-
-    // Recheck both the badge and its position while the homepage stays open.
+    // Badge expiration does not change the publication/update order.
     if (Number.isFinite(nextCheck)) {
-      expiryTimer = window.setTimeout(refreshPosts, Math.min(nextCheck, 2147483647));
+      expiryTimer = window.setTimeout(refreshBadges, Math.min(nextCheck, 2147483647));
     }
   }
 
   function init() {
     markArticleRead();
-    refreshPosts();
-    window.addEventListener('pageshow', refreshPosts);
+    refreshBadges();
+    window.addEventListener('pageshow', refreshBadges);
     window.addEventListener('storage', (event) => {
-      if (event.key === STORAGE_KEY || event.key === null) refreshPosts();
+      if (event.key === STORAGE_KEY || event.key === null) refreshBadges();
     });
     window.addEventListener('hexo-blog-decrypt', markArticleRead);
     document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible') refreshPosts();
+      if (document.visibilityState === 'visible') refreshBadges();
     });
   }
 
