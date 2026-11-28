@@ -123,17 +123,26 @@ body.site-skin .post-info a { color:var(--muted); }
 body.site-skin .post-content, body.site-skin .fiction-before-content, body.site-skin .fiction-notes-after { color:var(--ink); }
 body.site-skin .post-content p { line-height:1.65; }
 body.site-skin .fiction-notes-content { font-family:"LXGW WenKai","Kaiti SC","STKaiti","KaiTi",serif; }
+body.site-skin .fiction-notes-before > h4,
+body.site-skin .fiction-notes-after > h4 { margin-bottom:8px; }
+body.site-skin .fiction-notes-content > :first-child { margin-top:0; }
 body.site-skin .fiction-summary:has(+ .fiction-notes-before) { margin-bottom:20px; }
 body.site-skin .fiction-summary + .fiction-notes-before,
 body.site-skin .fiction-summary + .fiction-notes-before > h4 { margin-top:20px; }
 body.site-skin .post-content h1, body.site-skin .post-content h2, body.site-skin .post-content h3, body.site-skin .post-content h4 { font-family:var(--display); color:var(--ink); }
 body.site-skin blockquote { background:var(--accent-soft); color:var(--ink); border-left:3px solid var(--accent); box-shadow:none; }
-body.site-skin .fiction-meta { background:var(--paper); border:1px solid var(--soft-line); border-left:4px solid var(--accent); border-radius:4px; box-shadow:none; padding:12px 16px; }
+body.site-skin .fiction-meta,
+body.site-skin .fiction-summary { background:var(--paper); border:1px solid var(--soft-line); border-left:4px solid var(--accent); border-radius:4px; box-shadow:none; padding:12px 16px; }
+body.site-skin .fiction-summary { border-left-color:var(--green); }
 body.site-skin .fiction-meta-key { color:var(--muted); border-color:var(--soft-line); }
 body.site-skin .fiction-meta-item:hover { background:var(--accent-soft); }
 body.site-skin .fiction-meta-inline { flex-flow:row nowrap; align-items:baseline; font-weight:700; }
 body.site-skin .fiction-meta-inline .fiction-meta-key { flex:0 0 auto; width:auto; margin:0; border:0; font:inherit; }
 body.site-skin .fiction-meta-inline .fiction-meta-value { flex:1; min-width:0; margin:0; font:inherit; white-space:pre-wrap; overflow-wrap:anywhere; }
+body.site-skin .fiction-meta-inline .fiction-summary-content { white-space:normal; }
+body.site-skin .fiction-summary-content p { font:inherit; text-indent:0; }
+body.site-skin .fiction-summary-content > :first-child { margin-top:0; }
+body.site-skin .fiction-summary-content > :last-child { margin-bottom:0; }
 body.site-skin details, body.site-skin details summary { color:var(--ink); background:var(--accent-soft); border-radius:4px; }
 body.site-skin .bookmark-banner { background:var(--paper); color:var(--ink); border-color:var(--line); border-radius:4px; top:72px; }
 body.site-skin .bookmark-banner-info { color:var(--muted); }
@@ -187,6 +196,11 @@ body.site-skin.dm-dark .main .main-content { background:transparent; }
 body.site-skin.dm-dark .post-content, body.site-skin.dm-dark .post-info, body.site-skin.dm-dark .post-info-second-line,
 body.site-skin.dm-dark .index-posts .post-title-index h1 a { color:var(--ink); }
 body.site-skin.dm-dark header { background:var(--paper); }
+@media (min-width:769px) {
+  body.site-skin .post-info-first-line .post-date { margin-right:0; }
+  body.site-skin .post-info-first-line .post-tags .post-tag:last-child,
+  body.site-skin .post-info-first-line .post-categories .post-category:last-child { margin-right:0; padding-right:0; }
+}
 @media (max-width:960px) {
   body.site-skin .intro-inner { gap:34px; grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
   body.site-skin .intro-portrait { flex-basis:98px; padding:7px; }
@@ -235,7 +249,10 @@ body.site-skin.dm-dark header { background:var(--paper); }
   body.site-skin .post-info-second-line > div { margin-top:2px; margin-bottom:2px; }
   body.site-skin .post-info-first-line.has-update-content .post-info-date-row,
   body.site-skin .post-info-first-line.has-update-content .post-info-update-row { margin-top:0; margin-bottom:0; }
-  body.site-skin .post-info-first-line .post-info-date-row { gap:9px; }
+  body.site-skin .post-info-first-line .post-info-date-row { gap:10px; }
+  body.site-skin .post-info-first-line .post-date,
+  body.site-skin .post-info-first-line.has-update-content .post-info-date-row > .post-date { margin-right:0; }
+  body.site-skin .post-info-first-line.has-update-content .post-info-date-row .post-date-item:last-child { margin-right:0; }
   body.site-skin .post-info-first-line.has-update-content .post-info-date-row { flex-wrap:nowrap; }
   body.site-skin .post-info-second-line div { white-space:normal; }
   body.site-skin .fiction-meta-key { width:80px; font-size:13px; }
