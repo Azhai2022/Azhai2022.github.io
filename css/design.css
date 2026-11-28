@@ -61,6 +61,7 @@ body.site-skin .random-header > i:first-child, body.site-skin .panel-header > i:
 body.site-skin .random-arrow, body.site-skin .panel-arrow { margin-left:auto; font-size:10px; opacity:.65; }
 body.site-skin .sidebar-panel .empty-msg { font-size:12px; color:var(--muted); }
 body.site-skin .sidebar-panel .list-item, body.site-skin .sidebar-random .random-option { color:var(--ink); font-size:12px; padding:9px 12px; border-color:var(--soft-line); }
+body.site-skin .sidebar-random .random-option { padding:4px 13px; line-height:1.5; }
 body.site-skin .sidebar-panel .item-remove { color:var(--muted); }
 body.site-skin .sidebar-panel .favorite-list, body.site-skin .sidebar-panel #last-read-list,
 body.site-skin .sidebar-random .random-menu, body.site-skin .sidebar-panel .newsletter-panel-content { background:var(--paper); }
@@ -81,7 +82,7 @@ body.site-skin .announcement-panel .announcement-list li + li { margin-top:2px; 
 body.site-skin .announcement-panel .announcement-empty { display:block; margin:0; padding:0 13px 9px 34px; }
 body.site-skin .announcement-panel .announcement-empty[hidden] { display:none; }
 body.site-skin .main { max-width:1120px; width:calc(100% - 64px); margin:0 auto; }
-body.site-skin .main .main-content { background:transparent; background-image:none; border:0; border-radius:0; box-shadow:none; padding:32px 0 48px; }
+body.site-skin .main .main-content { background:transparent; background-image:none; border:0; border-radius:0; box-shadow:none; padding:32px 0 24px; }
 body.site-skin .feed-heading { display:flex; align-items:center; justify-content:space-between; gap:20px; margin:0 0 22px; border-bottom:1px solid var(--soft-line); padding-bottom:15px; }
 body.site-skin .feed-heading h2 { font:750 21px/1.4 var(--display); margin:0; color:var(--ink); display:flex; gap:10px; align-items:center; }
 body.site-skin .feed-heading h2 i { font-size:17px; color:var(--accent); }
@@ -119,7 +120,7 @@ body.site-skin .post-title h1 > i { color:var(--accent); font-size:23px; margin-
 body.site-skin .post-info, body.site-skin .post-info-second-line { color:var(--muted); font-size:13px; line-height:1.8; }
 body.site-skin .post-info a { color:var(--muted); }
 body.site-skin .post-content, body.site-skin .fiction-before-content, body.site-skin .fiction-notes-after { color:var(--ink); }
-body.site-skin .post-content p { line-height:1.95; }
+body.site-skin .post-content p { line-height:1.65; }
 body.site-skin .post-content h1, body.site-skin .post-content h2, body.site-skin .post-content h3, body.site-skin .post-content h4 { font-family:var(--display); color:var(--ink); }
 body.site-skin blockquote { background:var(--accent-soft); color:var(--ink); border-left:3px solid var(--accent); box-shadow:none; }
 body.site-skin .fiction-meta { background:transparent; border:1px solid var(--soft-line); border-radius:4px; box-shadow:none; padding:12px 16px; }
@@ -151,12 +152,13 @@ body.site-skin .search-container { background:var(--paper); color:var(--ink); bo
 body.site-skin .search-head { color:var(--accent); }
 body.site-skin #search-input { color:var(--ink); background:var(--page); border-color:var(--soft-line); border-radius:4px; min-width:0; }
 body.site-skin .pagination, body.site-skin .pagination a, body.site-skin .pagination .next, body.site-skin .pagination .prev { color:var(--ink); }
+body.site-skin .pagination { margin-top:18px; }
 body.site-skin .pagination .current { background:var(--accent); color:var(--accent-ink); border-color:var(--accent); border-radius:4px; }
 body.site-skin .pagination #page-jump-input, body.site-skin .pagination #page-jump-btn { border-color:var(--soft-line); color:var(--ink); background:var(--paper); }
 body.site-skin .archive, body.site-skin .tags, body.site-skin .about { max-width:850px; width:100%; margin-left:auto; margin-right:auto; }
 body.site-skin .archive h1, body.site-skin .archive h2, body.site-skin .about h1 { color:var(--ink); }
 body.site-skin footer { border-top:1px solid var(--soft-line); background:var(--paper); }
-body.site-skin .footer-content { padding:25px 16px; color:var(--muted); font-size:12px; line-height:1.8; }
+body.site-skin .footer-content { margin:8px auto 10px; padding:18px 16px; color:var(--muted); font-size:12px; line-height:1.8; }
 body.site-skin .copyright-info a { color:var(--muted); }
 body.site-skin .copyright-info .fa-heart { color:var(--accent); }
 body.site-skin #home-gate-card { background:var(--paper)!important; border-color:var(--line)!important; border-radius:8px!important; }
@@ -201,10 +203,12 @@ body.site-skin.dm-dark header { background:var(--paper); }
   body.site-skin .portrait-sun { font-size:23px; top:-16px; left:-13px; }
   body.site-skin .portrait-star { font-size:19px; right:-12px; }
   body.site-skin .intro-tools { gap:8px; }
+  body.site-skin .newsletter-fields { flex-direction:row; flex-wrap:nowrap; }
+  body.site-skin #newsletter-email { flex:0 1 220px; width:220px; height:38px; }
   body.site-skin .sidebar-random .random-header, body.site-skin .sidebar-panel .panel-header { min-height:40px; padding:9px 10px; font-size:12px; }
   body.site-skin .announcement-panel .panel-header { min-height:0; padding-bottom:4px; }
   body.site-skin .main { width:calc(100% - 36px); }
-  body.site-skin .main .main-content { padding:25px 0 32px; }
+  body.site-skin .main .main-content { padding:25px 0 18px; }
   body.site-skin .feed-heading { gap:12px; padding-bottom:12px; margin-bottom:18px; }
   body.site-skin .feed-heading h2 { font-size:19px; gap:7px; }
   body.site-skin .feed-total { font-size:11px; gap:10px; }
@@ -213,6 +217,14 @@ body.site-skin.dm-dark header { background:var(--paper); }
   body.site-skin .index-posts .post-title-index h1 { font-size:21px; }
   body.site-skin .post-title h1 { font-size:24px; }
   body.site-skin .post-info { font-size:12px; }
+  body.site-skin .post-info, body.site-skin .post-info-second-line { line-height:1.5; }
+  body.site-skin .post-info-first-line { margin-top:6px; }
+  body.site-skin .post-info-first-line > div,
+  body.site-skin .post-info-first-line.has-update-content .post-info-date-row > div,
+  body.site-skin .post-info-first-line.has-update-content .post-info-update-row > .post-update-content,
+  body.site-skin .post-info-second-line > div { margin-top:2px; margin-bottom:2px; }
+  body.site-skin .post-info-first-line.has-update-content .post-info-date-row,
+  body.site-skin .post-info-first-line.has-update-content .post-info-update-row { margin-top:0; margin-bottom:0; }
   body.site-skin .post-info-first-line .post-info-date-row { gap:9px; }
   body.site-skin .post-info-first-line.has-update-content .post-info-date-row { flex-wrap:nowrap; }
   body.site-skin .post-info-second-line div { white-space:normal; }
