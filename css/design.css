@@ -75,8 +75,9 @@ body.site-skin .announcement-panel .panel-header { align-items:center; gap:5px; 
 body.site-skin .announcement-panel .panel-header > span:nth-child(2) { flex-shrink:0; }
 body.site-skin .announcement-panel .announcement-empty,
 body.site-skin .announcement-panel .announcement-list { font-size:12px; line-height:1.4; font-weight:400; color:var(--green); }
-body.site-skin .announcement-panel .announcement-list { display:none; margin:0; padding:0 13px 9px 34px; list-style-position:inside; }
+body.site-skin .announcement-panel .announcement-list { display:block; margin:0; padding:0 13px 9px 34px; list-style-position:inside; }
 body.site-skin .announcement-panel.has-announcements .announcement-list { display:block; }
+body.site-skin .announcement-panel .announcement-list[hidden] { display:none; }
 body.site-skin .announcement-panel .announcement-list li { margin:0; padding:0; }
 body.site-skin .announcement-panel .announcement-list li + li { margin-top:2px; }
 body.site-skin .announcement-panel .announcement-empty { display:block; margin:0; padding:0 13px 9px 34px; }
