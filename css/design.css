@@ -230,6 +230,7 @@ body.site-skin.dm-dark header { background:var(--paper); }
   body.site-skin .post-info-second-line div { white-space:normal; }
   body.site-skin .fiction-meta-key { width:80px; font-size:13px; }
   body.site-skin .bookmark-banner { top:64px; padding:9px; }
+  body.site-skin #tool-bar { right:14px; bottom:20px; }
   body.site-skin .search-container { width:calc(100% - 32px); padding:14px; }
   body.site-skin #search-panel { top:56px; }
   body.site-skin .inline-comment-panel { border-radius:8px; }
